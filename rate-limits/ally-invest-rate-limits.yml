@@ -1,0 +1,90 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Ally Invest
+providerId: ally-invest
+created: '2026-06-13'
+modified: '2026-06-13'
+tags:
+  - Brokerage
+  - Investing
+  - Trading
+  - Rate Limiting
+  - Quotas
+  - Throttling
+description: >-
+  Rate limit definitions for the Ally Invest REST and Streaming API surface. Ally Invest publishes
+  rate-limiting documentation at ally.com/api/invest/documentation/rate-limiting/ but does not
+  publicly disclose exact numeric thresholds. The values below reflect the general rate-limiting
+  posture described in the official documentation and observed behavior reported in community
+  libraries. Clients should implement exponential backoff and respect HTTP 429 responses.
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+  serviceUnavailable: 503
+limits:
+  - tier: authenticated
+    name: REST API Default Rate Limit
+    scope: oauth-token
+    metric: requests_per_second
+    limit: 1
+    burst: 5
+    timeFrame: second
+    applies:
+      - Ally Invest Accounts API
+      - Ally Invest Orders API
+      - Ally Invest Market Data API
+      - Ally Invest Watchlists API
+      - Ally Invest Member API
+    notes: >-
+      Ally Invest's documentation references rate limiting without publishing exact counts.
+      Community wrappers and the Zorro plugin note that rapid successive requests result in
+      throttling. A conservative safe rate of 1 request per second per OAuth token is
+      recommended by community developers.
+  - tier: authenticated
+    name: Streaming API Connection Limit
+    scope: oauth-token
+    metric: concurrent_connections
+    limit: 1
+    timeFrame: session
+    applies:
+      - Ally Invest Streaming Market Data API
+    notes: >-
+      Each OAuth token may maintain a single active streaming connection. Opening a new streaming
+      connection with the same credentials will terminate any existing connection.
+  - tier: authenticated
+    name: Market Data Quote Symbols Per Request
+    scope: request
+    metric: symbols_per_request
+    limit: 325
+    timeFrame: request
+    applies:
+      - Ally Invest Market Data API
+    notes: >-
+      The market/ext/quotes endpoint supports up to approximately 325 symbols per single request.
+      For larger symbol universes, batch requests across multiple calls.
+policies:
+  - name: Exponential Backoff
+    description: >-
+      Clients should implement exponential backoff with jitter when receiving HTTP 429 responses.
+      Honor the Retry-After header when present before retrying requests.
+  - name: Single Streaming Connection
+    description: >-
+      Only one streaming connection per OAuth token credential set is supported at a time.
+      Attempting to open multiple streams with the same token will drop the prior connection.
+  - name: Request Pacing
+    description: >-
+      Space requests to the REST API to avoid triggering rate limit responses. Community
+      implementations recommend a minimum 500ms delay between successive calls during normal
+      operation, and 1 second between calls during data intensive operations.
+  - name: Attribution Requirement
+    description: >-
+      Applications displaying Ally Invest data via the API must include appropriate attribution
+      per the Ally Invest Attribution Guidelines at
+      https://www.ally.com/api/invest/documentation/attribution-guidelines/. Non-compliant
+      usage may result in API access revocation.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

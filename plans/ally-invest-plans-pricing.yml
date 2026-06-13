@@ -1,0 +1,81 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Ally Invest
+providerId: ally-invest
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: false
+tags:
+  - Brokerage
+  - Investing
+  - Trading
+  - Finance
+  - Plans
+description: >-
+  Ally Invest does not publish tiered API subscription plans in the traditional SaaS sense.
+  API access is available to Ally Invest account holders who register for developer credentials
+  via the Ally Invest developer program. The underlying brokerage pricing is commission-free for
+  US stocks and ETFs, with a $0.50 per-contract fee for options. There is no account minimum for
+  self-directed cash accounts. API developer access is offered at no additional charge to registered
+  brokerage customers under the API agreement.
+notes: >-
+  Ally Invest's API is tied to an existing brokerage account rather than sold as a standalone API
+  product. Pricing below reflects brokerage transaction costs that apply when orders are placed via
+  the API. The API itself has no separate subscription fee for registered developer accounts.
+sources:
+  - https://www.ally.com/invest/commissions-and-fees/
+  - https://www.ally.com/api/invest/documentation/getting-started/
+  - https://www.ally.com/content/dam/pdf/invest/api-agreement.pdf
+plans:
+  - id: ally-invest-self-directed
+    name: Self-Directed Trading (API Access Included)
+    type: free
+    description: >-
+      Ally Invest brokerage account holders may register for API credentials at no additional cost.
+      The API enables automated access to account data, order placement, and market data. Brokerage
+      transaction fees apply when orders are executed through the API.
+    entries:
+      - label: US Stocks and ETFs Commission
+        name: stock_etf_commission
+        type: free
+        metric: trade
+        limit: -1
+        timeFrame: usage
+        geo: us
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Options Contract Fee
+        name: options_contract_fee
+        type: paid
+        metric: contract
+        limit: -1
+        timeFrame: usage
+        geo: us
+        unit: 1
+        price: '0.50'
+        userMultiplied: false
+      - label: Mutual Funds (No-Transaction-Fee)
+        name: mutual_fund_ntf
+        type: free
+        metric: trade
+        limit: -1
+        timeFrame: usage
+        geo: us
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: API Developer Access
+        name: api_access
+        type: free
+        metric: access
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

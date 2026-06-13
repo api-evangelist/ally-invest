@@ -1,0 +1,130 @@
+specificationVersion: '1.0'
+id: ally-invest-finops
+name: Ally Invest FinOps Framework
+description: >-
+  FinOps Framework FOCUS-aligned cost management reference for the Ally Invest brokerage API.
+  Covers cost allocation, usage optimization, and spend visibility for teams building automated
+  trading systems, portfolio monitoring tools, or market data applications on top of the
+  Ally Invest REST and Streaming APIs.
+url: https://www.ally.com/invest/commissions-and-fees/
+provider: Ally Invest
+product: Ally Invest REST and Streaming API
+currency: USD
+costCategories:
+  - name: API Developer Access
+    description: >-
+      API credentials for registered Ally Invest account holders are provided at no additional
+      charge. There is no subscription fee for API access itself beyond holding an active
+      brokerage account.
+    type: fixed
+    billingCycle: none
+    plans:
+      - name: Self-Directed Trading (API Access)
+        monthlyRate: 0.00
+        notes: No API subscription fee; access tied to active brokerage account
+  - name: Trade Execution Costs
+    description: >-
+      Brokerage transaction fees incurred when orders are executed through the API. Commission-free
+      for US stocks and ETFs. Options trades incur a per-contract fee. These are the primary
+      variable costs for API-driven trading applications.
+    type: variable
+    unit: per trade or per contract
+    plans:
+      - name: US Stocks and ETFs
+        rate: 0.00
+        notes: Commission-free for eligible US-listed equities and ETFs
+      - name: Options Contracts
+        rate: 0.50
+        notes: $0.50 per contract; no base commission on options trades
+      - name: Low-Priced Stocks (under $2/share)
+        rate: 4.95
+        notes: $4.95 base + $0.01 per share for stocks priced below $2.00
+  - name: Margin Interest
+    description: >-
+      Interest charged on margin account debit balances when holding leveraged positions
+      funded through the Ally Invest margin facility. Rates vary with account balance and
+      prevailing rates.
+    type: variable
+    unit: per day
+    plans:
+      - name: Margin Account
+        rate: variable
+        notes: >-
+          Margin interest rates are tiered by debit balance size. Consult
+          https://www.ally.com/invest/commissions-and-fees/ for current rates.
+costAllocation:
+  - dimension: Strategy
+    description: >-
+      Attribute execution costs to individual trading strategies or algorithms by tagging
+      orders with strategy identifiers in your order management system and reconciling against
+      brokerage transaction history pulled via the Accounts History API.
+  - dimension: Asset Class
+    description: >-
+      Separate cost tracking by asset class (equities vs. options) since only options incur
+      per-contract fees. Pull account history by instrument type to compute per-class cost basis.
+  - dimension: Environment
+    description: >-
+      Distinguish development and paper-trading activity from live production trading to
+      isolate real transaction costs from simulated runs. Use the Orders Preview endpoint
+      (POST /accounts/{id}/orders/preview) during development to validate without executing.
+  - dimension: Account
+    description: >-
+      If managing multiple brokerage sub-accounts via the API, use account-level history
+      endpoints to allocate costs per account and reconcile across portfolios.
+optimization:
+  - name: Use Order Preview Before Execution
+    description: >-
+      Call POST /accounts/{id}/orders/preview to validate order parameters, estimated costs,
+      and buying power impact before submitting live orders. Eliminates erroneous executions
+      that incur unnecessary transaction fees.
+    savingsPotential: high
+  - name: Batch Symbol Quotes
+    description: >-
+      The market/ext/quotes endpoint supports up to ~325 symbols per request. Batch quote
+      requests rather than issuing one request per symbol to minimize API call volume and
+      reduce throttling risk.
+    savingsPotential: medium
+  - name: Use Streaming for Real-Time Data
+    description: >-
+      For applications requiring continuous quote updates, use the Streaming API to receive
+      real-time price updates over a single persistent connection rather than polling the
+      REST quotes endpoint repeatedly.
+    savingsPotential: medium
+  - name: Minimize Options Contract Turnover
+    description: >-
+      Each options contract incurs a $0.50 fee at entry and again at close (if sold-to-close).
+      Strategies with lower turnover and fewer legs reduce cumulative transaction costs in
+      API-driven options trading systems.
+    savingsPotential: high
+  - name: Hold Self-Directed Account Active
+    description: >-
+      API access requires an active Ally Invest brokerage account with no additional developer
+      subscription fee. Ensure the account remains in good standing to avoid losing API access
+      and incurring migration costs to an alternative broker API.
+    savingsPotential: medium
+visibility:
+  - name: Account History API
+    description: >-
+      Retrieve transaction history programmatically via GET /accounts/{id}/history to audit
+      all executed trades, fees, and account activity for cost tracking and reconciliation.
+    url: https://www.ally.com/api/invest/documentation/getting-started/
+  - name: Account Balances API
+    description: >-
+      Monitor cash balances, margin utilization, and buying power in real time via
+      GET /accounts/{id}/balances to detect unexpected margin interest accrual and prevent
+      margin calls.
+    url: https://www.ally.com/api/invest/documentation/getting-started/
+  - name: Commissions and Fees Page
+    description: >-
+      Official schedule of all brokerage fees including current margin interest rate tiers,
+      options contract fees, and any other applicable charges.
+    url: https://www.ally.com/invest/commissions-and-fees/
+  - name: API Rate Limit Documentation
+    description: >-
+      Review rate limiting policies to understand API quota constraints that may affect
+      trading system throughput and latency.
+    url: https://www.ally.com/api/invest/documentation/rate-limiting/
+compliance:
+  - FINRA
+  - SEC
+  - SIPC (member)

@@ -1,0 +1,202 @@
+aid: ally-invest
+url: https://raw.githubusercontent.com/api-evangelist/ally-invest/refs/heads/main/apis.yml
+name: Ally Invest
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Brokerage
+  - Investing
+  - Trading
+  - Finance
+  - Stocks
+  - Options
+  - Market Data
+  - Self-Directed
+description: >-
+  Ally Invest is an online brokerage platform offering commission-free self-directed trading of US stocks,
+  ETFs, and options with no account minimums. The platform provides REST APIs (originally developed from
+  the TradeKing acquisition) for managing self-directed investment accounts, placing trades, accessing
+  streaming real-time market data, retrieving account balances and holdings, managing watchlists, and
+  querying market quotes and news. Authentication uses OAuth 1.0 with consumer and token credentials.
+  Responses are available in JSON and XML formats.
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+apis:
+  - aid: ally-invest:ally-invest-accounts-api
+    name: Ally Invest Accounts API
+    tags:
+      - Accounts
+      - Balances
+      - Holdings
+      - History
+      - Portfolio
+    humanURL: https://www.ally.com/api/invest/documentation/getting-started/
+    baseURL: https://api.ally.com/v1
+    properties:
+      - url: https://www.ally.com/api/invest/documentation/getting-started/
+        type: Documentation
+    description: >-
+      The Ally Invest Accounts API provides programmatic access to brokerage account data including
+      account balances, holdings, transaction history, and order status for self-directed investment
+      accounts. Supports retrieval of summary balances across all accounts as well as detailed
+      account-level information for individual accounts identified by account ID.
+
+  - aid: ally-invest:ally-invest-orders-api
+    name: Ally Invest Orders API
+    tags:
+      - Orders
+      - Trades
+      - FIXML
+      - Preview
+      - Execution
+    humanURL: https://www.ally.com/api/invest/documentation/getting-started/
+    baseURL: https://api.ally.com/v1
+    properties:
+      - url: https://www.ally.com/api/invest/documentation/getting-started/
+        type: Documentation
+    description: >-
+      The Ally Invest Orders API enables programmatic placement and management of equity and options
+      orders for self-directed brokerage accounts. Orders are submitted using a FIXML-variant format.
+      Supports order preview before execution, retrieval of open orders, and cancellation of pending
+      orders. Requires OAuth 1.0 authentication with account-level credentials.
+
+  - aid: ally-invest:ally-invest-market-data-api
+    name: Ally Invest Market Data API
+    tags:
+      - Market Data
+      - Quotes
+      - Options
+      - News
+      - Time and Sales
+      - Top Lists
+    humanURL: https://www.ally.com/api/invest/documentation/getting-started/
+    baseURL: https://api.ally.com/v1
+    properties:
+      - url: https://www.ally.com/api/invest/documentation/getting-started/
+        type: Documentation
+    description: >-
+      The Ally Invest Market Data API provides access to real-time and delayed market data including
+      equity and options quotes, option chains, option strikes and expirations, market news search,
+      time-and-sales data, market clock status, and top security lists by various criteria. Option
+      chains can be filtered by type, expiration date, and strike price range.
+
+  - aid: ally-invest:ally-invest-streaming-api
+    name: Ally Invest Streaming Market Data API
+    tags:
+      - Streaming
+      - Real-Time
+      - Quotes
+      - Market Data
+    humanURL: https://www.ally.com/api/invest/documentation/streaming/
+    baseURL: https://api.ally.com/v1
+    properties:
+      - url: https://www.ally.com/api/invest/documentation/streaming/
+        type: Documentation
+    description: >-
+      The Ally Invest Streaming API delivers real-time market quotes via a persistent HTTP streaming
+      connection. Clients subscribe to one or more ticker symbols and receive continuous quote updates
+      as market prices change. Supports JSON and XML response formats. Requires OAuth 1.0
+      authentication.
+
+  - aid: ally-invest:ally-invest-watchlists-api
+    name: Ally Invest Watchlists API
+    tags:
+      - Watchlists
+      - Symbols
+      - Portfolio Tracking
+    humanURL: https://www.ally.com/api/invest/documentation/getting-started/
+    baseURL: https://api.ally.com/v1
+    properties:
+      - url: https://www.ally.com/api/invest/documentation/getting-started/
+        type: Documentation
+    description: >-
+      The Ally Invest Watchlists API allows programmatic creation and management of symbol watchlists
+      associated with a member account. Supports listing all watchlists, creating new watchlists,
+      retrieving watchlist details, deleting watchlists, and adding or removing ticker symbols
+      from existing watchlists.
+
+  - aid: ally-invest:ally-invest-member-api
+    name: Ally Invest Member API
+    tags:
+      - Member
+      - Profile
+      - Identity
+    humanURL: https://www.ally.com/api/invest/documentation/getting-started/
+    baseURL: https://api.ally.com/v1
+    properties:
+      - url: https://www.ally.com/api/invest/documentation/getting-started/
+        type: Documentation
+    description: >-
+      The Ally Invest Member API provides access to the authenticated member's profile information
+      including account identifiers and user details associated with the OAuth credentials.
+
+common:
+  - type: Website
+    url: https://www.ally.com/invest/
+  - type: Documentation
+    url: https://www.ally.com/api/invest/documentation/getting-started/
+  - type: GettingStarted
+    url: https://www.ally.com/api/invest/documentation/getting-started/
+  - type: Authentication
+    url: https://www.ally.com/api/invest/documentation/getting-started/
+  - type: RateLimiting
+    url: https://www.ally.com/api/invest/documentation/rate-limiting/
+  - type: AttributionGuidelines
+    url: https://www.ally.com/api/invest/documentation/attribution-guidelines/
+  - type: TermsOfService
+    url: https://www.ally.com/content/dam/pdf/invest/api-agreement.pdf
+  - type: Support
+    url: mailto:InvestAPI@ally.com
+  - type: SDK
+    url: https://pypi.org/project/AllyInvestPy/
+    title: AllyInvestPy Python SDK (Community)
+  - type: SDK
+    url: https://pypi.org/project/pyally/
+    title: PyAlly Python3 SDK (Community)
+  - type: SDK
+    url: https://pkg.go.dev/github.com/jmal1997/ally-api
+    title: ally-api Go Bindings (Community)
+  - type: GitHubOrganization
+    url: https://github.com/anthonymorast/AllyInvest.py
+  - type: Pricing
+    url: https://www.ally.com/invest/commissions-and-fees/
+  - type: SelfDirectedTrading
+    url: https://www.ally.com/invest/self-directed-trading/
+  - type: Plans
+    url: plans/ally-invest-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/ally-invest-rate-limits.yml
+  - type: FinOps
+    url: finops/ally-invest-finops.yml
+  - type: Features
+    data:
+      - name: Commission-Free Trading
+        description: No commissions on US stocks and ETFs; $0.50 per options contract
+      - name: No Account Minimum
+        description: Self-directed cash accounts require no minimum deposit to open
+      - name: OAuth 1.0 Authentication
+        description: API access secured via OAuth 1.0 with consumer key/secret and OAuth token/secret pairs
+      - name: JSON and XML Responses
+        description: All REST API endpoints return responses in both JSON and XML formats
+      - name: Streaming Market Data
+        description: Real-time quote streaming via persistent HTTP connections for subscribed symbols
+      - name: FIXML Order Format
+        description: Orders submitted in FIXML-variant XML format supporting equities and options
+      - name: Order Preview
+        description: Preview orders before execution to validate parameters and estimated costs
+  - type: UseCases
+    data:
+      - name: Algorithmic Trading
+        description: Build automated trading systems that place and manage orders based on market signals
+      - name: Portfolio Monitoring
+        description: Track account balances, holdings, and performance in real time via API
+      - name: Market Data Aggregation
+        description: Retrieve real-time and delayed quotes, options chains, and news for analysis
+      - name: Watchlist Management
+        description: Maintain dynamic symbol watchlists and retrieve quote updates for tracked securities
+      - name: Trade Journaling
+        description: Pull account history and order records programmatically for trade journaling tools
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,2077 @@
+openapi: 3.0.3
+info:
+  title: Ally Invest API
+  description: >-
+    The Ally Invest REST API (originally developed from the TradeKing acquisition) provides
+    programmatic access to self-directed brokerage account management, order placement,
+    real-time and delayed market data, watchlist management, and member profile information.
+    Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available
+    in JSON and XML formats.
+  version: v1
+  contact:
+    email: InvestAPI@ally.com
+  termsOfService: https://www.ally.com/content/dam/pdf/invest/api-agreement.pdf
+  x-logo:
+    url: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+servers:
+  - url: https://api.ally.com/v1
+    description: Ally Invest REST API
+  - url: https://stream.ally.com/v1
+    description: Ally Invest Streaming API
+externalDocs:
+  description: Ally Invest API Documentation
+  url: https://www.ally.com/api/invest/documentation/getting-started/
+tags:
+  - name: Accounts
+    description: Account balances, holdings, history, and portfolio data
+  - name: Orders
+    description: Order placement, preview, retrieval, and cancellation
+  - name: Market Data
+    description: Quotes, options, news, time-and-sales, and top lists
+  - name: Streaming
+    description: Real-time streaming market data
+  - name: Watchlists
+    description: Watchlist creation and symbol management
+  - name: Member
+    description: Member profile and identity
+  - name: Utilities
+    description: API status and version utilities
+paths:
+  /accounts.json:
+    get:
+      operationId: getAccounts
+      summary: Get all accounts
+      description: Returns summary account information for all accounts associated with the authenticated member.
+      tags:
+        - Accounts
+      responses:
+        '200':
+          description: Successful response with account list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /accounts/balances.json:
+    get:
+      operationId: getAccountsBalances
+      summary: Get balances for all accounts
+      description: Returns balance information for all accounts associated with the authenticated member.
+      tags:
+        - Accounts
+      responses:
+        '200':
+          description: Successful response with balances for all accounts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountsBalancesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /accounts/{id}.json:
+    get:
+      operationId: getAccount
+      summary: Get account details
+      description: Returns detailed account information for a specific account identified by account ID.
+      tags:
+        - Accounts
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Successful response with account details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /accounts/{id}/balances.json:
+    get:
+      operationId: getAccountBalances
+      summary: Get balances for a specific account
+      description: Returns balance information for a specific account identified by account ID.
+      tags:
+        - Accounts
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Successful response with account balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBalanceResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /accounts/{id}/history.json:
+    get:
+      operationId: getAccountHistory
+      summary: Get account transaction history
+      description: Returns transaction history for a specific account including trades, dividends, and other account activity.
+      tags:
+        - Accounts
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - name: range
+          in: query
+          description: Date range for history (e.g., all, today, current_week, current_month, last_month)
+          schema:
+            type: string
+            enum: [all, today, current_week, current_month, last_month]
+        - name: transactions
+          in: query
+          description: Transaction type filter (e.g., all, bookkeeping, trade)
+          schema:
+            type: string
+            enum: [all, bookkeeping, trade]
+      responses:
+        '200':
+          description: Successful response with account history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountHistoryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /accounts/{id}/holdings.json:
+    get:
+      operationId: getAccountHoldings
+      summary: Get account holdings
+      description: Returns current holdings (positions) for a specific account.
+      tags:
+        - Accounts
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Successful response with account holdings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountHoldingsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /accounts/{id}/orders.json:
+    get:
+      operationId: getOrders
+      summary: Get open orders for an account
+      description: Returns a list of open orders for a specific account.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Successful response with orders list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrdersResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+    post:
+      operationId: postOrder
+      summary: Place an order
+      description: >-
+        Places an equity or options order for a specific account. Orders are submitted in
+        a FIXML-variant XML format. Requires OAuth 1.0 authentication.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/FIXMLOrderRequest'
+            example: >-
+              <FIXML xmlns="http://www.fixprotocol.org/FIXML-5-0-SP2">
+                <Order TmInForce="0" Typ="1" Side="1" Acct="12345678">
+                  <Instrmt SecTyp="CS" Sym="GE"/>
+                  <OrdQty Qty="1"/>
+                </Order>
+              </FIXML>
+      responses:
+        '200':
+          description: Order successfully placed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /accounts/{id}/orders/preview.json:
+    post:
+      operationId: previewOrder
+      summary: Preview an order before placement
+      description: >-
+        Previews an order for a specific account to validate parameters and see estimated
+        costs before actual execution. Uses the same FIXML-variant XML format as order placement.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/FIXMLOrderRequest'
+      responses:
+        '200':
+          description: Order preview successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderPreviewResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /accounts/{id}/orders/{orderId}.json:
+    delete:
+      operationId: cancelOrder
+      summary: Cancel a pending order
+      description: Cancels a specific pending order for an account.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - name: orderId
+          in: path
+          required: true
+          description: The order ID to cancel
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order cancelled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancelOrderResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /market/clock.json:
+    get:
+      operationId: getMarketClock
+      summary: Get market clock status
+      description: Returns the current market status (open/closed), current time, and next market event times.
+      tags:
+        - Market Data
+        - Utilities
+      responses:
+        '200':
+          description: Successful response with market clock data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketClockResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /market/ext/quotes.json:
+    get:
+      operationId: getQuotes
+      summary: Get market quotes
+      description: >-
+        Returns real-time or delayed market quotes for one or more ticker symbols.
+        Supports equities and options. Multiple symbols can be requested in a single call.
+      tags:
+        - Market Data
+      parameters:
+        - name: symbols
+          in: query
+          required: true
+          description: Comma-separated list of ticker symbols (e.g., GE,MSFT,AAPL)
+          schema:
+            type: string
+          example: GE,MSFT,AAPL
+        - name: fids
+          in: query
+          description: Comma-separated list of field IDs to return (returns all fields if omitted)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with quotes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuotesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /market/news/search.json:
+    get:
+      operationId: searchNews
+      summary: Search market news
+      description: Searches for market news articles by keyword or ticker symbol.
+      tags:
+        - Market Data
+      parameters:
+        - name: symbols
+          in: query
+          description: Comma-separated list of ticker symbols to search news for
+          schema:
+            type: string
+        - name: keywords
+          in: query
+          description: Keywords to search in news articles
+          schema:
+            type: string
+        - name: maxhits
+          in: query
+          description: Maximum number of results to return
+          schema:
+            type: integer
+            default: 10
+        - name: startdate
+          in: query
+          description: Start date for news search (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: enddate
+          in: query
+          description: End date for news search (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Successful response with news articles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewsSearchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /market/news/{id}.json:
+    get:
+      operationId: getNewsArticle
+      summary: Get a specific news article
+      description: Returns the full content of a specific news article by article ID.
+      tags:
+        - Market Data
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The news article ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with news article
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewsArticleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /market/toplists/{listtype}.json:
+    get:
+      operationId: getTopList
+      summary: Get a market top list
+      description: Returns a list of top securities by various criteria such as most active, largest gainers, largest losers.
+      tags:
+        - Market Data
+      parameters:
+        - name: listtype
+          in: path
+          required: true
+          description: Type of top list to retrieve
+          schema:
+            type: string
+            enum:
+              - toplosers
+              - toppctlosers
+              - topvolume
+              - topactive
+              - topgainers
+              - toppctgainers
+        - name: exchange
+          in: query
+          description: Filter by exchange (e.g., N, Q, A)
+          schema:
+            type: string
+        - name: rows
+          in: query
+          description: Number of results to return
+          schema:
+            type: integer
+            default: 25
+      responses:
+        '200':
+          description: Successful response with top list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /market/options/search.json:
+    get:
+      operationId: searchOptions
+      summary: Search option chains
+      description: Returns option chains for a given underlying symbol, optionally filtered by option type, expiration date, and strike price range.
+      tags:
+        - Market Data
+      parameters:
+        - name: symbol
+          in: query
+          required: true
+          description: Underlying ticker symbol
+          schema:
+            type: string
+          example: AAPL
+        - name: query
+          in: query
+          description: Option chain filter query (e.g., put_call-eq:C for calls only)
+          schema:
+            type: string
+        - name: fids
+          in: query
+          description: Comma-separated list of field IDs to return
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with option chain
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OptionsSearchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /market/options/strikes.json:
+    get:
+      operationId: getOptionStrikes
+      summary: Get available option strike prices
+      description: Returns available strike prices for options on a given underlying symbol.
+      tags:
+        - Market Data
+      parameters:
+        - name: symbol
+          in: query
+          required: true
+          description: Underlying ticker symbol
+          schema:
+            type: string
+          example: AAPL
+      responses:
+        '200':
+          description: Successful response with strike prices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OptionStrikesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /market/options/expirations.json:
+    get:
+      operationId: getOptionExpirations
+      summary: Get available option expiration dates
+      description: Returns available expiration dates for options on a given underlying symbol.
+      tags:
+        - Market Data
+      parameters:
+        - name: symbol
+          in: query
+          required: true
+          description: Underlying ticker symbol
+          schema:
+            type: string
+          example: AAPL
+      responses:
+        '200':
+          description: Successful response with expiration dates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OptionExpirationsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /market/timesales.json:
+    get:
+      operationId: getTimeSales
+      summary: Get time and sales data
+      description: Returns time-and-sales (trade tick) data for a specific symbol.
+      tags:
+        - Market Data
+      parameters:
+        - name: symbols
+          in: query
+          required: true
+          description: Ticker symbol
+          schema:
+            type: string
+        - name: interval
+          in: query
+          description: Interval between ticks (e.g., 1min, 5min, 10min, 15min, 30min, 1hour, daily)
+          schema:
+            type: string
+            enum: [1min, 5min, 10min, 15min, 30min, 1hour, daily]
+        - name: rpp
+          in: query
+          description: Results per page
+          schema:
+            type: integer
+        - name: index
+          in: query
+          description: Page index
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response with time-and-sales data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeSalesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /member/profile.json:
+    get:
+      operationId: getMemberProfile
+      summary: Get member profile
+      description: Returns the authenticated member's profile information including account identifiers and user details.
+      tags:
+        - Member
+      responses:
+        '200':
+          description: Successful response with member profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberProfileResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /utility/status.json:
+    get:
+      operationId: getApiStatus
+      summary: Get API status
+      description: Returns the current operational status of the Ally Invest API.
+      tags:
+        - Utilities
+      responses:
+        '200':
+          description: Successful response with API status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+
+  /utility/version.json:
+    get:
+      operationId: getApiVersion
+      summary: Get API version
+      description: Returns the current version of the Ally Invest API.
+      tags:
+        - Utilities
+      responses:
+        '200':
+          description: Successful response with API version
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionResponse'
+
+  /watchlists.json:
+    get:
+      operationId: getWatchlists
+      summary: Get all watchlists
+      description: Returns all watchlists associated with the authenticated member account.
+      tags:
+        - Watchlists
+      responses:
+        '200':
+          description: Successful response with watchlists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WatchlistsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+    post:
+      operationId: createWatchlist
+      summary: Create a watchlist
+      description: Creates a new watchlist with optional initial symbols for the authenticated member.
+      tags:
+        - Watchlists
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWatchlistRequest'
+            example:
+              id: my-watchlist
+              symbols:
+                - symbol: AAPL
+                - symbol: MSFT
+                - symbol: GOOGL
+      responses:
+        '200':
+          description: Watchlist created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WatchlistResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /watchlists/{id}.json:
+    get:
+      operationId: getWatchlist
+      summary: Get a specific watchlist
+      description: Returns details and symbols for a specific watchlist.
+      tags:
+        - Watchlists
+      parameters:
+        - $ref: '#/components/parameters/WatchlistId'
+      responses:
+        '200':
+          description: Successful response with watchlist details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WatchlistResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+    delete:
+      operationId: deleteWatchlist
+      summary: Delete a watchlist
+      description: Deletes a specific watchlist by ID.
+      tags:
+        - Watchlists
+      parameters:
+        - $ref: '#/components/parameters/WatchlistId'
+      responses:
+        '200':
+          description: Watchlist deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+  /watchlists/{id}/symbols.json:
+    post:
+      operationId: addWatchlistSymbols
+      summary: Add symbols to a watchlist
+      description: Adds one or more ticker symbols to an existing watchlist.
+      tags:
+        - Watchlists
+      parameters:
+        - $ref: '#/components/parameters/WatchlistId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WatchlistSymbolsRequest'
+            example:
+              symbols:
+                - symbol: TSLA
+                - symbol: AMZN
+      responses:
+        '200':
+          description: Symbols added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WatchlistResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+    delete:
+      operationId: deleteWatchlistSymbols
+      summary: Remove symbols from a watchlist
+      description: Removes one or more ticker symbols from an existing watchlist.
+      tags:
+        - Watchlists
+      parameters:
+        - $ref: '#/components/parameters/WatchlistId'
+        - name: symbols
+          in: query
+          required: true
+          description: Comma-separated list of symbols to remove
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Symbols removed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WatchlistResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+        - OAuth1: []
+
+components:
+  securitySchemes:
+    OAuth1:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        OAuth 1.0 authentication using consumer key/secret and OAuth token/secret pairs.
+        The Authorization header must include oauth_consumer_key, oauth_token,
+        oauth_signature_method (HMAC-SHA1), oauth_timestamp, oauth_nonce, oauth_version,
+        and oauth_signature.
+
+  parameters:
+    AccountId:
+      name: id
+      in: path
+      required: true
+      description: The account ID (account number)
+      schema:
+        type: string
+    WatchlistId:
+      name: id
+      in: path
+      required: true
+      description: The watchlist ID (name)
+      schema:
+        type: string
+
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+            elapsedtime:
+              type: string
+            id:
+              type: string
+
+    AccountSummary:
+      type: object
+      properties:
+        account:
+          type: string
+          description: Account number
+        accountbalance:
+          $ref: '#/components/schemas/AccountBalance'
+        accountholdings:
+          $ref: '#/components/schemas/AccountHoldings'
+
+    AccountBalance:
+      type: object
+      properties:
+        account:
+          type: string
+          description: Account number
+        accountvalue:
+          type: string
+          description: Total account value
+        buyingpower:
+          type: object
+          properties:
+            cashavailableforwithdrawal:
+              type: string
+            daytrading:
+              type: string
+            equitypercentage:
+              type: string
+            options:
+              type: string
+            soddaytrading:
+              type: string
+            stock:
+              type: string
+        fedcall:
+          type: string
+        housecall:
+          type: string
+        money:
+          type: object
+          properties:
+            accruedinterest:
+              type: string
+            cash:
+              type: string
+            cashavailable:
+              type: string
+            marginbalance:
+              type: string
+            mmf:
+              type: string
+            total:
+              type: string
+            uncleareddeposits:
+              type: string
+            unsettledfunds:
+              type: string
+            yield:
+              type: string
+        securities:
+          type: object
+          properties:
+            longoptions:
+              type: string
+            longstocks:
+              type: string
+            options:
+              type: string
+            shortoptions:
+              type: string
+            shortstocks:
+              type: string
+            stocks:
+              type: string
+            total:
+              type: string
+
+    AccountHoldings:
+      type: object
+      properties:
+        holding:
+          type: array
+          items:
+            $ref: '#/components/schemas/Holding'
+        totalholdings:
+          type: object
+          properties:
+            accountvalue:
+              type: string
+            longoptions:
+              type: string
+            longstocks:
+              type: string
+            options:
+              type: string
+            shortoptions:
+              type: string
+            shortstocks:
+              type: string
+            stocks:
+              type: string
+            total:
+              type: string
+
+    Holding:
+      type: object
+      properties:
+        accounttype:
+          type: string
+        costbasis:
+          type: string
+        gainloss:
+          type: string
+        gainlosspct:
+          type: string
+        instrument:
+          type: object
+          properties:
+            cusip:
+              type: string
+            desc:
+              type: string
+            factor:
+              type: string
+            matdt:
+              type: string
+            maturityvalue:
+              type: string
+            mult:
+              type: string
+            putcall:
+              type: string
+            sectyp:
+              type: string
+            sesn:
+              type: string
+            strkpx:
+              type: string
+            sym:
+              type: string
+        marketvalue:
+          type: string
+        marketvaluechange:
+          type: string
+        price:
+          type: string
+        purchaseprice:
+          type: string
+        qty:
+          type: string
+        quote:
+          $ref: '#/components/schemas/Quote'
+        underlying:
+          type: string
+
+    Quote:
+      type: object
+      description: Market quote data for a security
+      properties:
+        adp_100:
+          type: string
+          description: Average daily price, 100-day
+        adp_200:
+          type: string
+          description: Average daily price, 200-day
+        adp_50:
+          type: string
+          description: Average daily price, 50-day
+        adv_21:
+          type: string
+          description: Average daily volume, 21-day
+        adv_30:
+          type: string
+          description: Average daily volume, 30-day
+        adv_90:
+          type: string
+          description: Average daily volume, 90-day
+        ask:
+          type: string
+          description: Ask price
+        ask_time:
+          type: string
+          description: Time of ask price
+        asksz:
+          type: string
+          description: Ask size (number of shares)
+        basis:
+          type: string
+          description: Reported basis
+        beta:
+          type: string
+          description: Beta coefficient
+        bid:
+          type: string
+          description: Bid price
+        bid_time:
+          type: string
+          description: Time of bid price
+        bidsz:
+          type: string
+          description: Bid size (number of shares)
+        bidtick:
+          type: string
+          description: Bid tick indicator
+        chg:
+          type: string
+          description: Change from previous close
+        chg_sign:
+          type: string
+          description: Sign of change (u=up, d=down, e=even)
+        chg_t:
+          type: string
+          description: Change from previous close (text format)
+        cl:
+          type: string
+          description: Previous close price
+        contract_size:
+          type: string
+          description: Contract size (for options)
+        cusip:
+          type: string
+          description: CUSIP identifier
+        date:
+          type: string
+          description: Trade date
+        datetime:
+          type: string
+          description: Date and time of last quote
+        days_to_expiration:
+          type: string
+          description: Days until option expiration
+        div:
+          type: string
+          description: Cash dividend amount
+        divexdate:
+          type: string
+          description: Dividend ex-date
+        divfreq:
+          type: string
+          description: Dividend frequency
+        divpaydt:
+          type: string
+          description: Dividend pay date
+        dollar_value:
+          type: string
+          description: Dollar value of trade
+        eps:
+          type: string
+          description: Earnings per share
+        exch:
+          type: string
+          description: Exchange code
+        exch_desc:
+          type: string
+          description: Exchange description
+        hi:
+          type: string
+          description: High price for the day
+        iad:
+          type: string
+          description: Indicated annual dividend
+        idelta:
+          type: string
+          description: Option delta
+        igamma:
+          type: string
+          description: Option gamma
+        imp_volatility:
+          type: string
+          description: Implied volatility
+        incr_vl:
+          type: string
+          description: Incremental volume (volume of last trade)
+        irho:
+          type: string
+          description: Option rho
+        issue_desc:
+          type: string
+          description: Issue description
+        itheta:
+          type: string
+          description: Option theta
+        ivega:
+          type: string
+          description: Option vega
+        last:
+          type: string
+          description: Last trade price
+        lo:
+          type: string
+          description: Low price for the day
+        name:
+          type: string
+          description: Company name
+        op_delivery:
+          type: string
+          description: Option delivery type
+        op_flag:
+          type: string
+          description: Options flag (1=optionable)
+        op_style:
+          type: string
+          description: Option style (A=American, E=European)
+        op_subclass:
+          type: string
+          description: Option subclass
+        openinterest:
+          type: string
+          description: Open interest (options)
+        opn:
+          type: string
+          description: Open price
+        opt_val:
+          type: string
+          description: Option value
+        pchg:
+          type: string
+          description: Percent change from previous close
+        pchg_sign:
+          type: string
+          description: Sign of percent change
+        pcls:
+          type: string
+          description: Previous close
+        pe:
+          type: string
+          description: Price-to-earnings ratio
+        phi:
+          type: string
+          description: Previous high
+        plo:
+          type: string
+          description: Previous low
+        popn:
+          type: string
+          description: Previous open
+        pr_adp_100:
+          type: string
+          description: Prior period 100-day average daily price
+        pr_adp_200:
+          type: string
+          description: Prior period 200-day average daily price
+        pr_adp_50:
+          type: string
+          description: Prior period 50-day average daily price
+        pr_date:
+          type: string
+          description: Prior trade date
+        pr_openinterest:
+          type: string
+          description: Prior open interest
+        prbook:
+          type: string
+          description: Book value per share
+        prchg:
+          type: string
+          description: Prior change
+        prem_mult:
+          type: string
+          description: Premium multiplier
+        put_call:
+          type: string
+          description: Put/Call indicator (P=put, C=call)
+        pvol:
+          type: string
+          description: Previous volume
+        qcond:
+          type: string
+          description: Quote condition code
+        rootsymbol:
+          type: string
+          description: Root symbol (for options)
+        secclass:
+          type: string
+          description: Security class
+        sesn:
+          type: string
+          description: Trading session
+        sho:
+          type: string
+          description: Shares outstanding
+        strikeprice:
+          type: string
+          description: Strike price (for options)
+        symbol:
+          type: string
+          description: Ticker symbol
+        tcond:
+          type: string
+          description: Trade condition code
+        timestamp:
+          type: string
+          description: Unix timestamp of last trade
+        tr_num:
+          type: string
+          description: Trade number
+        tradetick:
+          type: string
+          description: Trade tick (U=up, D=down, E=even)
+        trend:
+          type: string
+          description: Price trend indicator
+        under_cusip:
+          type: string
+          description: Underlying security CUSIP
+        undersymbol:
+          type: string
+          description: Underlying security symbol (for options)
+        vl:
+          type: string
+          description: Volume
+        volatility12:
+          type: string
+          description: 52-week price volatility
+        vwap:
+          type: string
+          description: Volume weighted average price
+        wk52hi:
+          type: string
+          description: 52-week high price
+        wk52hidate:
+          type: string
+          description: Date of 52-week high
+        wk52lo:
+          type: string
+          description: 52-week low price
+        wk52lodate:
+          type: string
+          description: Date of 52-week low
+        xdate:
+          type: string
+          description: Option expiration date (YYYYMMDD)
+        xday:
+          type: string
+          description: Option expiration day
+        xmonth:
+          type: string
+          description: Option expiration month
+        xyear:
+          type: string
+          description: Option expiration year
+        yield:
+          type: string
+          description: Dividend yield
+
+    Order:
+      type: object
+      properties:
+        accountid:
+          type: string
+        createtime:
+          type: string
+        displayqty:
+          type: string
+        duration:
+          type: string
+          description: Order duration (day, gtc, etc.)
+        executedqty:
+          type: string
+        id:
+          type: string
+          description: Order ID
+        img:
+          type: string
+        instrument:
+          type: object
+          properties:
+            exch:
+              type: string
+            sectyp:
+              type: string
+            sym:
+              type: string
+        ordertype:
+          type: string
+          description: Order type (market, limit, stop, stop_limit)
+        origclordid:
+          type: string
+        price:
+          type: string
+        qty:
+          type: string
+        side:
+          type: string
+          description: Order side (buy, sell, sell_short, buy_to_cover)
+        stopprice:
+          type: string
+        statustext:
+          type: string
+        xref:
+          type: string
+
+    Watchlist:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Watchlist name/ID
+        symbols:
+          type: object
+          properties:
+            symbol:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  symbol:
+                    type: string
+                    description: Ticker symbol
+
+    CreateWatchlistRequest:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          description: Name/ID for the new watchlist
+        symbols:
+          type: array
+          items:
+            type: object
+            properties:
+              symbol:
+                type: string
+
+    WatchlistSymbolsRequest:
+      type: object
+      required:
+        - symbols
+      properties:
+        symbols:
+          type: array
+          items:
+            type: object
+            properties:
+              symbol:
+                type: string
+
+    FIXMLOrderRequest:
+      type: object
+      description: >-
+        FIXML-variant XML order document. The root element is <FIXML> with a child
+        <Order> element containing trade attributes and child elements for <Instrmt>
+        (instrument), <OrdQty> (quantity), and optionally <CommInfo> (commission).
+      xml:
+        name: FIXML
+        namespace: http://www.fixprotocol.org/FIXML-5-0-SP2
+
+    AccountsResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            accounts:
+              type: object
+              properties:
+                accountsummary:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AccountSummary'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    AccountsBalancesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            accountbalance:
+              type: array
+              items:
+                $ref: '#/components/schemas/AccountBalance'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    AccountResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            accountsummary:
+              $ref: '#/components/schemas/AccountSummary'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    AccountBalanceResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            accountbalance:
+              $ref: '#/components/schemas/AccountBalance'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    AccountHistoryResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            transactions:
+              type: object
+              properties:
+                transaction:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      accounttype:
+                        type: string
+                      activity:
+                        type: string
+                      amount:
+                        type: string
+                      date:
+                        type: string
+                      desc:
+                        type: string
+                      instrument:
+                        type: object
+                        properties:
+                          cusip:
+                            type: string
+                          desc:
+                            type: string
+                          factor:
+                            type: string
+                          matdt:
+                            type: string
+                          maturityvalue:
+                            type: string
+                          mult:
+                            type: string
+                          putcall:
+                            type: string
+                          sectyp:
+                            type: string
+                          sesn:
+                            type: string
+                          strkpx:
+                            type: string
+                          sym:
+                            type: string
+                      price:
+                        type: string
+                      qty:
+                        type: string
+                      settlementdate:
+                        type: string
+                      side:
+                        type: string
+                      source:
+                        type: string
+                      tradetime:
+                        type: string
+                      transactionid:
+                        type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    AccountHoldingsResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            accountholdings:
+              $ref: '#/components/schemas/AccountHoldings'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    OrdersResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            orders:
+              type: object
+              properties:
+                order:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Order'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    OrderResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            order:
+              $ref: '#/components/schemas/Order'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    OrderPreviewResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            order:
+              $ref: '#/components/schemas/Order'
+            cost:
+              type: object
+              properties:
+                commission:
+                  type: string
+                estimatedcost:
+                  type: string
+                estimatednetamount:
+                  type: string
+                estimatedprice:
+                  type: string
+                estimatedpriceimpact:
+                  type: string
+                marginrequirement:
+                  type: string
+                tax:
+                  type: string
+            warnings:
+              type: object
+              properties:
+                warning:
+                  type: array
+                  items:
+                    type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    CancelOrderResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            order:
+              $ref: '#/components/schemas/Order'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    MarketClockResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            status:
+              type: object
+              properties:
+                current:
+                  type: string
+                  description: Current market status (open/closed)
+                next:
+                  type: string
+                  description: Next market status change
+                change:
+                  type: string
+                  description: Time until next status change
+            message:
+              type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    QuotesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    NewsSearchResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            articles:
+              type: object
+              properties:
+                article:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      date:
+                        type: string
+                      headline:
+                        type: string
+                      id:
+                        type: string
+                      source:
+                        type: string
+                      symbols:
+                        type: object
+                        properties:
+                          symbol:
+                            type: array
+                            items:
+                              type: string
+                      url:
+                        type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    NewsArticleResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            article:
+              type: object
+              properties:
+                content:
+                  type: string
+                date:
+                  type: string
+                headline:
+                  type: string
+                id:
+                  type: string
+                source:
+                  type: string
+                symbols:
+                  type: object
+                  properties:
+                    symbol:
+                      type: array
+                      items:
+                        type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    TopListResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    OptionsSearchResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    OptionStrikesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            prices:
+              type: object
+              properties:
+                price:
+                  type: array
+                  items:
+                    type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    OptionExpirationsResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            expirationdates:
+              type: object
+              properties:
+                date:
+                  type: array
+                  items:
+                    type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    TimeSalesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      datetime:
+                        type: string
+                      hi:
+                        type: string
+                      incr_vl:
+                        type: string
+                      last:
+                        type: string
+                      lo:
+                        type: string
+                      opn:
+                        type: string
+                      symbol:
+                        type: string
+                      timestamp:
+                        type: string
+                      vl:
+                        type: string
+                      vwap:
+                        type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    MemberProfileResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            userdata:
+              type: object
+              properties:
+                account:
+                  type: object
+                  properties:
+                    account:
+                      type: string
+                      description: Account number
+                    accountdesc:
+                      type: string
+                    tradingtype:
+                      type: string
+                    value:
+                      type: string
+                    assettypes:
+                      type: object
+                      properties:
+                        assettype:
+                          type: array
+                          items:
+                            type: string
+                userprofile:
+                  type: object
+                  properties:
+                    account:
+                      type: string
+                    disabled:
+                      type: string
+                    disabledcode:
+                      type: string
+                    email:
+                      type: string
+                    experiencelvl:
+                      type: string
+                    id:
+                      type: string
+                    login:
+                      type: string
+                    membersince:
+                      type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    WatchlistsResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            watchlists:
+              type: object
+              properties:
+                watchlist:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Watchlist'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    WatchlistResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            watchlist:
+              $ref: '#/components/schemas/Watchlist'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+
+    StatusResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            status:
+              type: string
+              description: API status (Active or Inactive)
+            elapsedtime:
+              type: string
+            id:
+              type: string
+
+    VersionResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            version:
+              type: string
+              description: API version string
+            elapsedtime:
+              type: string
+            id:
+              type: string

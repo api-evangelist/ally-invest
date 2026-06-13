@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ally-invest/main/json-schema/ally-invest-account-balance-schema.json",
+  "title": "AllyInvestAccountBalance",
+  "description": "JSON Schema for an Ally Invest account balance object returned by the Accounts Balance endpoints.",
+  "type": "object",
+  "properties": {
+    "account": {
+      "type": "string",
+      "description": "Account number"
+    },
+    "accountvalue": {
+      "type": "string",
+      "description": "Total account value"
+    },
+    "buyingpower": {
+      "type": "object",
+      "description": "Buying power details",
+      "properties": {
+        "cashavailableforwithdrawal": {
+          "type": "string",
+          "description": "Cash available for withdrawal"
+        },
+        "daytrading": {
+          "type": "string",
+          "description": "Day trading buying power"
+        },
+        "equitypercentage": {
+          "type": "string",
+          "description": "Equity percentage of account"
+        },
+        "options": {
+          "type": "string",
+          "description": "Options buying power"
+        },
+        "soddaytrading": {
+          "type": "string",
+          "description": "Start of day day-trading buying power"
+        },
+        "stock": {
+          "type": "string",
+          "description": "Stock buying power"
+        }
+      }
+    },
+    "fedcall": {
+      "type": "string",
+      "description": "Federal margin call amount"
+    },
+    "housecall": {
+      "type": "string",
+      "description": "House margin call amount"
+    },
+    "money": {
+      "type": "object",
+      "description": "Cash and money market balances",
+      "properties": {
+        "accruedinterest": { "type": "string", "description": "Accrued interest" },
+        "cash": { "type": "string", "description": "Cash balance" },
+        "cashavailable": { "type": "string", "description": "Available cash" },
+        "marginbalance": { "type": "string", "description": "Margin balance (negative = amount borrowed)" },
+        "mmf": { "type": "string", "description": "Money market fund balance" },
+        "total": { "type": "string", "description": "Total money balance" },
+        "uncleareddeposits": { "type": "string", "description": "Uncleared deposits" },
+        "unsettledfunds": { "type": "string", "description": "Unsettled funds" },
+        "yield": { "type": "string", "description": "Yield" }
+      }
+    },
+    "securities": {
+      "type": "object",
+      "description": "Securities balances",
+      "properties": {
+        "longoptions": { "type": "string", "description": "Long options value" },
+        "longstocks": { "type": "string", "description": "Long stocks value" },
+        "options": { "type": "string", "description": "Net options value" },
+        "shortoptions": { "type": "string", "description": "Short options value" },
+        "shortstocks": { "type": "string", "description": "Short stocks value" },
+        "stocks": { "type": "string", "description": "Net stocks value" },
+        "total": { "type": "string", "description": "Total securities value" }
+      }
+    }
+  },
+  "required": ["account"],
+  "additionalProperties": true
+}

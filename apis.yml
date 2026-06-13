@@ -21,6 +21,7 @@ description: >-
   Responses are available in JSON and XML formats.
 created: '2026-06-13'
 modified: '2026-06-13'
+openapi: openapi/ally-invest-openapi.yml
 specificationVersion: '0.19'
 apis:
   - aid: ally-invest:ally-invest-accounts-api
@@ -36,6 +37,8 @@ apis:
     properties:
       - url: https://www.ally.com/api/invest/documentation/getting-started/
         type: Documentation
+      - url: openapi/ally-invest-openapi.yml
+        type: OpenAPI
     description: >-
       The Ally Invest Accounts API provides programmatic access to brokerage account data including
       account balances, holdings, transaction history, and order status for self-directed investment
@@ -132,6 +135,8 @@ apis:
       including account identifiers and user details associated with the OAuth credentials.
 
 common:
+  - type: OpenAPI
+    url: openapi/ally-invest-openapi.yml
   - type: Website
     url: https://www.ally.com/invest/
   - type: Documentation

@@ -1,0 +1,13 @@
+{
+  "response": {
+    "id": "1",
+    "elapsedtime": "0.008",
+    "error": "Success",
+    "status": {
+      "current": "open",
+      "next": "closed",
+      "change": "3600"
+    },
+    "message": "Market is open. Closes in 1 hour."
+  }
+}

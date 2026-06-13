@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ally-invest/main/json-schema/ally-invest-order-schema.json",
+  "title": "AllyInvestOrder",
+  "description": "JSON Schema for an Ally Invest order object returned by the Orders endpoints.",
+  "type": "object",
+  "properties": {
+    "accountid": {
+      "type": "string",
+      "description": "Account number associated with the order"
+    },
+    "createtime": {
+      "type": "string",
+      "description": "Order creation timestamp"
+    },
+    "displayqty": {
+      "type": "string",
+      "description": "Displayed quantity (for reserve/iceberg orders)"
+    },
+    "duration": {
+      "type": "string",
+      "description": "Order time-in-force (day, gtc, ext, gtcext, moc, loc)",
+      "enum": ["day", "gtc", "ext", "gtcext", "moc", "loc"]
+    },
+    "executedqty": {
+      "type": "string",
+      "description": "Quantity that has been executed"
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique order identifier"
+    },
+    "instrument": {
+      "type": "object",
+      "description": "Instrument details",
+      "properties": {
+        "exch": { "type": "string", "description": "Exchange code" },
+        "sectyp": {
+          "type": "string",
+          "description": "Security type (CS=common stock, OPT=option, ETF, MF=mutual fund)",
+          "enum": ["CS", "OPT", "ETF", "MF"]
+        },
+        "sym": { "type": "string", "description": "Ticker symbol" },
+        "putcall": {
+          "type": "string",
+          "description": "Put or call indicator for options",
+          "enum": ["P", "C"]
+        },
+        "strkpx": { "type": "string", "description": "Strike price for options" },
+        "matdt": { "type": "string", "description": "Maturity/expiration date" }
+      }
+    },
+    "ordertype": {
+      "type": "string",
+      "description": "Order type",
+      "enum": ["1", "2", "3", "4"],
+      "x-enumDescriptions": {
+        "1": "Market",
+        "2": "Limit",
+        "3": "Stop",
+        "4": "Stop Limit"
+      }
+    },
+    "origclordid": {
+      "type": "string",
+      "description": "Original client order ID"
+    },
+    "price": {
+      "type": "string",
+      "description": "Limit price"
+    },
+    "qty": {
+      "type": "string",
+      "description": "Order quantity"
+    },
+    "side": {
+      "type": "string",
+      "description": "Order side",
+      "enum": ["1", "2", "5", "6"],
+      "x-enumDescriptions": {
+        "1": "Buy",
+        "2": "Sell",
+        "5": "Sell Short",
+        "6": "Buy to Cover"
+      }
+    },
+    "stopprice": {
+      "type": "string",
+      "description": "Stop price (for stop and stop-limit orders)"
+    },
+    "statustext": {
+      "type": "string",
+      "description": "Human-readable order status"
+    },
+    "xref": {
+      "type": "string",
+      "description": "Cross-reference identifier"
+    }
+  },
+  "additionalProperties": true
+}

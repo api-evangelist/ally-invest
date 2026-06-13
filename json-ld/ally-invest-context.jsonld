@@ -1,0 +1,168 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "ally": "https://www.ally.com/api/invest/vocabulary#",
+    "fibo": "https://spec.edmcouncil.org/fibo/ontology/",
+
+    "AllyInvestAPI": "ally:AllyInvestAPI",
+    "AllyInvestAccount": "ally:AllyInvestAccount",
+    "AllyInvestOrder": "ally:AllyInvestOrder",
+    "AllyInvestQuote": "ally:AllyInvestQuote",
+    "AllyInvestWatchlist": "ally:AllyInvestWatchlist",
+
+    "account": {
+      "@id": "ally:account",
+      "@type": "@id"
+    },
+    "accountvalue": {
+      "@id": "ally:accountvalue",
+      "@type": "schema:MonetaryAmount"
+    },
+    "buyingpower": {
+      "@id": "ally:buyingpower"
+    },
+    "symbol": {
+      "@id": "ally:symbol"
+    },
+    "last": {
+      "@id": "ally:lastTradePrice",
+      "@type": "schema:PriceSpecification"
+    },
+    "ask": {
+      "@id": "ally:askPrice",
+      "@type": "schema:PriceSpecification"
+    },
+    "bid": {
+      "@id": "ally:bidPrice",
+      "@type": "schema:PriceSpecification"
+    },
+    "hi": {
+      "@id": "ally:dailyHigh",
+      "@type": "schema:PriceSpecification"
+    },
+    "lo": {
+      "@id": "ally:dailyLow",
+      "@type": "schema:PriceSpecification"
+    },
+    "opn": {
+      "@id": "ally:openPrice",
+      "@type": "schema:PriceSpecification"
+    },
+    "cl": {
+      "@id": "ally:previousClose",
+      "@type": "schema:PriceSpecification"
+    },
+    "vl": {
+      "@id": "ally:volume"
+    },
+    "chg": {
+      "@id": "ally:priceChange"
+    },
+    "pchg": {
+      "@id": "ally:percentChange"
+    },
+    "name": {
+      "@id": "schema:name"
+    },
+    "eps": {
+      "@id": "ally:earningsPerShare"
+    },
+    "pe": {
+      "@id": "ally:priceEarningsRatio"
+    },
+    "beta": {
+      "@id": "ally:beta"
+    },
+    "wk52hi": {
+      "@id": "ally:fiftyTwoWeekHigh"
+    },
+    "wk52lo": {
+      "@id": "ally:fiftyTwoWeekLow"
+    },
+    "div": {
+      "@id": "ally:cashDividend",
+      "@type": "schema:PriceSpecification"
+    },
+    "yield": {
+      "@id": "ally:dividendYield"
+    },
+    "imp_volatility": {
+      "@id": "ally:impliedVolatility"
+    },
+    "strikeprice": {
+      "@id": "ally:strikePrice",
+      "@type": "schema:PriceSpecification"
+    },
+    "put_call": {
+      "@id": "ally:optionType"
+    },
+    "idelta": {
+      "@id": "ally:optionDelta"
+    },
+    "igamma": {
+      "@id": "ally:optionGamma"
+    },
+    "itheta": {
+      "@id": "ally:optionTheta"
+    },
+    "ivega": {
+      "@id": "ally:optionVega"
+    },
+    "irho": {
+      "@id": "ally:optionRho"
+    },
+    "openinterest": {
+      "@id": "ally:openInterest"
+    },
+    "xdate": {
+      "@id": "ally:expirationDate",
+      "@type": "schema:Date"
+    },
+    "cusip": {
+      "@id": "fibo:FND/Accounting/AccountingEquity/CUSIP"
+    },
+    "exch": {
+      "@id": "ally:exchangeCode"
+    },
+    "secclass": {
+      "@id": "ally:securityClass"
+    },
+    "qty": {
+      "@id": "ally:quantity"
+    },
+    "price": {
+      "@id": "schema:price"
+    },
+    "ordertype": {
+      "@id": "ally:orderType"
+    },
+    "duration": {
+      "@id": "ally:timeInForce"
+    },
+    "side": {
+      "@id": "ally:orderSide"
+    },
+    "statustext": {
+      "@id": "ally:orderStatus"
+    },
+    "costbasis": {
+      "@id": "ally:costBasis",
+      "@type": "schema:MonetaryAmount"
+    },
+    "gainloss": {
+      "@id": "ally:unrealizedGainLoss",
+      "@type": "schema:MonetaryAmount"
+    },
+    "gainlosspct": {
+      "@id": "ally:unrealizedGainLossPct"
+    },
+    "marketvalue": {
+      "@id": "ally:marketValue",
+      "@type": "schema:MonetaryAmount"
+    },
+    "timestamp": {
+      "@id": "schema:dateModified",
+      "@type": "schema:DateTime"
+    }
+  }
+}

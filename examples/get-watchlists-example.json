@@ -1,0 +1,23 @@
+{
+  "response": {
+    "id": "1",
+    "elapsedtime": "0.012",
+    "error": "Success",
+    "watchlists": {
+      "watchlist": [
+        {
+          "id": "my-tech-watchlist",
+          "symbols": {
+            "symbol": [
+              { "id": "1", "symbol": "AAPL" },
+              { "id": "2", "symbol": "MSFT" },
+              { "id": "3", "symbol": "GOOGL" },
+              { "id": "4", "symbol": "AMZN" },
+              { "id": "5", "symbol": "NVDA" }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

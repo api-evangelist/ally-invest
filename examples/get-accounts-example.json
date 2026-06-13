@@ -1,0 +1,87 @@
+{
+  "response": {
+    "id": "1",
+    "elapsedtime": "0.031",
+    "error": "Success",
+    "accounts": {
+      "accountsummary": [
+        {
+          "account": "12345678",
+          "accountbalance": {
+            "account": "12345678",
+            "accountvalue": "25430.75",
+            "buyingpower": {
+              "cashavailableforwithdrawal": "5000.00",
+              "daytrading": "0.00",
+              "equitypercentage": "100.00",
+              "options": "5000.00",
+              "soddaytrading": "0.00",
+              "stock": "5000.00"
+            },
+            "fedcall": "0.00",
+            "housecall": "0.00",
+            "money": {
+              "accruedinterest": "0.00",
+              "cash": "5000.00",
+              "cashavailable": "5000.00",
+              "marginbalance": "0.00",
+              "mmf": "0.00",
+              "total": "5000.00",
+              "uncleareddeposits": "0.00",
+              "unsettledfunds": "0.00",
+              "yield": "0.00"
+            },
+            "securities": {
+              "longoptions": "0.00",
+              "longstocks": "20430.75",
+              "options": "0.00",
+              "shortoptions": "0.00",
+              "shortstocks": "0.00",
+              "stocks": "20430.75",
+              "total": "20430.75"
+            }
+          },
+          "accountholdings": {
+            "holding": [
+              {
+                "accounttype": "1",
+                "costbasis": "15000.00",
+                "gainloss": "5430.75",
+                "gainlosspct": "36.21",
+                "instrument": {
+                  "cusip": "037833100",
+                  "desc": "APPLE INC",
+                  "factor": "1",
+                  "matdt": "",
+                  "maturityvalue": "0.00",
+                  "mult": "1",
+                  "putcall": "",
+                  "sectyp": "CS",
+                  "sesn": "normal",
+                  "strkpx": "0.00",
+                  "sym": "AAPL"
+                },
+                "marketvalue": "20430.75",
+                "marketvaluechange": "252.23",
+                "price": "189.17",
+                "purchaseprice": "138.89",
+                "qty": "108",
+                "underlying": ""
+              }
+            ],
+            "totalholdings": {
+              "accountvalue": "25430.75",
+              "longoptions": "0.00",
+              "longstocks": "20430.75",
+              "options": "0.00",
+              "shortoptions": "0.00",
+              "shortstocks": "0.00",
+              "stocks": "20430.75",
+              "total": "20430.75"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

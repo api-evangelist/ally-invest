@@ -12,7 +12,7 @@ info:
     email: InvestAPI@ally.com
   termsOfService: https://www.ally.com/content/dam/pdf/invest/api-agreement.pdf
   x-logo:
-    url: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    url: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 servers:
   - url: https://api.ally.com/v1
     description: Ally Invest REST API

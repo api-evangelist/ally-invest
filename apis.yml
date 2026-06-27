@@ -153,13 +153,13 @@ common:
     url: https://www.ally.com/content/dam/pdf/invest/api-agreement.pdf
   - type: Support
     url: mailto:InvestAPI@ally.com
-  - type: SDK
+  - type: SDKs
     url: https://pypi.org/project/AllyInvestPy/
     title: AllyInvestPy Python SDK (Community)
-  - type: SDK
+  - type: SDKs
     url: https://pypi.org/project/pyally/
     title: PyAlly Python3 SDK (Community)
-  - type: SDK
+  - type: SDKs
     url: https://pkg.go.dev/github.com/jmal1997/ally-api
     title: ally-api Go Bindings (Community)
   - type: GitHubOrganization

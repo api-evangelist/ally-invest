@@ -135,6 +135,10 @@ apis:
       including account identifiers and user details associated with the OAuth credentials.
 
 common:
+  - type: DomainSecurity
+    url: security/ally-invest-domain-security.yml
+  - type: Authentication
+    url: authentication/ally-invest-authentication.yml
   - type: OpenAPI
     url: openapi/ally-invest-openapi.yml
   - type: Website

@@ -135,6 +135,8 @@ apis:
       including account identifiers and user details associated with the OAuth credentials.
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/ally-invest-agentic-access.yml
   - type: DomainSecurity
     url: security/ally-invest-domain-security.yml
   - type: Authentication

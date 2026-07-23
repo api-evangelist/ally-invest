@@ -1,0 +1,901 @@
+openapi: 3.0.3
+info:
+  title: Ally Invest Accounts Market Data API
+  description: The Ally Invest REST API (originally developed from the TradeKing acquisition) provides programmatic access to self-directed brokerage account management, order placement, real-time and delayed market data, watchlist management, and member profile information. Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available in JSON and XML formats.
+  version: v1
+  contact:
+    email: InvestAPI@ally.com
+  termsOfService: https://www.ally.com/content/dam/pdf/invest/api-agreement.pdf
+  x-logo:
+    url: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+servers:
+- url: https://api.ally.com/v1
+  description: Ally Invest REST API
+- url: https://stream.ally.com/v1
+  description: Ally Invest Streaming API
+tags:
+- name: Market Data
+  description: Quotes, options, news, time-and-sales, and top lists
+paths:
+  /market/clock.json:
+    get:
+      operationId: getMarketClock
+      summary: Get market clock status
+      description: Returns the current market status (open/closed), current time, and next market event times.
+      tags:
+      - Market Data
+      responses:
+        '200':
+          description: Successful response with market clock data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketClockResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - OAuth1: []
+  /market/ext/quotes.json:
+    get:
+      operationId: getQuotes
+      summary: Get market quotes
+      description: Returns real-time or delayed market quotes for one or more ticker symbols. Supports equities and options. Multiple symbols can be requested in a single call.
+      tags:
+      - Market Data
+      parameters:
+      - name: symbols
+        in: query
+        required: true
+        description: Comma-separated list of ticker symbols (e.g., GE,MSFT,AAPL)
+        schema:
+          type: string
+        example: GE,MSFT,AAPL
+      - name: fids
+        in: query
+        description: Comma-separated list of field IDs to return (returns all fields if omitted)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with quotes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuotesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - OAuth1: []
+  /market/news/search.json:
+    get:
+      operationId: searchNews
+      summary: Search market news
+      description: Searches for market news articles by keyword or ticker symbol.
+      tags:
+      - Market Data
+      parameters:
+      - name: symbols
+        in: query
+        description: Comma-separated list of ticker symbols to search news for
+        schema:
+          type: string
+      - name: keywords
+        in: query
+        description: Keywords to search in news articles
+        schema:
+          type: string
+      - name: maxhits
+        in: query
+        description: Maximum number of results to return
+        schema:
+          type: integer
+          default: 10
+      - name: startdate
+        in: query
+        description: Start date for news search (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      - name: enddate
+        in: query
+        description: End date for news search (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Successful response with news articles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewsSearchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - OAuth1: []
+  /market/news/{id}.json:
+    get:
+      operationId: getNewsArticle
+      summary: Get a specific news article
+      description: Returns the full content of a specific news article by article ID.
+      tags:
+      - Market Data
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The news article ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with news article
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewsArticleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - OAuth1: []
+  /market/toplists/{listtype}.json:
+    get:
+      operationId: getTopList
+      summary: Get a market top list
+      description: Returns a list of top securities by various criteria such as most active, largest gainers, largest losers.
+      tags:
+      - Market Data
+      parameters:
+      - name: listtype
+        in: path
+        required: true
+        description: Type of top list to retrieve
+        schema:
+          type: string
+          enum:
+          - toplosers
+          - toppctlosers
+          - topvolume
+          - topactive
+          - topgainers
+          - toppctgainers
+      - name: exchange
+        in: query
+        description: Filter by exchange (e.g., N, Q, A)
+        schema:
+          type: string
+      - name: rows
+        in: query
+        description: Number of results to return
+        schema:
+          type: integer
+          default: 25
+      responses:
+        '200':
+          description: Successful response with top list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - OAuth1: []
+  /market/options/search.json:
+    get:
+      operationId: searchOptions
+      summary: Search option chains
+      description: Returns option chains for a given underlying symbol, optionally filtered by option type, expiration date, and strike price range.
+      tags:
+      - Market Data
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        description: Underlying ticker symbol
+        schema:
+          type: string
+        example: AAPL
+      - name: query
+        in: query
+        description: Option chain filter query (e.g., put_call-eq:C for calls only)
+        schema:
+          type: string
+      - name: fids
+        in: query
+        description: Comma-separated list of field IDs to return
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with option chain
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OptionsSearchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - OAuth1: []
+  /market/options/strikes.json:
+    get:
+      operationId: getOptionStrikes
+      summary: Get available option strike prices
+      description: Returns available strike prices for options on a given underlying symbol.
+      tags:
+      - Market Data
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        description: Underlying ticker symbol
+        schema:
+          type: string
+        example: AAPL
+      responses:
+        '200':
+          description: Successful response with strike prices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OptionStrikesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - OAuth1: []
+  /market/options/expirations.json:
+    get:
+      operationId: getOptionExpirations
+      summary: Get available option expiration dates
+      description: Returns available expiration dates for options on a given underlying symbol.
+      tags:
+      - Market Data
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        description: Underlying ticker symbol
+        schema:
+          type: string
+        example: AAPL
+      responses:
+        '200':
+          description: Successful response with expiration dates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OptionExpirationsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - OAuth1: []
+  /market/timesales.json:
+    get:
+      operationId: getTimeSales
+      summary: Get time and sales data
+      description: Returns time-and-sales (trade tick) data for a specific symbol.
+      tags:
+      - Market Data
+      parameters:
+      - name: symbols
+        in: query
+        required: true
+        description: Ticker symbol
+        schema:
+          type: string
+      - name: interval
+        in: query
+        description: Interval between ticks (e.g., 1min, 5min, 10min, 15min, 30min, 1hour, daily)
+        schema:
+          type: string
+          enum:
+          - 1min
+          - 5min
+          - 10min
+          - 15min
+          - 30min
+          - 1hour
+          - daily
+      - name: rpp
+        in: query
+        description: Results per page
+        schema:
+          type: integer
+      - name: index
+        in: query
+        description: Page index
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response with time-and-sales data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeSalesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - OAuth1: []
+components:
+  schemas:
+    TimeSalesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      datetime:
+                        type: string
+                      hi:
+                        type: string
+                      incr_vl:
+                        type: string
+                      last:
+                        type: string
+                      lo:
+                        type: string
+                      opn:
+                        type: string
+                      symbol:
+                        type: string
+                      timestamp:
+                        type: string
+                      vl:
+                        type: string
+                      vwap:
+                        type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    MarketClockResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            status:
+              type: object
+              properties:
+                current:
+                  type: string
+                  description: Current market status (open/closed)
+                next:
+                  type: string
+                  description: Next market status change
+                change:
+                  type: string
+                  description: Time until next status change
+            message:
+              type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    OptionStrikesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            prices:
+              type: object
+              properties:
+                price:
+                  type: array
+                  items:
+                    type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    ErrorResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+            elapsedtime:
+              type: string
+            id:
+              type: string
+    TopListResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    NewsArticleResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            article:
+              type: object
+              properties:
+                content:
+                  type: string
+                date:
+                  type: string
+                headline:
+                  type: string
+                id:
+                  type: string
+                source:
+                  type: string
+                symbols:
+                  type: object
+                  properties:
+                    symbol:
+                      type: array
+                      items:
+                        type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    QuotesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    Quote:
+      type: object
+      description: Market quote data for a security
+      properties:
+        adp_100:
+          type: string
+          description: Average daily price, 100-day
+        adp_200:
+          type: string
+          description: Average daily price, 200-day
+        adp_50:
+          type: string
+          description: Average daily price, 50-day
+        adv_21:
+          type: string
+          description: Average daily volume, 21-day
+        adv_30:
+          type: string
+          description: Average daily volume, 30-day
+        adv_90:
+          type: string
+          description: Average daily volume, 90-day
+        ask:
+          type: string
+          description: Ask price
+        ask_time:
+          type: string
+          description: Time of ask price
+        asksz:
+          type: string
+          description: Ask size (number of shares)
+        basis:
+          type: string
+          description: Reported basis
+        beta:
+          type: string
+          description: Beta coefficient
+        bid:
+          type: string
+          description: Bid price
+        bid_time:
+          type: string
+          description: Time of bid price
+        bidsz:
+          type: string
+          description: Bid size (number of shares)
+        bidtick:
+          type: string
+          description: Bid tick indicator
+        chg:
+          type: string
+          description: Change from previous close
+        chg_sign:
+          type: string
+          description: Sign of change (u=up, d=down, e=even)
+        chg_t:
+          type: string
+          description: Change from previous close (text format)
+        cl:
+          type: string
+          description: Previous close price
+        contract_size:
+          type: string
+          description: Contract size (for options)
+        cusip:
+          type: string
+          description: CUSIP identifier
+        date:
+          type: string
+          description: Trade date
+        datetime:
+          type: string
+          description: Date and time of last quote
+        days_to_expiration:
+          type: string
+          description: Days until option expiration
+        div:
+          type: string
+          description: Cash dividend amount
+        divexdate:
+          type: string
+          description: Dividend ex-date
+        divfreq:
+          type: string
+          description: Dividend frequency
+        divpaydt:
+          type: string
+          description: Dividend pay date
+        dollar_value:
+          type: string
+          description: Dollar value of trade
+        eps:
+          type: string
+          description: Earnings per share
+        exch:
+          type: string
+          description: Exchange code
+        exch_desc:
+          type: string
+          description: Exchange description
+        hi:
+          type: string
+          description: High price for the day
+        iad:
+          type: string
+          description: Indicated annual dividend
+        idelta:
+          type: string
+          description: Option delta
+        igamma:
+          type: string
+          description: Option gamma
+        imp_volatility:
+          type: string
+          description: Implied volatility
+        incr_vl:
+          type: string
+          description: Incremental volume (volume of last trade)
+        irho:
+          type: string
+          description: Option rho
+        issue_desc:
+          type: string
+          description: Issue description
+        itheta:
+          type: string
+          description: Option theta
+        ivega:
+          type: string
+          description: Option vega
+        last:
+          type: string
+          description: Last trade price
+        lo:
+          type: string
+          description: Low price for the day
+        name:
+          type: string
+          description: Company name
+        op_delivery:
+          type: string
+          description: Option delivery type
+        op_flag:
+          type: string
+          description: Options flag (1=optionable)
+        op_style:
+          type: string
+          description: Option style (A=American, E=European)
+        op_subclass:
+          type: string
+          description: Option subclass
+        openinterest:
+          type: string
+          description: Open interest (options)
+        opn:
+          type: string
+          description: Open price
+        opt_val:
+          type: string
+          description: Option value
+        pchg:
+          type: string
+          description: Percent change from previous close
+        pchg_sign:
+          type: string
+          description: Sign of percent change
+        pcls:
+          type: string
+          description: Previous close
+        pe:
+          type: string
+          description: Price-to-earnings ratio
+        phi:
+          type: string
+          description: Previous high
+        plo:
+          type: string
+          description: Previous low
+        popn:
+          type: string
+          description: Previous open
+        pr_adp_100:
+          type: string
+          description: Prior period 100-day average daily price
+        pr_adp_200:
+          type: string
+          description: Prior period 200-day average daily price
+        pr_adp_50:
+          type: string
+          description: Prior period 50-day average daily price
+        pr_date:
+          type: string
+          description: Prior trade date
+        pr_openinterest:
+          type: string
+          description: Prior open interest
+        prbook:
+          type: string
+          description: Book value per share
+        prchg:
+          type: string
+          description: Prior change
+        prem_mult:
+          type: string
+          description: Premium multiplier
+        put_call:
+          type: string
+          description: Put/Call indicator (P=put, C=call)
+        pvol:
+          type: string
+          description: Previous volume
+        qcond:
+          type: string
+          description: Quote condition code
+        rootsymbol:
+          type: string
+          description: Root symbol (for options)
+        secclass:
+          type: string
+          description: Security class
+        sesn:
+          type: string
+          description: Trading session
+        sho:
+          type: string
+          description: Shares outstanding
+        strikeprice:
+          type: string
+          description: Strike price (for options)
+        symbol:
+          type: string
+          description: Ticker symbol
+        tcond:
+          type: string
+          description: Trade condition code
+        timestamp:
+          type: string
+          description: Unix timestamp of last trade
+        tr_num:
+          type: string
+          description: Trade number
+        tradetick:
+          type: string
+          description: Trade tick (U=up, D=down, E=even)
+        trend:
+          type: string
+          description: Price trend indicator
+        under_cusip:
+          type: string
+          description: Underlying security CUSIP
+        undersymbol:
+          type: string
+          description: Underlying security symbol (for options)
+        vl:
+          type: string
+          description: Volume
+        volatility12:
+          type: string
+          description: 52-week price volatility
+        vwap:
+          type: string
+          description: Volume weighted average price
+        wk52hi:
+          type: string
+          description: 52-week high price
+        wk52hidate:
+          type: string
+          description: Date of 52-week high
+        wk52lo:
+          type: string
+          description: 52-week low price
+        wk52lodate:
+          type: string
+          description: Date of 52-week low
+        xdate:
+          type: string
+          description: Option expiration date (YYYYMMDD)
+        xday:
+          type: string
+          description: Option expiration day
+        xmonth:
+          type: string
+          description: Option expiration month
+        xyear:
+          type: string
+          description: Option expiration year
+        yield:
+          type: string
+          description: Dividend yield
+    NewsSearchResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            articles:
+              type: object
+              properties:
+                article:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      date:
+                        type: string
+                      headline:
+                        type: string
+                      id:
+                        type: string
+                      source:
+                        type: string
+                      symbols:
+                        type: object
+                        properties:
+                          symbol:
+                            type: array
+                            items:
+                              type: string
+                      url:
+                        type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    OptionsSearchResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    OptionExpirationsResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            expirationdates:
+              type: object
+              properties:
+                date:
+                  type: array
+                  items:
+                    type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    OAuth1:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: OAuth 1.0 authentication using consumer key/secret and OAuth token/secret pairs. The Authorization header must include oauth_consumer_key, oauth_token, oauth_signature_method (HMAC-SHA1), oauth_timestamp, oauth_nonce, oauth_version, and oauth_signature.
+externalDocs:
+  description: Ally Invest API Documentation
+  url: https://www.ally.com/api/invest/documentation/getting-started/

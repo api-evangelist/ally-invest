@@ -1,0 +1,156 @@
+openapi: 3.0.3
+info:
+  title: Ally Invest Accounts Utilities API
+  description: The Ally Invest REST API (originally developed from the TradeKing acquisition) provides programmatic access to self-directed brokerage account management, order placement, real-time and delayed market data, watchlist management, and member profile information. Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available in JSON and XML formats.
+  version: v1
+  contact:
+    email: InvestAPI@ally.com
+  termsOfService: https://www.ally.com/content/dam/pdf/invest/api-agreement.pdf
+  x-logo:
+    url: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+servers:
+- url: https://api.ally.com/v1
+  description: Ally Invest REST API
+- url: https://stream.ally.com/v1
+  description: Ally Invest Streaming API
+tags:
+- name: Utilities
+  description: API status and version utilities
+paths:
+  /market/clock.json:
+    get:
+      operationId: getMarketClock
+      summary: Get market clock status
+      description: Returns the current market status (open/closed), current time, and next market event times.
+      tags:
+      - Utilities
+      responses:
+        '200':
+          description: Successful response with market clock data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketClockResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - OAuth1: []
+  /utility/status.json:
+    get:
+      operationId: getApiStatus
+      summary: Get API status
+      description: Returns the current operational status of the Ally Invest API.
+      tags:
+      - Utilities
+      responses:
+        '200':
+          description: Successful response with API status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+  /utility/version.json:
+    get:
+      operationId: getApiVersion
+      summary: Get API version
+      description: Returns the current version of the Ally Invest API.
+      tags:
+      - Utilities
+      responses:
+        '200':
+          description: Successful response with API version
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionResponse'
+components:
+  schemas:
+    MarketClockResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            status:
+              type: object
+              properties:
+                current:
+                  type: string
+                  description: Current market status (open/closed)
+                next:
+                  type: string
+                  description: Next market status change
+                change:
+                  type: string
+                  description: Time until next status change
+            message:
+              type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    ErrorResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+            elapsedtime:
+              type: string
+            id:
+              type: string
+    VersionResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            version:
+              type: string
+              description: API version string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+    StatusResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            status:
+              type: string
+              description: API status (Active or Inactive)
+            elapsedtime:
+              type: string
+            id:
+              type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    OAuth1:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: OAuth 1.0 authentication using consumer key/secret and OAuth token/secret pairs. The Authorization header must include oauth_consumer_key, oauth_token, oauth_signature_method (HMAC-SHA1), oauth_timestamp, oauth_nonce, oauth_version, and oauth_signature.
+externalDocs:
+  description: Ally Invest API Documentation
+  url: https://www.ally.com/api/invest/documentation/getting-started/

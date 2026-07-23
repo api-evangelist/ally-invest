@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Ally Invest Accounts Member API
+  description: The Ally Invest REST API (originally developed from the TradeKing acquisition) provides programmatic access to self-directed brokerage account management, order placement, real-time and delayed market data, watchlist management, and member profile information. Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available in JSON and XML formats.
+  version: v1
+  contact:
+    email: InvestAPI@ally.com
+  termsOfService: https://www.ally.com/content/dam/pdf/invest/api-agreement.pdf
+  x-logo:
+    url: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+servers:
+- url: https://api.ally.com/v1
+  description: Ally Invest REST API
+- url: https://stream.ally.com/v1
+  description: Ally Invest Streaming API
+tags:
+- name: Member
+  description: Member profile and identity
+paths:
+  /member/profile.json:
+    get:
+      operationId: getMemberProfile
+      summary: Get member profile
+      description: Returns the authenticated member's profile information including account identifiers and user details.
+      tags:
+      - Member
+      responses:
+        '200':
+          description: Successful response with member profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberProfileResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      security:
+      - OAuth1: []
+components:
+  responses:
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+            elapsedtime:
+              type: string
+            id:
+              type: string
+    MemberProfileResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            userdata:
+              type: object
+              properties:
+                account:
+                  type: object
+                  properties:
+                    account:
+                      type: string
+                      description: Account number
+                    accountdesc:
+                      type: string
+                    tradingtype:
+                      type: string
+                    value:
+                      type: string
+                    assettypes:
+                      type: object
+                      properties:
+                        assettype:
+                          type: array
+                          items:
+                            type: string
+                userprofile:
+                  type: object
+                  properties:
+                    account:
+                      type: string
+                    disabled:
+                      type: string
+                    disabledcode:
+                      type: string
+                    email:
+                      type: string
+                    experiencelvl:
+                      type: string
+                    id:
+                      type: string
+                    login:
+                      type: string
+                    membersince:
+                      type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+  securitySchemes:
+    OAuth1:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: OAuth 1.0 authentication using consumer key/secret and OAuth token/secret pairs. The Authorization header must include oauth_consumer_key, oauth_token, oauth_signature_method (HMAC-SHA1), oauth_timestamp, oauth_nonce, oauth_version, and oauth_signature.
+externalDocs:
+  description: Ally Invest API Documentation
+  url: https://www.ally.com/api/invest/documentation/getting-started/

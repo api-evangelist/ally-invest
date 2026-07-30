@@ -2,7 +2,20 @@ aid: ally-invest
 url: https://raw.githubusercontent.com/api-evangelist/ally-invest/refs/heads/main/apis.yml
 name: Ally Invest
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: open
+  trial: false
+  try_now: false
+  public: true
+  label: Paid · Open access
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ally-invest.png
 tags:
   - Brokerage
   - Investing
@@ -24,116 +37,160 @@ modified: '2026-06-13'
 openapi: openapi/ally-invest-openapi.yml
 specificationVersion: '0.19'
 apis:
-  - aid: ally-invest:ally-invest-accounts-api
-    name: Ally Invest Accounts API
-    tags:
-      - Accounts
-      - Balances
-      - Holdings
-      - History
-      - Portfolio
-    humanURL: https://www.ally.com/api/invest/documentation/getting-started/
-    baseURL: https://api.ally.com/v1
-    properties:
-      - url: https://www.ally.com/api/invest/documentation/getting-started/
-        type: Documentation
-      - url: openapi/ally-invest-openapi.yml
-        type: OpenAPI
-    description: >-
-      The Ally Invest Accounts API provides programmatic access to brokerage account data including
-      account balances, holdings, transaction history, and order status for self-directed investment
-      accounts. Supports retrieval of summary balances across all accounts as well as detailed
-      account-level information for individual accounts identified by account ID.
-
-  - aid: ally-invest:ally-invest-orders-api
-    name: Ally Invest Orders API
-    tags:
-      - Orders
-      - Trades
-      - FIXML
-      - Preview
-      - Execution
-    humanURL: https://www.ally.com/api/invest/documentation/getting-started/
-    baseURL: https://api.ally.com/v1
-    properties:
-      - url: https://www.ally.com/api/invest/documentation/getting-started/
-        type: Documentation
-    description: >-
-      The Ally Invest Orders API enables programmatic placement and management of equity and options
-      orders for self-directed brokerage accounts. Orders are submitted using a FIXML-variant format.
-      Supports order preview before execution, retrieval of open orders, and cancellation of pending
-      orders. Requires OAuth 1.0 authentication with account-level credentials.
-
-  - aid: ally-invest:ally-invest-market-data-api
-    name: Ally Invest Market Data API
-    tags:
-      - Market Data
-      - Quotes
-      - Options
-      - News
-      - Time and Sales
-      - Top Lists
-    humanURL: https://www.ally.com/api/invest/documentation/getting-started/
-    baseURL: https://api.ally.com/v1
-    properties:
-      - url: https://www.ally.com/api/invest/documentation/getting-started/
-        type: Documentation
-    description: >-
-      The Ally Invest Market Data API provides access to real-time and delayed market data including
-      equity and options quotes, option chains, option strikes and expirations, market news search,
-      time-and-sales data, market clock status, and top security lists by various criteria. Option
-      chains can be filtered by type, expiration date, and strike price range.
-
-  - aid: ally-invest:ally-invest-streaming-api
-    name: Ally Invest Streaming Market Data API
-    tags:
-      - Streaming
-      - Real-Time
-      - Quotes
-      - Market Data
-    humanURL: https://www.ally.com/api/invest/documentation/streaming/
-    baseURL: https://api.ally.com/v1
-    properties:
-      - url: https://www.ally.com/api/invest/documentation/streaming/
-        type: Documentation
-    description: >-
-      The Ally Invest Streaming API delivers real-time market quotes via a persistent HTTP streaming
-      connection. Clients subscribe to one or more ticker symbols and receive continuous quote updates
-      as market prices change. Supports JSON and XML response formats. Requires OAuth 1.0
-      authentication.
-
-  - aid: ally-invest:ally-invest-watchlists-api
-    name: Ally Invest Watchlists API
-    tags:
-      - Watchlists
-      - Symbols
-      - Portfolio Tracking
-    humanURL: https://www.ally.com/api/invest/documentation/getting-started/
-    baseURL: https://api.ally.com/v1
-    properties:
-      - url: https://www.ally.com/api/invest/documentation/getting-started/
-        type: Documentation
-    description: >-
-      The Ally Invest Watchlists API allows programmatic creation and management of symbol watchlists
-      associated with a member account. Supports listing all watchlists, creating new watchlists,
-      retrieving watchlist details, deleting watchlists, and adding or removing ticker symbols
-      from existing watchlists.
-
-  - aid: ally-invest:ally-invest-member-api
-    name: Ally Invest Member API
-    tags:
-      - Member
-      - Profile
-      - Identity
-    humanURL: https://www.ally.com/api/invest/documentation/getting-started/
-    baseURL: https://api.ally.com/v1
-    properties:
-      - url: https://www.ally.com/api/invest/documentation/getting-started/
-        type: Documentation
-    description: >-
-      The Ally Invest Member API provides access to the authenticated member's profile information
-      including account identifiers and user details associated with the OAuth credentials.
-
+- aid: ally-invest:ally-invest-orders-api
+  name: Ally Invest Orders API
+  tags:
+  - Orders
+  - Trades
+  - FIXML
+  - Preview
+  - Execution
+  humanURL: https://www.ally.com/api/invest/documentation/getting-started/
+  baseURL: https://api.ally.com/v1
+  properties:
+  - url: https://www.ally.com/api/invest/documentation/getting-started/
+    type: Documentation
+  description: >-
+    The Ally Invest Orders API enables programmatic placement and management of equity and options orders
+    for self-directed brokerage accounts. Orders are submitted using a FIXML-variant format. Supports
+    order preview before execution, retrieval of open orders, and cancellation of pending orders. Requires
+    OAuth 1.0 authentication with account-level credentials.
+- aid: ally-invest:ally-invest-market-data-api
+  name: Ally Invest Market Data API
+  tags:
+  - Market Data
+  - Quotes
+  - Options
+  - News
+  - Time and Sales
+  - Top Lists
+  humanURL: https://www.ally.com/api/invest/documentation/getting-started/
+  baseURL: https://api.ally.com/v1
+  properties:
+  - url: https://www.ally.com/api/invest/documentation/getting-started/
+    type: Documentation
+  description: >-
+    The Ally Invest Market Data API provides access to real-time and delayed market data including equity
+    and options quotes, option chains, option strikes and expirations, market news search, time-and-sales
+    data, market clock status, and top security lists by various criteria. Option chains can be filtered
+    by type, expiration date, and strike price range.
+- aid: ally-invest:ally-invest-streaming-api
+  name: Ally Invest Streaming Market Data API
+  tags:
+  - Streaming
+  - Real-Time
+  - Quotes
+  - Market Data
+  humanURL: https://www.ally.com/api/invest/documentation/streaming/
+  baseURL: https://api.ally.com/v1
+  properties:
+  - url: https://www.ally.com/api/invest/documentation/streaming/
+    type: Documentation
+  description: >-
+    The Ally Invest Streaming API delivers real-time market quotes via a persistent HTTP streaming connection.
+    Clients subscribe to one or more ticker symbols and receive continuous quote updates as market prices
+    change. Supports JSON and XML response formats. Requires OAuth 1.0 authentication.
+- aid: ally-invest:ally-invest-watchlists-api
+  name: Ally Invest Watchlists API
+  tags:
+  - Watchlists
+  - Symbols
+  - Portfolio Tracking
+  humanURL: https://www.ally.com/api/invest/documentation/getting-started/
+  baseURL: https://api.ally.com/v1
+  properties:
+  - url: https://www.ally.com/api/invest/documentation/getting-started/
+    type: Documentation
+  description: >-
+    The Ally Invest Watchlists API allows programmatic creation and management of symbol watchlists associated
+    with a member account. Supports listing all watchlists, creating new watchlists, retrieving watchlist
+    details, deleting watchlists, and adding or removing ticker symbols from existing watchlists.
+- aid: ally-invest:ally-invest-member-api
+  name: Ally Invest Member API
+  tags:
+  - Member
+  - Profile
+  - Identity
+  humanURL: https://www.ally.com/api/invest/documentation/getting-started/
+  baseURL: https://api.ally.com/v1
+  properties:
+  - url: https://www.ally.com/api/invest/documentation/getting-started/
+    type: Documentation
+  description: >-
+    The Ally Invest Member API provides access to the authenticated member's profile information including
+    account identifiers and user details associated with the OAuth credentials.
+- aid: ally-invest:ally-invest-accounts-api
+  name: Ally Invest Accounts API
+  description: Account balances, holdings, history, and portfolio data
+  humanURL: https://www.ally.com/api/invest/documentation/getting-started/
+  baseURL: https://api.ally.com/v1
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/ally-invest-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://www.ally.com/api/invest/documentation/getting-started/
+- aid: ally-invest:ally-invest-market-data-api
+  name: Ally Invest Market Data API
+  description: Quotes, options, news, time-and-sales, and top lists
+  humanURL: https://www.ally.com/api/invest/documentation/getting-started/
+  baseURL: https://api.ally.com/v1
+  tags:
+  - Market Data
+  properties:
+  - type: OpenAPI
+    url: openapi/ally-invest-market-data-api-openapi.yml
+  - type: Documentation
+    url: https://www.ally.com/api/invest/documentation/getting-started/
+- aid: ally-invest:ally-invest-member-api
+  name: Ally Invest Member API
+  description: Member profile and identity
+  humanURL: https://www.ally.com/api/invest/documentation/getting-started/
+  baseURL: https://api.ally.com/v1
+  tags:
+  - Member
+  properties:
+  - type: OpenAPI
+    url: openapi/ally-invest-member-api-openapi.yml
+  - type: Documentation
+    url: https://www.ally.com/api/invest/documentation/getting-started/
+- aid: ally-invest:ally-invest-orders-api
+  name: Ally Invest Orders API
+  description: Order placement, preview, retrieval, and cancellation
+  humanURL: https://www.ally.com/api/invest/documentation/getting-started/
+  baseURL: https://api.ally.com/v1
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/ally-invest-orders-api-openapi.yml
+  - type: Documentation
+    url: https://www.ally.com/api/invest/documentation/getting-started/
+- aid: ally-invest:ally-invest-utilities-api
+  name: Ally Invest Utilities API
+  description: API status and version utilities
+  humanURL: https://www.ally.com/api/invest/documentation/getting-started/
+  baseURL: https://api.ally.com/v1
+  tags:
+  - Utilities
+  properties:
+  - type: OpenAPI
+    url: openapi/ally-invest-utilities-api-openapi.yml
+  - type: Documentation
+    url: https://www.ally.com/api/invest/documentation/getting-started/
+- aid: ally-invest:ally-invest-watchlists-api
+  name: Ally Invest Watchlists API
+  description: Watchlist creation and symbol management
+  humanURL: https://www.ally.com/api/invest/documentation/getting-started/
+  baseURL: https://api.ally.com/v1
+  tags:
+  - Watchlists
+  properties:
+  - type: OpenAPI
+    url: openapi/ally-invest-watchlists-api-openapi.yml
+  - type: Documentation
+    url: https://www.ally.com/api/invest/documentation/getting-started/
 common:
   - type: AgenticAccess
     url: agentic-access/ally-invest-agentic-access.yml

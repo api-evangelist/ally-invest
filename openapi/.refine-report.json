@@ -1,0 +1,24 @@
+{
+  "provider": "ally-invest",
+  "sources": [
+    "ally-invest-accounts-api-openapi.yml",
+    "ally-invest-market-data-api-openapi.yml",
+    "ally-invest-member-api-openapi.yml",
+    "ally-invest-orders-api-openapi.yml",
+    "ally-invest-utilities-api-openapi.yml",
+    "ally-invest-watchlists-api-openapi.yml"
+  ],
+  "outputs": [
+    "ally-invest-accounts-api-openapi.yml",
+    "ally-invest-market-data-api-openapi.yml",
+    "ally-invest-member-api-openapi.yml",
+    "ally-invest-orders-api-openapi.yml",
+    "ally-invest-utilities-api-openapi.yml",
+    "ally-invest-watchlists-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

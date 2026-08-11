@@ -199,7 +199,7 @@ common:
   - type: Authentication
     url: authentication/ally-invest-authentication.yml
   - type: OpenAPI
-    url: openapi/ally-invest-openapi.yml
+    url: openapi/_original/ally-invest-openapi.yml
   - type: Website
     url: https://www.ally.com/invest/
   - type: Documentation

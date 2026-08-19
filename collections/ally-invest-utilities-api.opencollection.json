@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ally Invest Accounts Utilities API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Utilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get market clock status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/market/clock.json",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the current market status (open/closed), current time, and next market event times."
+        },
+        {
+          "info": {
+            "name": "Get API status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/utility/status.json"
+          },
+          "docs": "Returns the current operational status of the Ally Invest API."
+        },
+        {
+          "info": {
+            "name": "Get API version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/utility/version.json"
+          },
+          "docs": "Returns the current version of the Ally Invest API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

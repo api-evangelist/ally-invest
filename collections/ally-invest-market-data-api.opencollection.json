@@ -1,0 +1,307 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ally Invest Accounts Market Data API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Market Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get market clock status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/market/clock.json",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the current market status (open/closed), current time, and next market event times."
+        },
+        {
+          "info": {
+            "name": "Get market quotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/market/ext/quotes.json",
+            "params": [
+              {
+                "name": "symbols",
+                "value": "GE,MSFT,AAPL",
+                "type": "query",
+                "description": "Comma-separated list of ticker symbols (e.g., GE,MSFT,AAPL)"
+              },
+              {
+                "name": "fids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of field IDs to return (returns all fields if omitted)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns real-time or delayed market quotes for one or more ticker symbols. Supports equities and options. Multiple symbols can be requested in a single call."
+        },
+        {
+          "info": {
+            "name": "Search market news",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/market/news/search.json",
+            "params": [
+              {
+                "name": "symbols",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of ticker symbols to search news for"
+              },
+              {
+                "name": "keywords",
+                "value": "",
+                "type": "query",
+                "description": "Keywords to search in news articles"
+              },
+              {
+                "name": "maxhits",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "startdate",
+                "value": "",
+                "type": "query",
+                "description": "Start date for news search (YYYY-MM-DD)"
+              },
+              {
+                "name": "enddate",
+                "value": "",
+                "type": "query",
+                "description": "End date for news search (YYYY-MM-DD)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Searches for market news articles by keyword or ticker symbol."
+        },
+        {
+          "info": {
+            "name": "Get a specific news article",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/market/news/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The news article ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the full content of a specific news article by article ID."
+        },
+        {
+          "info": {
+            "name": "Get a market top list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/market/toplists/:listtype.json",
+            "params": [
+              {
+                "name": "listtype",
+                "value": "",
+                "type": "path",
+                "description": "Type of top list to retrieve"
+              },
+              {
+                "name": "exchange",
+                "value": "",
+                "type": "query",
+                "description": "Filter by exchange (e.g., N, Q, A)"
+              },
+              {
+                "name": "rows",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of top securities by various criteria such as most active, largest gainers, largest losers."
+        },
+        {
+          "info": {
+            "name": "Search option chains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/market/options/search.json",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "AAPL",
+                "type": "query",
+                "description": "Underlying ticker symbol"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Option chain filter query (e.g., put_call-eq:C for calls only)"
+              },
+              {
+                "name": "fids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of field IDs to return"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns option chains for a given underlying symbol, optionally filtered by option type, expiration date, and strike price range."
+        },
+        {
+          "info": {
+            "name": "Get available option strike prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/market/options/strikes.json",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "AAPL",
+                "type": "query",
+                "description": "Underlying ticker symbol"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns available strike prices for options on a given underlying symbol."
+        },
+        {
+          "info": {
+            "name": "Get available option expiration dates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/market/options/expirations.json",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "AAPL",
+                "type": "query",
+                "description": "Underlying ticker symbol"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns available expiration dates for options on a given underlying symbol."
+        },
+        {
+          "info": {
+            "name": "Get time and sales data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/market/timesales.json",
+            "params": [
+              {
+                "name": "symbols",
+                "value": "",
+                "type": "query",
+                "description": "Ticker symbol"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Interval between ticks (e.g., 1min, 5min, 10min, 15min, 30min, 1hour, daily)"
+              },
+              {
+                "name": "rpp",
+                "value": "",
+                "type": "query",
+                "description": "Results per page"
+              },
+              {
+                "name": "index",
+                "value": "",
+                "type": "query",
+                "description": "Page index"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns time-and-sales (trade tick) data for a specific symbol."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

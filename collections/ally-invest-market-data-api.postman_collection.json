@@ -1,0 +1,2133 @@
+{
+  "item": [
+    {
+      "id": "a117ea66-67dc-4ed2-baef-df2e8a13c155",
+      "name": "Market Data",
+      "description": {
+        "content": "Quotes, options, news, time-and-sales, and top lists",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e01ea108-0329-4b95-8fa3-89e9f47ab68f",
+          "name": "Get market clock status",
+          "request": {
+            "name": "Get market clock status",
+            "description": {
+              "content": "Returns the current market status (open/closed), current time, and next market event times.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                "clock.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "78cde939-5581-4bc6-833b-65aac2f46b5e",
+              "name": "Successful response with market clock data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "clock.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"status\": {\n      \"current\": \"string\",\n      \"next\": \"string\",\n      \"change\": \"string\"\n    },\n    \"message\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "800de5aa-3b9f-427a-aa62-9d77179c41f4",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "clock.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d96a4383-6431-41aa-8a44-f61014a77c98",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "clock.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce962612-89a9-4dd6-8a6c-7a61b22c79d4",
+          "name": "Get market quotes",
+          "request": {
+            "name": "Get market quotes",
+            "description": {
+              "content": "Returns real-time or delayed market quotes for one or more ticker symbols. Supports equities and options. Multiple symbols can be requested in a single call.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                "ext",
+                "quotes.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbols",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of ticker symbols (e.g., GE,MSFT,AAPL)"
+                },
+                {
+                  "disabled": false,
+                  "key": "fids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of field IDs to return (returns all fields if omitted)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f26239f2-54cf-43ce-b152-97fc6373040d",
+              "name": "Successful response with quotes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "ext",
+                    "quotes.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbols",
+                      "value": "GE,MSFT,AAPL"
+                    },
+                    {
+                      "key": "fids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"quotes\": {\n      \"quote\": [\n        {\n          \"adp_100\": \"string\",\n          \"adp_200\": \"string\",\n          \"adp_50\": \"string\",\n          \"adv_21\": \"string\",\n          \"adv_30\": \"string\",\n          \"adv_90\": \"string\",\n          \"ask\": \"string\",\n          \"ask_time\": \"string\",\n          \"asksz\": \"string\",\n          \"basis\": \"string\",\n          \"beta\": \"string\",\n          \"bid\": \"string\",\n          \"bid_time\": \"string\",\n          \"bidsz\": \"string\",\n          \"bidtick\": \"string\",\n          \"chg\": \"string\",\n          \"chg_sign\": \"string\",\n          \"chg_t\": \"string\",\n          \"cl\": \"string\",\n          \"contract_size\": \"string\",\n          \"cusip\": \"string\",\n          \"date\": \"string\",\n          \"datetime\": \"string\",\n          \"days_to_expiration\": \"string\",\n          \"div\": \"string\",\n          \"divexdate\": \"string\",\n          \"divfreq\": \"string\",\n          \"divpaydt\": \"string\",\n          \"dollar_value\": \"string\",\n          \"eps\": \"string\",\n          \"exch\": \"string\",\n          \"exch_desc\": \"string\",\n          \"hi\": \"string\",\n          \"iad\": \"string\",\n          \"idelta\": \"string\",\n          \"igamma\": \"string\",\n          \"imp_volatility\": \"string\",\n          \"incr_vl\": \"string\",\n          \"irho\": \"string\",\n          \"issue_desc\": \"string\",\n          \"itheta\": \"string\",\n          \"ivega\": \"string\",\n          \"last\": \"string\",\n          \"lo\": \"string\",\n          \"name\": \"string\",\n          \"op_delivery\": \"string\",\n          \"op_flag\": \"string\",\n          \"op_style\": \"string\",\n          \"op_subclass\": \"string\",\n          \"openinterest\": \"string\",\n          \"opn\": \"string\",\n          \"opt_val\": \"string\",\n          \"pchg\": \"string\",\n          \"pchg_sign\": \"string\",\n          \"pcls\": \"string\",\n          \"pe\": \"string\",\n          \"phi\": \"string\",\n          \"plo\": \"string\",\n          \"popn\": \"string\",\n          \"pr_adp_100\": \"string\",\n          \"pr_adp_200\": \"string\",\n          \"pr_adp_50\": \"string\",\n          \"pr_date\": \"string\",\n          \"pr_openinterest\": \"string\",\n          \"prbook\": \"string\",\n          \"prchg\": \"string\",\n          \"prem_mult\": \"string\",\n          \"put_call\": \"string\",\n          \"pvol\": \"string\",\n          \"qcond\": \"string\",\n          \"rootsymbol\": \"string\",\n          \"secclass\": \"string\",\n          \"sesn\": \"string\",\n          \"sho\": \"string\",\n          \"strikeprice\": \"string\",\n          \"symbol\": \"string\",\n          \"tcond\": \"string\",\n          \"timestamp\": \"string\",\n          \"tr_num\": \"string\",\n          \"tradetick\": \"string\",\n          \"trend\": \"string\",\n          \"under_cusip\": \"string\",\n          \"undersymbol\": \"string\",\n          \"vl\": \"string\",\n          \"volatility12\": \"string\",\n          \"vwap\": \"string\",\n          \"wk52hi\": \"string\",\n          \"wk52hidate\": \"string\",\n          \"wk52lo\": \"string\",\n          \"wk52lodate\": \"string\",\n          \"xdate\": \"string\",\n          \"xday\": \"string\",\n          \"xmonth\": \"string\",\n          \"xyear\": \"string\",\n          \"yield\": \"string\"\n        },\n        {\n          \"adp_100\": \"string\",\n          \"adp_200\": \"string\",\n          \"adp_50\": \"string\",\n          \"adv_21\": \"string\",\n          \"adv_30\": \"string\",\n          \"adv_90\": \"string\",\n          \"ask\": \"string\",\n          \"ask_time\": \"string\",\n          \"asksz\": \"string\",\n          \"basis\": \"string\",\n          \"beta\": \"string\",\n          \"bid\": \"string\",\n          \"bid_time\": \"string\",\n          \"bidsz\": \"string\",\n          \"bidtick\": \"string\",\n          \"chg\": \"string\",\n          \"chg_sign\": \"string\",\n          \"chg_t\": \"string\",\n          \"cl\": \"string\",\n          \"contract_size\": \"string\",\n          \"cusip\": \"string\",\n          \"date\": \"string\",\n          \"datetime\": \"string\",\n          \"days_to_expiration\": \"string\",\n          \"div\": \"string\",\n          \"divexdate\": \"string\",\n          \"divfreq\": \"string\",\n          \"divpaydt\": \"string\",\n          \"dollar_value\": \"string\",\n          \"eps\": \"string\",\n          \"exch\": \"string\",\n          \"exch_desc\": \"string\",\n          \"hi\": \"string\",\n          \"iad\": \"string\",\n          \"idelta\": \"string\",\n          \"igamma\": \"string\",\n          \"imp_volatility\": \"string\",\n          \"incr_vl\": \"string\",\n          \"irho\": \"string\",\n          \"issue_desc\": \"string\",\n          \"itheta\": \"string\",\n          \"ivega\": \"string\",\n          \"last\": \"string\",\n          \"lo\": \"string\",\n          \"name\": \"string\",\n          \"op_delivery\": \"string\",\n          \"op_flag\": \"string\",\n          \"op_style\": \"string\",\n          \"op_subclass\": \"string\",\n          \"openinterest\": \"string\",\n          \"opn\": \"string\",\n          \"opt_val\": \"string\",\n          \"pchg\": \"string\",\n          \"pchg_sign\": \"string\",\n          \"pcls\": \"string\",\n          \"pe\": \"string\",\n          \"phi\": \"string\",\n          \"plo\": \"string\",\n          \"popn\": \"string\",\n          \"pr_adp_100\": \"string\",\n          \"pr_adp_200\": \"string\",\n          \"pr_adp_50\": \"string\",\n          \"pr_date\": \"string\",\n          \"pr_openinterest\": \"string\",\n          \"prbook\": \"string\",\n          \"prchg\": \"string\",\n          \"prem_mult\": \"string\",\n          \"put_call\": \"string\",\n          \"pvol\": \"string\",\n          \"qcond\": \"string\",\n          \"rootsymbol\": \"string\",\n          \"secclass\": \"string\",\n          \"sesn\": \"string\",\n          \"sho\": \"string\",\n          \"strikeprice\": \"string\",\n          \"symbol\": \"string\",\n          \"tcond\": \"string\",\n          \"timestamp\": \"string\",\n          \"tr_num\": \"string\",\n          \"tradetick\": \"string\",\n          \"trend\": \"string\",\n          \"under_cusip\": \"string\",\n          \"undersymbol\": \"string\",\n          \"vl\": \"string\",\n          \"volatility12\": \"string\",\n          \"vwap\": \"string\",\n          \"wk52hi\": \"string\",\n          \"wk52hidate\": \"string\",\n          \"wk52lo\": \"string\",\n          \"wk52lodate\": \"string\",\n          \"xdate\": \"string\",\n          \"xday\": \"string\",\n          \"xmonth\": \"string\",\n          \"xyear\": \"string\",\n          \"yield\": \"string\"\n        }\n      ]\n    },\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14327dcf-ab28-4994-bfb8-c0d81a04d91c",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "ext",
+                    "quotes.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbols",
+                      "value": "GE,MSFT,AAPL"
+                    },
+                    {
+                      "key": "fids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fb3ae99-5afb-4b6a-9f4e-154ebb0cdf3b",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "ext",
+                    "quotes.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbols",
+                      "value": "GE,MSFT,AAPL"
+                    },
+                    {
+                      "key": "fids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da67c178-a082-4627-8630-8553906df8c4",
+          "name": "Search market news",
+          "request": {
+            "name": "Search market news",
+            "description": {
+              "content": "Searches for market news articles by keyword or ticker symbol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                "news",
+                "search.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbols",
+                  "value": "<string>",
+                  "description": "Comma-separated list of ticker symbols to search news for"
+                },
+                {
+                  "disabled": false,
+                  "key": "keywords",
+                  "value": "<string>",
+                  "description": "Keywords to search in news articles"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxhits",
+                  "value": "10",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<date>",
+                  "description": "Start date for news search (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<date>",
+                  "description": "End date for news search (YYYY-MM-DD)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d547c9b8-717d-42c3-af48-e723bc6d3218",
+              "name": "Successful response with news articles",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "news",
+                    "search.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbols",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxhits",
+                      "value": "10"
+                    },
+                    {
+                      "key": "startdate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"articles\": {\n      \"article\": [\n        {\n          \"date\": \"string\",\n          \"headline\": \"string\",\n          \"id\": \"string\",\n          \"source\": \"string\",\n          \"symbols\": {\n            \"symbol\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"url\": \"string\"\n        },\n        {\n          \"date\": \"string\",\n          \"headline\": \"string\",\n          \"id\": \"string\",\n          \"source\": \"string\",\n          \"symbols\": {\n            \"symbol\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"url\": \"string\"\n        }\n      ]\n    },\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ab2bbbd-770d-47b8-b284-d59923a78502",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "news",
+                    "search.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbols",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxhits",
+                      "value": "10"
+                    },
+                    {
+                      "key": "startdate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3450cd1e-23d0-405f-b914-78c806601ef1",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "news",
+                    "search.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbols",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxhits",
+                      "value": "10"
+                    },
+                    {
+                      "key": "startdate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b216553b-6aaf-4005-8793-383068487e24",
+          "name": "Get a specific news article",
+          "request": {
+            "name": "Get a specific news article",
+            "description": {
+              "content": "Returns the full content of a specific news article by article ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                "news",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9e40cbb3-743b-4390-ae5f-328743c0fca4",
+              "name": "Successful response with news article",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "news",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"article\": {\n      \"content\": \"string\",\n      \"date\": \"string\",\n      \"headline\": \"string\",\n      \"id\": \"string\",\n      \"source\": \"string\",\n      \"symbols\": {\n        \"symbol\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a82ca6d-16e3-4105-9fc0-1443a32f864e",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "news",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1623511-2cb0-4044-9789-6f1c2cb356f3",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "news",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb286c15-5b55-40f0-8681-2b2de1738cce",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "news",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d647c2f-dca4-43f3-a37d-34ecbd47f5c7",
+          "name": "Get a market top list",
+          "request": {
+            "name": "Get a market top list",
+            "description": {
+              "content": "Returns a list of top securities by various criteria such as most active, largest gainers, largest losers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                "toplists",
+                "{{listtype}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "exchange",
+                  "value": "<string>",
+                  "description": "Filter by exchange (e.g., N, Q, A)"
+                },
+                {
+                  "disabled": false,
+                  "key": "rows",
+                  "value": "25",
+                  "description": "Number of results to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a5e78316-d605-4abd-9f02-a41bf88591b3",
+              "name": "Successful response with top list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "toplists",
+                    "{{listtype}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exchange",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rows",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"quotes\": {\n      \"quote\": [\n        {\n          \"adp_100\": \"string\",\n          \"adp_200\": \"string\",\n          \"adp_50\": \"string\",\n          \"adv_21\": \"string\",\n          \"adv_30\": \"string\",\n          \"adv_90\": \"string\",\n          \"ask\": \"string\",\n          \"ask_time\": \"string\",\n          \"asksz\": \"string\",\n          \"basis\": \"string\",\n          \"beta\": \"string\",\n          \"bid\": \"string\",\n          \"bid_time\": \"string\",\n          \"bidsz\": \"string\",\n          \"bidtick\": \"string\",\n          \"chg\": \"string\",\n          \"chg_sign\": \"string\",\n          \"chg_t\": \"string\",\n          \"cl\": \"string\",\n          \"contract_size\": \"string\",\n          \"cusip\": \"string\",\n          \"date\": \"string\",\n          \"datetime\": \"string\",\n          \"days_to_expiration\": \"string\",\n          \"div\": \"string\",\n          \"divexdate\": \"string\",\n          \"divfreq\": \"string\",\n          \"divpaydt\": \"string\",\n          \"dollar_value\": \"string\",\n          \"eps\": \"string\",\n          \"exch\": \"string\",\n          \"exch_desc\": \"string\",\n          \"hi\": \"string\",\n          \"iad\": \"string\",\n          \"idelta\": \"string\",\n          \"igamma\": \"string\",\n          \"imp_volatility\": \"string\",\n          \"incr_vl\": \"string\",\n          \"irho\": \"string\",\n          \"issue_desc\": \"string\",\n          \"itheta\": \"string\",\n          \"ivega\": \"string\",\n          \"last\": \"string\",\n          \"lo\": \"string\",\n          \"name\": \"string\",\n          \"op_delivery\": \"string\",\n          \"op_flag\": \"string\",\n          \"op_style\": \"string\",\n          \"op_subclass\": \"string\",\n          \"openinterest\": \"string\",\n          \"opn\": \"string\",\n          \"opt_val\": \"string\",\n          \"pchg\": \"string\",\n          \"pchg_sign\": \"string\",\n          \"pcls\": \"string\",\n          \"pe\": \"string\",\n          \"phi\": \"string\",\n          \"plo\": \"string\",\n          \"popn\": \"string\",\n          \"pr_adp_100\": \"string\",\n          \"pr_adp_200\": \"string\",\n          \"pr_adp_50\": \"string\",\n          \"pr_date\": \"string\",\n          \"pr_openinterest\": \"string\",\n          \"prbook\": \"string\",\n          \"prchg\": \"string\",\n          \"prem_mult\": \"string\",\n          \"put_call\": \"string\",\n          \"pvol\": \"string\",\n          \"qcond\": \"string\",\n          \"rootsymbol\": \"string\",\n          \"secclass\": \"string\",\n          \"sesn\": \"string\",\n          \"sho\": \"string\",\n          \"strikeprice\": \"string\",\n          \"symbol\": \"string\",\n          \"tcond\": \"string\",\n          \"timestamp\": \"string\",\n          \"tr_num\": \"string\",\n          \"tradetick\": \"string\",\n          \"trend\": \"string\",\n          \"under_cusip\": \"string\",\n          \"undersymbol\": \"string\",\n          \"vl\": \"string\",\n          \"volatility12\": \"string\",\n          \"vwap\": \"string\",\n          \"wk52hi\": \"string\",\n          \"wk52hidate\": \"string\",\n          \"wk52lo\": \"string\",\n          \"wk52lodate\": \"string\",\n          \"xdate\": \"string\",\n          \"xday\": \"string\",\n          \"xmonth\": \"string\",\n          \"xyear\": \"string\",\n          \"yield\": \"string\"\n        },\n        {\n          \"adp_100\": \"string\",\n          \"adp_200\": \"string\",\n          \"adp_50\": \"string\",\n          \"adv_21\": \"string\",\n          \"adv_30\": \"string\",\n          \"adv_90\": \"string\",\n          \"ask\": \"string\",\n          \"ask_time\": \"string\",\n          \"asksz\": \"string\",\n          \"basis\": \"string\",\n          \"beta\": \"string\",\n          \"bid\": \"string\",\n          \"bid_time\": \"string\",\n          \"bidsz\": \"string\",\n          \"bidtick\": \"string\",\n          \"chg\": \"string\",\n          \"chg_sign\": \"string\",\n          \"chg_t\": \"string\",\n          \"cl\": \"string\",\n          \"contract_size\": \"string\",\n          \"cusip\": \"string\",\n          \"date\": \"string\",\n          \"datetime\": \"string\",\n          \"days_to_expiration\": \"string\",\n          \"div\": \"string\",\n          \"divexdate\": \"string\",\n          \"divfreq\": \"string\",\n          \"divpaydt\": \"string\",\n          \"dollar_value\": \"string\",\n          \"eps\": \"string\",\n          \"exch\": \"string\",\n          \"exch_desc\": \"string\",\n          \"hi\": \"string\",\n          \"iad\": \"string\",\n          \"idelta\": \"string\",\n          \"igamma\": \"string\",\n          \"imp_volatility\": \"string\",\n          \"incr_vl\": \"string\",\n          \"irho\": \"string\",\n          \"issue_desc\": \"string\",\n          \"itheta\": \"string\",\n          \"ivega\": \"string\",\n          \"last\": \"string\",\n          \"lo\": \"string\",\n          \"name\": \"string\",\n          \"op_delivery\": \"string\",\n          \"op_flag\": \"string\",\n          \"op_style\": \"string\",\n          \"op_subclass\": \"string\",\n          \"openinterest\": \"string\",\n          \"opn\": \"string\",\n          \"opt_val\": \"string\",\n          \"pchg\": \"string\",\n          \"pchg_sign\": \"string\",\n          \"pcls\": \"string\",\n          \"pe\": \"string\",\n          \"phi\": \"string\",\n          \"plo\": \"string\",\n          \"popn\": \"string\",\n          \"pr_adp_100\": \"string\",\n          \"pr_adp_200\": \"string\",\n          \"pr_adp_50\": \"string\",\n          \"pr_date\": \"string\",\n          \"pr_openinterest\": \"string\",\n          \"prbook\": \"string\",\n          \"prchg\": \"string\",\n          \"prem_mult\": \"string\",\n          \"put_call\": \"string\",\n          \"pvol\": \"string\",\n          \"qcond\": \"string\",\n          \"rootsymbol\": \"string\",\n          \"secclass\": \"string\",\n          \"sesn\": \"string\",\n          \"sho\": \"string\",\n          \"strikeprice\": \"string\",\n          \"symbol\": \"string\",\n          \"tcond\": \"string\",\n          \"timestamp\": \"string\",\n          \"tr_num\": \"string\",\n          \"tradetick\": \"string\",\n          \"trend\": \"string\",\n          \"under_cusip\": \"string\",\n          \"undersymbol\": \"string\",\n          \"vl\": \"string\",\n          \"volatility12\": \"string\",\n          \"vwap\": \"string\",\n          \"wk52hi\": \"string\",\n          \"wk52hidate\": \"string\",\n          \"wk52lo\": \"string\",\n          \"wk52lodate\": \"string\",\n          \"xdate\": \"string\",\n          \"xday\": \"string\",\n          \"xmonth\": \"string\",\n          \"xyear\": \"string\",\n          \"yield\": \"string\"\n        }\n      ]\n    },\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5fcca79-4797-4b85-88fd-daa9f9557032",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "toplists",
+                    "{{listtype}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exchange",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rows",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ad7df91-4898-43aa-8dbf-66a5bca1756c",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "toplists",
+                    "{{listtype}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exchange",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rows",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8bf33824-71df-4e67-8e46-488cfb2c0d25",
+          "name": "Search option chains",
+          "request": {
+            "name": "Search option chains",
+            "description": {
+              "content": "Returns option chains for a given underlying symbol, optionally filtered by option type, expiration date, and strike price range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                "options",
+                "search.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) Underlying ticker symbol"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Option chain filter query (e.g., put_call-eq:C for calls only)"
+                },
+                {
+                  "disabled": false,
+                  "key": "fids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of field IDs to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e5c7f23d-f816-4585-894a-87f85c3e7134",
+              "name": "Successful response with option chain",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "options",
+                    "search.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "AAPL"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"quotes\": {\n      \"quote\": [\n        {\n          \"adp_100\": \"string\",\n          \"adp_200\": \"string\",\n          \"adp_50\": \"string\",\n          \"adv_21\": \"string\",\n          \"adv_30\": \"string\",\n          \"adv_90\": \"string\",\n          \"ask\": \"string\",\n          \"ask_time\": \"string\",\n          \"asksz\": \"string\",\n          \"basis\": \"string\",\n          \"beta\": \"string\",\n          \"bid\": \"string\",\n          \"bid_time\": \"string\",\n          \"bidsz\": \"string\",\n          \"bidtick\": \"string\",\n          \"chg\": \"string\",\n          \"chg_sign\": \"string\",\n          \"chg_t\": \"string\",\n          \"cl\": \"string\",\n          \"contract_size\": \"string\",\n          \"cusip\": \"string\",\n          \"date\": \"string\",\n          \"datetime\": \"string\",\n          \"days_to_expiration\": \"string\",\n          \"div\": \"string\",\n          \"divexdate\": \"string\",\n          \"divfreq\": \"string\",\n          \"divpaydt\": \"string\",\n          \"dollar_value\": \"string\",\n          \"eps\": \"string\",\n          \"exch\": \"string\",\n          \"exch_desc\": \"string\",\n          \"hi\": \"string\",\n          \"iad\": \"string\",\n          \"idelta\": \"string\",\n          \"igamma\": \"string\",\n          \"imp_volatility\": \"string\",\n          \"incr_vl\": \"string\",\n          \"irho\": \"string\",\n          \"issue_desc\": \"string\",\n          \"itheta\": \"string\",\n          \"ivega\": \"string\",\n          \"last\": \"string\",\n          \"lo\": \"string\",\n          \"name\": \"string\",\n          \"op_delivery\": \"string\",\n          \"op_flag\": \"string\",\n          \"op_style\": \"string\",\n          \"op_subclass\": \"string\",\n          \"openinterest\": \"string\",\n          \"opn\": \"string\",\n          \"opt_val\": \"string\",\n          \"pchg\": \"string\",\n          \"pchg_sign\": \"string\",\n          \"pcls\": \"string\",\n          \"pe\": \"string\",\n          \"phi\": \"string\",\n          \"plo\": \"string\",\n          \"popn\": \"string\",\n          \"pr_adp_100\": \"string\",\n          \"pr_adp_200\": \"string\",\n          \"pr_adp_50\": \"string\",\n          \"pr_date\": \"string\",\n          \"pr_openinterest\": \"string\",\n          \"prbook\": \"string\",\n          \"prchg\": \"string\",\n          \"prem_mult\": \"string\",\n          \"put_call\": \"string\",\n          \"pvol\": \"string\",\n          \"qcond\": \"string\",\n          \"rootsymbol\": \"string\",\n          \"secclass\": \"string\",\n          \"sesn\": \"string\",\n          \"sho\": \"string\",\n          \"strikeprice\": \"string\",\n          \"symbol\": \"string\",\n          \"tcond\": \"string\",\n          \"timestamp\": \"string\",\n          \"tr_num\": \"string\",\n          \"tradetick\": \"string\",\n          \"trend\": \"string\",\n          \"under_cusip\": \"string\",\n          \"undersymbol\": \"string\",\n          \"vl\": \"string\",\n          \"volatility12\": \"string\",\n          \"vwap\": \"string\",\n          \"wk52hi\": \"string\",\n          \"wk52hidate\": \"string\",\n          \"wk52lo\": \"string\",\n          \"wk52lodate\": \"string\",\n          \"xdate\": \"string\",\n          \"xday\": \"string\",\n          \"xmonth\": \"string\",\n          \"xyear\": \"string\",\n          \"yield\": \"string\"\n        },\n        {\n          \"adp_100\": \"string\",\n          \"adp_200\": \"string\",\n          \"adp_50\": \"string\",\n          \"adv_21\": \"string\",\n          \"adv_30\": \"string\",\n          \"adv_90\": \"string\",\n          \"ask\": \"string\",\n          \"ask_time\": \"string\",\n          \"asksz\": \"string\",\n          \"basis\": \"string\",\n          \"beta\": \"string\",\n          \"bid\": \"string\",\n          \"bid_time\": \"string\",\n          \"bidsz\": \"string\",\n          \"bidtick\": \"string\",\n          \"chg\": \"string\",\n          \"chg_sign\": \"string\",\n          \"chg_t\": \"string\",\n          \"cl\": \"string\",\n          \"contract_size\": \"string\",\n          \"cusip\": \"string\",\n          \"date\": \"string\",\n          \"datetime\": \"string\",\n          \"days_to_expiration\": \"string\",\n          \"div\": \"string\",\n          \"divexdate\": \"string\",\n          \"divfreq\": \"string\",\n          \"divpaydt\": \"string\",\n          \"dollar_value\": \"string\",\n          \"eps\": \"string\",\n          \"exch\": \"string\",\n          \"exch_desc\": \"string\",\n          \"hi\": \"string\",\n          \"iad\": \"string\",\n          \"idelta\": \"string\",\n          \"igamma\": \"string\",\n          \"imp_volatility\": \"string\",\n          \"incr_vl\": \"string\",\n          \"irho\": \"string\",\n          \"issue_desc\": \"string\",\n          \"itheta\": \"string\",\n          \"ivega\": \"string\",\n          \"last\": \"string\",\n          \"lo\": \"string\",\n          \"name\": \"string\",\n          \"op_delivery\": \"string\",\n          \"op_flag\": \"string\",\n          \"op_style\": \"string\",\n          \"op_subclass\": \"string\",\n          \"openinterest\": \"string\",\n          \"opn\": \"string\",\n          \"opt_val\": \"string\",\n          \"pchg\": \"string\",\n          \"pchg_sign\": \"string\",\n          \"pcls\": \"string\",\n          \"pe\": \"string\",\n          \"phi\": \"string\",\n          \"plo\": \"string\",\n          \"popn\": \"string\",\n          \"pr_adp_100\": \"string\",\n          \"pr_adp_200\": \"string\",\n          \"pr_adp_50\": \"string\",\n          \"pr_date\": \"string\",\n          \"pr_openinterest\": \"string\",\n          \"prbook\": \"string\",\n          \"prchg\": \"string\",\n          \"prem_mult\": \"string\",\n          \"put_call\": \"string\",\n          \"pvol\": \"string\",\n          \"qcond\": \"string\",\n          \"rootsymbol\": \"string\",\n          \"secclass\": \"string\",\n          \"sesn\": \"string\",\n          \"sho\": \"string\",\n          \"strikeprice\": \"string\",\n          \"symbol\": \"string\",\n          \"tcond\": \"string\",\n          \"timestamp\": \"string\",\n          \"tr_num\": \"string\",\n          \"tradetick\": \"string\",\n          \"trend\": \"string\",\n          \"under_cusip\": \"string\",\n          \"undersymbol\": \"string\",\n          \"vl\": \"string\",\n          \"volatility12\": \"string\",\n          \"vwap\": \"string\",\n          \"wk52hi\": \"string\",\n          \"wk52hidate\": \"string\",\n          \"wk52lo\": \"string\",\n          \"wk52lodate\": \"string\",\n          \"xdate\": \"string\",\n          \"xday\": \"string\",\n          \"xmonth\": \"string\",\n          \"xyear\": \"string\",\n          \"yield\": \"string\"\n        }\n      ]\n    },\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de9c09f2-6c25-40eb-a30d-0f9c0fd12b23",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "options",
+                    "search.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "AAPL"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcb8a87c-d383-4a95-87e2-3110a269e210",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "options",
+                    "search.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "AAPL"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1a02216-43cc-4f80-960c-d4ce1e93165c",
+          "name": "Get available option strike prices",
+          "request": {
+            "name": "Get available option strike prices",
+            "description": {
+              "content": "Returns available strike prices for options on a given underlying symbol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                "options",
+                "strikes.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) Underlying ticker symbol"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d3d6f301-e64b-48f9-99b7-b75cc3b1ec2c",
+              "name": "Successful response with strike prices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "options",
+                    "strikes.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "AAPL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"prices\": {\n      \"price\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1e4ddcb-7d3c-45d1-bfaa-1028ed592405",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "options",
+                    "strikes.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "AAPL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e145cfa-47c9-4277-bbd6-271c61e6d4cc",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "options",
+                    "strikes.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "AAPL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18c36966-8c29-4308-8ed4-3b62545bf1b2",
+          "name": "Get available option expiration dates",
+          "request": {
+            "name": "Get available option expiration dates",
+            "description": {
+              "content": "Returns available expiration dates for options on a given underlying symbol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                "options",
+                "expirations.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) Underlying ticker symbol"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c45f9616-c8d8-4c27-8032-84fce8968046",
+              "name": "Successful response with expiration dates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "options",
+                    "expirations.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "AAPL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"expirationdates\": {\n      \"date\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8f04634-5637-442c-9383-83d722e92f7a",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "options",
+                    "expirations.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "AAPL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8c5440f-293b-4ac1-b51d-055646aeaf1a",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "options",
+                    "expirations.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "AAPL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4a75356-cd35-4b9e-90aa-8084029c23e0",
+          "name": "Get time and sales data",
+          "request": {
+            "name": "Get time and sales data",
+            "description": {
+              "content": "Returns time-and-sales (trade tick) data for a specific symbol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                "timesales.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbols",
+                  "value": "<string>",
+                  "description": "(Required) Ticker symbol"
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "Interval between ticks (e.g., 1min, 5min, 10min, 15min, 30min, 1hour, daily)"
+                },
+                {
+                  "disabled": false,
+                  "key": "rpp",
+                  "value": "<integer>",
+                  "description": "Results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "index",
+                  "value": "<integer>",
+                  "description": "Page index"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5cea5270-19c5-4a28-aaf3-94876e47f109",
+              "name": "Successful response with time-and-sales data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "timesales.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbols",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rpp",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "index",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"quotes\": {\n      \"quote\": [\n        {\n          \"datetime\": \"string\",\n          \"hi\": \"string\",\n          \"incr_vl\": \"string\",\n          \"last\": \"string\",\n          \"lo\": \"string\",\n          \"opn\": \"string\",\n          \"symbol\": \"string\",\n          \"timestamp\": \"string\",\n          \"vl\": \"string\",\n          \"vwap\": \"string\"\n        },\n        {\n          \"datetime\": \"string\",\n          \"hi\": \"string\",\n          \"incr_vl\": \"string\",\n          \"last\": \"string\",\n          \"lo\": \"string\",\n          \"opn\": \"string\",\n          \"symbol\": \"string\",\n          \"timestamp\": \"string\",\n          \"vl\": \"string\",\n          \"vwap\": \"string\"\n        }\n      ]\n    },\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53432495-565c-48ea-aad1-57fdc3538b82",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "timesales.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbols",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rpp",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "index",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64df6084-9fcd-4bbd-8626-c0eb9447c787",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "timesales.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbols",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rpp",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "index",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ally.com/v1",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The news article ID",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "id"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Type of top list to retrieve",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "listtype"
+    }
+  ],
+  "info": {
+    "_postman_id": "619af55c-2239-48b3-8d8b-f296eb373b6a",
+    "name": "Ally Invest Accounts Market Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Ally Invest REST API (originally developed from the TradeKing acquisition) provides programmatic access to self-directed brokerage account management, order placement, real-time and delayed market data, watchlist management, and member profile information. Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available in JSON and XML formats.\n\nContact Support:\n Email: InvestAPI@ally.com",
+      "type": "text/plain"
+    }
+  }
+}

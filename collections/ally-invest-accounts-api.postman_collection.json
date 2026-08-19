@@ -1,0 +1,1502 @@
+{
+  "item": [
+    {
+      "id": "65405e51-4be3-474a-961a-6e4e7308983b",
+      "name": "Accounts",
+      "description": {
+        "content": "Account balances, holdings, history, and portfolio data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a3fc30f4-ac9a-4b51-90de-3170781e6e07",
+          "name": "Get all accounts",
+          "request": {
+            "name": "Get all accounts",
+            "description": {
+              "content": "Returns summary account information for all accounts associated with the authenticated member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8a7c9f33-da40-4022-8ea6-0ea07d463a61",
+              "name": "Successful response with account list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"accounts\": {\n      \"accountsummary\": [\n        {\n          \"account\": \"string\",\n          \"accountbalance\": {\n            \"account\": \"string\",\n            \"accountvalue\": \"string\",\n            \"buyingpower\": {\n              \"cashavailableforwithdrawal\": \"string\",\n              \"daytrading\": \"string\",\n              \"equitypercentage\": \"string\",\n              \"options\": \"string\",\n              \"soddaytrading\": \"string\",\n              \"stock\": \"string\"\n            },\n            \"fedcall\": \"string\",\n            \"housecall\": \"string\",\n            \"money\": {\n              \"accruedinterest\": \"string\",\n              \"cash\": \"string\",\n              \"cashavailable\": \"string\",\n              \"marginbalance\": \"string\",\n              \"mmf\": \"string\",\n              \"total\": \"string\",\n              \"uncleareddeposits\": \"string\",\n              \"unsettledfunds\": \"string\",\n              \"yield\": \"string\"\n            },\n            \"securities\": {\n              \"longoptions\": \"string\",\n              \"longstocks\": \"string\",\n              \"options\": \"string\",\n              \"shortoptions\": \"string\",\n              \"shortstocks\": \"string\",\n              \"stocks\": \"string\",\n              \"total\": \"string\"\n            }\n          },\n          \"accountholdings\": {\n            \"holding\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"totalholdings\": {\n              \"accountvalue\": \"string\",\n              \"longoptions\": \"string\",\n              \"longstocks\": \"string\",\n              \"options\": \"string\",\n              \"shortoptions\": \"string\",\n              \"shortstocks\": \"string\",\n              \"stocks\": \"string\",\n              \"total\": \"string\"\n            }\n          }\n        },\n        {\n          \"account\": \"string\",\n          \"accountbalance\": {\n            \"account\": \"string\",\n            \"accountvalue\": \"string\",\n            \"buyingpower\": {\n              \"cashavailableforwithdrawal\": \"string\",\n              \"daytrading\": \"string\",\n              \"equitypercentage\": \"string\",\n              \"options\": \"string\",\n              \"soddaytrading\": \"string\",\n              \"stock\": \"string\"\n            },\n            \"fedcall\": \"string\",\n            \"housecall\": \"string\",\n            \"money\": {\n              \"accruedinterest\": \"string\",\n              \"cash\": \"string\",\n              \"cashavailable\": \"string\",\n              \"marginbalance\": \"string\",\n              \"mmf\": \"string\",\n              \"total\": \"string\",\n              \"uncleareddeposits\": \"string\",\n              \"unsettledfunds\": \"string\",\n              \"yield\": \"string\"\n            },\n            \"securities\": {\n              \"longoptions\": \"string\",\n              \"longstocks\": \"string\",\n              \"options\": \"string\",\n              \"shortoptions\": \"string\",\n              \"shortstocks\": \"string\",\n              \"stocks\": \"string\",\n              \"total\": \"string\"\n            }\n          },\n          \"accountholdings\": {\n            \"holding\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"totalholdings\": {\n              \"accountvalue\": \"string\",\n              \"longoptions\": \"string\",\n              \"longstocks\": \"string\",\n              \"options\": \"string\",\n              \"shortoptions\": \"string\",\n              \"shortstocks\": \"string\",\n              \"stocks\": \"string\",\n              \"total\": \"string\"\n            }\n          }\n        }\n      ]\n    },\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf9fe2b2-aebe-4fd0-badb-0cfcf7661fc3",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f40af9e-a5db-4a96-994a-39890ecd49ac",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f387e2a1-8575-4837-b9f3-61969faadf86",
+          "name": "Get balances for all accounts",
+          "request": {
+            "name": "Get balances for all accounts",
+            "description": {
+              "content": "Returns balance information for all accounts associated with the authenticated member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                "balances.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a0173c4d-d1b5-4299-b899-ab8a9788b8aa",
+              "name": "Successful response with balances for all accounts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "balances.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"accountbalance\": [\n      {\n        \"account\": \"string\",\n        \"accountvalue\": \"string\",\n        \"buyingpower\": {\n          \"cashavailableforwithdrawal\": \"string\",\n          \"daytrading\": \"string\",\n          \"equitypercentage\": \"string\",\n          \"options\": \"string\",\n          \"soddaytrading\": \"string\",\n          \"stock\": \"string\"\n        },\n        \"fedcall\": \"string\",\n        \"housecall\": \"string\",\n        \"money\": {\n          \"accruedinterest\": \"string\",\n          \"cash\": \"string\",\n          \"cashavailable\": \"string\",\n          \"marginbalance\": \"string\",\n          \"mmf\": \"string\",\n          \"total\": \"string\",\n          \"uncleareddeposits\": \"string\",\n          \"unsettledfunds\": \"string\",\n          \"yield\": \"string\"\n        },\n        \"securities\": {\n          \"longoptions\": \"string\",\n          \"longstocks\": \"string\",\n          \"options\": \"string\",\n          \"shortoptions\": \"string\",\n          \"shortstocks\": \"string\",\n          \"stocks\": \"string\",\n          \"total\": \"string\"\n        }\n      },\n      {\n        \"account\": \"string\",\n        \"accountvalue\": \"string\",\n        \"buyingpower\": {\n          \"cashavailableforwithdrawal\": \"string\",\n          \"daytrading\": \"string\",\n          \"equitypercentage\": \"string\",\n          \"options\": \"string\",\n          \"soddaytrading\": \"string\",\n          \"stock\": \"string\"\n        },\n        \"fedcall\": \"string\",\n        \"housecall\": \"string\",\n        \"money\": {\n          \"accruedinterest\": \"string\",\n          \"cash\": \"string\",\n          \"cashavailable\": \"string\",\n          \"marginbalance\": \"string\",\n          \"mmf\": \"string\",\n          \"total\": \"string\",\n          \"uncleareddeposits\": \"string\",\n          \"unsettledfunds\": \"string\",\n          \"yield\": \"string\"\n        },\n        \"securities\": {\n          \"longoptions\": \"string\",\n          \"longstocks\": \"string\",\n          \"options\": \"string\",\n          \"shortoptions\": \"string\",\n          \"shortstocks\": \"string\",\n          \"stocks\": \"string\",\n          \"total\": \"string\"\n        }\n      }\n    ],\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac2356c2-b47b-4e82-aab2-e256ccae32a0",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "balances.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b8d1dc4-1e1e-4796-b55b-731fe07293c9",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "balances.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8a862a4-a528-41b7-9363-b8771ba07621",
+          "name": "Get account details",
+          "request": {
+            "name": "Get account details",
+            "description": {
+              "content": "Returns detailed account information for a specific account identified by account ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                "{{id}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5046a00f-18e5-4dce-9b9c-0581d8d456ff",
+              "name": "Successful response with account details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"accountsummary\": {\n      \"account\": \"string\",\n      \"accountbalance\": {\n        \"account\": \"string\",\n        \"accountvalue\": \"string\",\n        \"buyingpower\": {\n          \"cashavailableforwithdrawal\": \"string\",\n          \"daytrading\": \"string\",\n          \"equitypercentage\": \"string\",\n          \"options\": \"string\",\n          \"soddaytrading\": \"string\",\n          \"stock\": \"string\"\n        },\n        \"fedcall\": \"string\",\n        \"housecall\": \"string\",\n        \"money\": {\n          \"accruedinterest\": \"string\",\n          \"cash\": \"string\",\n          \"cashavailable\": \"string\",\n          \"marginbalance\": \"string\",\n          \"mmf\": \"string\",\n          \"total\": \"string\",\n          \"uncleareddeposits\": \"string\",\n          \"unsettledfunds\": \"string\",\n          \"yield\": \"string\"\n        },\n        \"securities\": {\n          \"longoptions\": \"string\",\n          \"longstocks\": \"string\",\n          \"options\": \"string\",\n          \"shortoptions\": \"string\",\n          \"shortstocks\": \"string\",\n          \"stocks\": \"string\",\n          \"total\": \"string\"\n        }\n      },\n      \"accountholdings\": {\n        \"holding\": [\n          {\n            \"accounttype\": \"string\",\n            \"costbasis\": \"string\",\n            \"gainloss\": \"string\",\n            \"gainlosspct\": \"string\",\n            \"instrument\": {\n              \"cusip\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"desc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"factor\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"matdt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"maturityvalue\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"mult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"putcall\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sectyp\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sesn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"strkpx\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sym\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"marketvalue\": \"string\",\n            \"marketvaluechange\": \"string\",\n            \"price\": \"string\",\n            \"purchaseprice\": \"string\",\n            \"qty\": \"string\",\n            \"quote\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"underlying\": \"string\"\n          },\n          {\n            \"accounttype\": \"string\",\n            \"costbasis\": \"string\",\n            \"gainloss\": \"string\",\n            \"gainlosspct\": \"string\",\n            \"instrument\": {\n              \"cusip\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"desc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"factor\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"matdt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"maturityvalue\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"mult\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"putcall\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sectyp\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sesn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"strkpx\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sym\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"marketvalue\": \"string\",\n            \"marketvaluechange\": \"string\",\n            \"price\": \"string\",\n            \"purchaseprice\": \"string\",\n            \"qty\": \"string\",\n            \"quote\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"underlying\": \"string\"\n          }\n        ],\n        \"totalholdings\": {\n          \"accountvalue\": \"string\",\n          \"longoptions\": \"string\",\n          \"longstocks\": \"string\",\n          \"options\": \"string\",\n          \"shortoptions\": \"string\",\n          \"shortstocks\": \"string\",\n          \"stocks\": \"string\",\n          \"total\": \"string\"\n        }\n      }\n    },\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ffe8fe0-b4da-4062-8dbc-32d352ee511e",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ba1012e-8688-4bfa-9888-947b74cb90cc",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d66582f-6c9a-45b9-8e2b-3d3bd226a98e",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "{{id}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f6106cd-2214-4e3c-81af-c1ce965574f8",
+          "name": "Get balances for a specific account",
+          "request": {
+            "name": "Get balances for a specific account",
+            "description": {
+              "content": "Returns balance information for a specific account identified by account ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":id",
+                "balances.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The account ID (account number)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b3c05245-560b-4e41-8e3c-ba1b26d93e29",
+              "name": "Successful response with account balance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id",
+                    "balances.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The account ID (account number)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"accountbalance\": {\n      \"account\": \"string\",\n      \"accountvalue\": \"string\",\n      \"buyingpower\": {\n        \"cashavailableforwithdrawal\": \"string\",\n        \"daytrading\": \"string\",\n        \"equitypercentage\": \"string\",\n        \"options\": \"string\",\n        \"soddaytrading\": \"string\",\n        \"stock\": \"string\"\n      },\n      \"fedcall\": \"string\",\n      \"housecall\": \"string\",\n      \"money\": {\n        \"accruedinterest\": \"string\",\n        \"cash\": \"string\",\n        \"cashavailable\": \"string\",\n        \"marginbalance\": \"string\",\n        \"mmf\": \"string\",\n        \"total\": \"string\",\n        \"uncleareddeposits\": \"string\",\n        \"unsettledfunds\": \"string\",\n        \"yield\": \"string\"\n      },\n      \"securities\": {\n        \"longoptions\": \"string\",\n        \"longstocks\": \"string\",\n        \"options\": \"string\",\n        \"shortoptions\": \"string\",\n        \"shortstocks\": \"string\",\n        \"stocks\": \"string\",\n        \"total\": \"string\"\n      }\n    },\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dff2eaa4-ccff-4777-bcc1-2ad3a08808ec",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id",
+                    "balances.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The account ID (account number)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6b7ad4f-b145-4716-bd12-511e0c838b3d",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id",
+                    "balances.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The account ID (account number)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87dd497c-21b9-4a59-a518-a720bbd52af5",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id",
+                    "balances.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The account ID (account number)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0643ab0-4793-4a74-b80a-f311651a2878",
+          "name": "Get account transaction history",
+          "request": {
+            "name": "Get account transaction history",
+            "description": {
+              "content": "Returns transaction history for a specific account including trades, dividends, and other account activity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":id",
+                "history.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "range",
+                  "value": "<string>",
+                  "description": "Date range for history (e.g., all, today, current_week, current_month, last_month)"
+                },
+                {
+                  "disabled": false,
+                  "key": "transactions",
+                  "value": "<string>",
+                  "description": "Transaction type filter (e.g., all, bookkeeping, trade)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The account ID (account number)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "13929370-3d23-40db-bed2-1e75ad8c23ae",
+              "name": "Successful response with account history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id",
+                    "history.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transactions",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The account ID (account number)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"transactions\": {\n      \"transaction\": [\n        {\n          \"accounttype\": \"string\",\n          \"activity\": \"string\",\n          \"amount\": \"string\",\n          \"date\": \"string\",\n          \"desc\": \"string\",\n          \"instrument\": {\n            \"cusip\": \"string\",\n            \"desc\": \"string\",\n            \"factor\": \"string\",\n            \"matdt\": \"string\",\n            \"maturityvalue\": \"string\",\n            \"mult\": \"string\",\n            \"putcall\": \"string\",\n            \"sectyp\": \"string\",\n            \"sesn\": \"string\",\n            \"strkpx\": \"string\",\n            \"sym\": \"string\"\n          },\n          \"price\": \"string\",\n          \"qty\": \"string\",\n          \"settlementdate\": \"string\",\n          \"side\": \"string\",\n          \"source\": \"string\",\n          \"tradetime\": \"string\",\n          \"transactionid\": \"string\"\n        },\n        {\n          \"accounttype\": \"string\",\n          \"activity\": \"string\",\n          \"amount\": \"string\",\n          \"date\": \"string\",\n          \"desc\": \"string\",\n          \"instrument\": {\n            \"cusip\": \"string\",\n            \"desc\": \"string\",\n            \"factor\": \"string\",\n            \"matdt\": \"string\",\n            \"maturityvalue\": \"string\",\n            \"mult\": \"string\",\n            \"putcall\": \"string\",\n            \"sectyp\": \"string\",\n            \"sesn\": \"string\",\n            \"strkpx\": \"string\",\n            \"sym\": \"string\"\n          },\n          \"price\": \"string\",\n          \"qty\": \"string\",\n          \"settlementdate\": \"string\",\n          \"side\": \"string\",\n          \"source\": \"string\",\n          \"tradetime\": \"string\",\n          \"transactionid\": \"string\"\n        }\n      ]\n    },\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ae73bd4-144b-4eac-837d-95a4d11508e1",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id",
+                    "history.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transactions",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The account ID (account number)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79c88e0e-172e-4a5e-9996-2a2d068bc2a0",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id",
+                    "history.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transactions",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The account ID (account number)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28f355ac-5936-4a15-a7ec-7bcf15e82ba3",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id",
+                    "history.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transactions",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The account ID (account number)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "078e29bf-7535-4d4e-877a-dcf8d323725e",
+          "name": "Get account holdings",
+          "request": {
+            "name": "Get account holdings",
+            "description": {
+              "content": "Returns current holdings (positions) for a specific account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":id",
+                "holdings.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The account ID (account number)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "772a085a-3da0-448e-942a-4b379d7ec6ae",
+              "name": "Successful response with account holdings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id",
+                    "holdings.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The account ID (account number)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"accountholdings\": {\n      \"holding\": [\n        {\n          \"accounttype\": \"string\",\n          \"costbasis\": \"string\",\n          \"gainloss\": \"string\",\n          \"gainlosspct\": \"string\",\n          \"instrument\": {\n            \"cusip\": \"string\",\n            \"desc\": \"string\",\n            \"factor\": \"string\",\n            \"matdt\": \"string\",\n            \"maturityvalue\": \"string\",\n            \"mult\": \"string\",\n            \"putcall\": \"string\",\n            \"sectyp\": \"string\",\n            \"sesn\": \"string\",\n            \"strkpx\": \"string\",\n            \"sym\": \"string\"\n          },\n          \"marketvalue\": \"string\",\n          \"marketvaluechange\": \"string\",\n          \"price\": \"string\",\n          \"purchaseprice\": \"string\",\n          \"qty\": \"string\",\n          \"quote\": {\n            \"adp_100\": \"string\",\n            \"adp_200\": \"string\",\n            \"adp_50\": \"string\",\n            \"adv_21\": \"string\",\n            \"adv_30\": \"string\",\n            \"adv_90\": \"string\",\n            \"ask\": \"string\",\n            \"ask_time\": \"string\",\n            \"asksz\": \"string\",\n            \"basis\": \"string\",\n            \"beta\": \"string\",\n            \"bid\": \"string\",\n            \"bid_time\": \"string\",\n            \"bidsz\": \"string\",\n            \"bidtick\": \"string\",\n            \"chg\": \"string\",\n            \"chg_sign\": \"string\",\n            \"chg_t\": \"string\",\n            \"cl\": \"string\",\n            \"contract_size\": \"string\",\n            \"cusip\": \"string\",\n            \"date\": \"string\",\n            \"datetime\": \"string\",\n            \"days_to_expiration\": \"string\",\n            \"div\": \"string\",\n            \"divexdate\": \"string\",\n            \"divfreq\": \"string\",\n            \"divpaydt\": \"string\",\n            \"dollar_value\": \"string\",\n            \"eps\": \"string\",\n            \"exch\": \"string\",\n            \"exch_desc\": \"string\",\n            \"hi\": \"string\",\n            \"iad\": \"string\",\n            \"idelta\": \"string\",\n            \"igamma\": \"string\",\n            \"imp_volatility\": \"string\",\n            \"incr_vl\": \"string\",\n            \"irho\": \"string\",\n            \"issue_desc\": \"string\",\n            \"itheta\": \"string\",\n            \"ivega\": \"string\",\n            \"last\": \"string\",\n            \"lo\": \"string\",\n            \"name\": \"string\",\n            \"op_delivery\": \"string\",\n            \"op_flag\": \"string\",\n            \"op_style\": \"string\",\n            \"op_subclass\": \"string\",\n            \"openinterest\": \"string\",\n            \"opn\": \"string\",\n            \"opt_val\": \"string\",\n            \"pchg\": \"string\",\n            \"pchg_sign\": \"string\",\n            \"pcls\": \"string\",\n            \"pe\": \"string\",\n            \"phi\": \"string\",\n            \"plo\": \"string\",\n            \"popn\": \"string\",\n            \"pr_adp_100\": \"string\",\n            \"pr_adp_200\": \"string\",\n            \"pr_adp_50\": \"string\",\n            \"pr_date\": \"string\",\n            \"pr_openinterest\": \"string\",\n            \"prbook\": \"string\",\n            \"prchg\": \"string\",\n            \"prem_mult\": \"string\",\n            \"put_call\": \"string\",\n            \"pvol\": \"string\",\n            \"qcond\": \"string\",\n            \"rootsymbol\": \"string\",\n            \"secclass\": \"string\",\n            \"sesn\": \"string\",\n            \"sho\": \"string\",\n            \"strikeprice\": \"string\",\n            \"symbol\": \"string\",\n            \"tcond\": \"string\",\n            \"timestamp\": \"string\",\n            \"tr_num\": \"string\",\n            \"tradetick\": \"string\",\n            \"trend\": \"string\",\n            \"under_cusip\": \"string\",\n            \"undersymbol\": \"string\",\n            \"vl\": \"string\",\n            \"volatility12\": \"string\",\n            \"vwap\": \"string\",\n            \"wk52hi\": \"string\",\n            \"wk52hidate\": \"string\",\n            \"wk52lo\": \"string\",\n            \"wk52lodate\": \"string\",\n            \"xdate\": \"string\",\n            \"xday\": \"string\",\n            \"xmonth\": \"string\",\n            \"xyear\": \"string\",\n            \"yield\": \"string\"\n          },\n          \"underlying\": \"string\"\n        },\n        {\n          \"accounttype\": \"string\",\n          \"costbasis\": \"string\",\n          \"gainloss\": \"string\",\n          \"gainlosspct\": \"string\",\n          \"instrument\": {\n            \"cusip\": \"string\",\n            \"desc\": \"string\",\n            \"factor\": \"string\",\n            \"matdt\": \"string\",\n            \"maturityvalue\": \"string\",\n            \"mult\": \"string\",\n            \"putcall\": \"string\",\n            \"sectyp\": \"string\",\n            \"sesn\": \"string\",\n            \"strkpx\": \"string\",\n            \"sym\": \"string\"\n          },\n          \"marketvalue\": \"string\",\n          \"marketvaluechange\": \"string\",\n          \"price\": \"string\",\n          \"purchaseprice\": \"string\",\n          \"qty\": \"string\",\n          \"quote\": {\n            \"adp_100\": \"string\",\n            \"adp_200\": \"string\",\n            \"adp_50\": \"string\",\n            \"adv_21\": \"string\",\n            \"adv_30\": \"string\",\n            \"adv_90\": \"string\",\n            \"ask\": \"string\",\n            \"ask_time\": \"string\",\n            \"asksz\": \"string\",\n            \"basis\": \"string\",\n            \"beta\": \"string\",\n            \"bid\": \"string\",\n            \"bid_time\": \"string\",\n            \"bidsz\": \"string\",\n            \"bidtick\": \"string\",\n            \"chg\": \"string\",\n            \"chg_sign\": \"string\",\n            \"chg_t\": \"string\",\n            \"cl\": \"string\",\n            \"contract_size\": \"string\",\n            \"cusip\": \"string\",\n            \"date\": \"string\",\n            \"datetime\": \"string\",\n            \"days_to_expiration\": \"string\",\n            \"div\": \"string\",\n            \"divexdate\": \"string\",\n            \"divfreq\": \"string\",\n            \"divpaydt\": \"string\",\n            \"dollar_value\": \"string\",\n            \"eps\": \"string\",\n            \"exch\": \"string\",\n            \"exch_desc\": \"string\",\n            \"hi\": \"string\",\n            \"iad\": \"string\",\n            \"idelta\": \"string\",\n            \"igamma\": \"string\",\n            \"imp_volatility\": \"string\",\n            \"incr_vl\": \"string\",\n            \"irho\": \"string\",\n            \"issue_desc\": \"string\",\n            \"itheta\": \"string\",\n            \"ivega\": \"string\",\n            \"last\": \"string\",\n            \"lo\": \"string\",\n            \"name\": \"string\",\n            \"op_delivery\": \"string\",\n            \"op_flag\": \"string\",\n            \"op_style\": \"string\",\n            \"op_subclass\": \"string\",\n            \"openinterest\": \"string\",\n            \"opn\": \"string\",\n            \"opt_val\": \"string\",\n            \"pchg\": \"string\",\n            \"pchg_sign\": \"string\",\n            \"pcls\": \"string\",\n            \"pe\": \"string\",\n            \"phi\": \"string\",\n            \"plo\": \"string\",\n            \"popn\": \"string\",\n            \"pr_adp_100\": \"string\",\n            \"pr_adp_200\": \"string\",\n            \"pr_adp_50\": \"string\",\n            \"pr_date\": \"string\",\n            \"pr_openinterest\": \"string\",\n            \"prbook\": \"string\",\n            \"prchg\": \"string\",\n            \"prem_mult\": \"string\",\n            \"put_call\": \"string\",\n            \"pvol\": \"string\",\n            \"qcond\": \"string\",\n            \"rootsymbol\": \"string\",\n            \"secclass\": \"string\",\n            \"sesn\": \"string\",\n            \"sho\": \"string\",\n            \"strikeprice\": \"string\",\n            \"symbol\": \"string\",\n            \"tcond\": \"string\",\n            \"timestamp\": \"string\",\n            \"tr_num\": \"string\",\n            \"tradetick\": \"string\",\n            \"trend\": \"string\",\n            \"under_cusip\": \"string\",\n            \"undersymbol\": \"string\",\n            \"vl\": \"string\",\n            \"volatility12\": \"string\",\n            \"vwap\": \"string\",\n            \"wk52hi\": \"string\",\n            \"wk52hidate\": \"string\",\n            \"wk52lo\": \"string\",\n            \"wk52lodate\": \"string\",\n            \"xdate\": \"string\",\n            \"xday\": \"string\",\n            \"xmonth\": \"string\",\n            \"xyear\": \"string\",\n            \"yield\": \"string\"\n          },\n          \"underlying\": \"string\"\n        }\n      ],\n      \"totalholdings\": {\n        \"accountvalue\": \"string\",\n        \"longoptions\": \"string\",\n        \"longstocks\": \"string\",\n        \"options\": \"string\",\n        \"shortoptions\": \"string\",\n        \"shortstocks\": \"string\",\n        \"stocks\": \"string\",\n        \"total\": \"string\"\n      }\n    },\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe1a648b-31ab-47ba-b9d8-4fad798d7719",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id",
+                    "holdings.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The account ID (account number)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c9378cc-9ee5-411b-8548-8756e244e93f",
+              "name": "Requested resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id",
+                    "holdings.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The account ID (account number)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ddf10b7-1e2a-4a25-9458-d664319e9c41",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id",
+                    "holdings.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The account ID (account number)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ally.com/v1",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The account ID (account number)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "id"
+    }
+  ],
+  "info": {
+    "_postman_id": "603dbbdd-45fb-490a-963c-ad3f1f51ce23",
+    "name": "Ally Invest Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Ally Invest REST API (originally developed from the TradeKing acquisition) provides programmatic access to self-directed brokerage account management, order placement, real-time and delayed market data, watchlist management, and member profile information. Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available in JSON and XML formats.\n\nContact Support:\n Email: InvestAPI@ally.com",
+      "type": "text/plain"
+    }
+  }
+}

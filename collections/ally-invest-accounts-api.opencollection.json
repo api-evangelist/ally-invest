@@ -1,0 +1,164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ally Invest Accounts API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/accounts.json",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns summary account information for all accounts associated with the authenticated member."
+        },
+        {
+          "info": {
+            "name": "Get balances for all accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/accounts/balances.json",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns balance information for all accounts associated with the authenticated member."
+        },
+        {
+          "info": {
+            "name": "Get account details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/accounts/:id.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The account ID (account number)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns detailed account information for a specific account identified by account ID."
+        },
+        {
+          "info": {
+            "name": "Get balances for a specific account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/accounts/:id/balances.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The account ID (account number)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns balance information for a specific account identified by account ID."
+        },
+        {
+          "info": {
+            "name": "Get account transaction history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/accounts/:id/history.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The account ID (account number)"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query",
+                "description": "Date range for history (e.g., all, today, current_week, current_month, last_month)"
+              },
+              {
+                "name": "transactions",
+                "value": "",
+                "type": "query",
+                "description": "Transaction type filter (e.g., all, bookkeeping, trade)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns transaction history for a specific account including trades, dividends, and other account activity."
+        },
+        {
+          "info": {
+            "name": "Get account holdings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/accounts/:id/holdings.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The account ID (account number)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns current holdings (positions) for a specific account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

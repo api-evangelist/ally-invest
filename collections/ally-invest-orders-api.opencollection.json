@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ally Invest Accounts Orders API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get open orders for an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ally.com/v1/accounts/:id/orders.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The account ID (account number)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of open orders for a specific account."
+        },
+        {
+          "info": {
+            "name": "Place an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ally.com/v1/accounts/:id/orders.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The account ID (account number)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Places an equity or options order for a specific account. Orders are submitted in a FIXML-variant XML format. Requires OAuth 1.0 authentication."
+        },
+        {
+          "info": {
+            "name": "Preview an order before placement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ally.com/v1/accounts/:id/orders/preview.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The account ID (account number)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Previews an order for a specific account to validate parameters and see estimated costs before actual execution. Uses the same FIXML-variant XML format as order placement."
+        },
+        {
+          "info": {
+            "name": "Cancel a pending order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ally.com/v1/accounts/:id/orders/:orderId.json",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The account ID (account number)"
+              },
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The order ID to cancel"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancels a specific pending order for an account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

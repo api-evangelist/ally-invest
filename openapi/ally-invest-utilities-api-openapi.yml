@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Ally Invest Accounts Utilities API
   description: The Ally Invest REST API (originally developed from the TradeKing acquisition) provides programmatic access to self-directed brokerage account management, order placement, real-time and delayed market data, watchlist management, and member profile information. Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available in JSON and XML formats.
@@ -67,6 +67,32 @@ paths:
                 $ref: '#/components/schemas/VersionResponse'
 components:
   schemas:
+    VersionResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            version:
+              type: string
+              description: API version string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+    StatusResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            status:
+              type: string
+              description: API status (Active or Inactive)
+            elapsedtime:
+              type: string
+            id:
+              type: string
     MarketClockResponse:
       type: object
       properties:
@@ -102,32 +128,6 @@ components:
             error:
               type: string
               description: Error message
-            elapsedtime:
-              type: string
-            id:
-              type: string
-    VersionResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            version:
-              type: string
-              description: API version string
-            elapsedtime:
-              type: string
-            id:
-              type: string
-    StatusResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            status:
-              type: string
-              description: API status (Active or Inactive)
             elapsedtime:
               type: string
             id:

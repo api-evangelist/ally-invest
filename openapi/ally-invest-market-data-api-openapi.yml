@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Ally Invest Accounts Market Data API
   description: The Ally Invest REST API (originally developed from the TradeKing acquisition) provides programmatic access to self-directed brokerage account management, order placement, real-time and delayed market data, watchlist management, and member profile information. Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available in JSON and XML formats.
@@ -379,32 +379,6 @@ components:
               type: string
             error:
               type: string
-    MarketClockResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            status:
-              type: object
-              properties:
-                current:
-                  type: string
-                  description: Current market status (open/closed)
-                next:
-                  type: string
-                  description: Next market status change
-                change:
-                  type: string
-                  description: Time until next status change
-            message:
-              type: string
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
     OptionStrikesResponse:
       type: object
       properties:
@@ -424,32 +398,37 @@ components:
               type: string
             error:
               type: string
-    ErrorResponse:
+    NewsSearchResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            error:
-              type: string
-              description: Error message
-            elapsedtime:
-              type: string
-            id:
-              type: string
-    TopListResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            quotes:
+            articles:
               type: object
               properties:
-                quote:
+                article:
                   type: array
                   items:
-                    $ref: '#/components/schemas/Quote'
+                    type: object
+                    properties:
+                      date:
+                        type: string
+                      headline:
+                        type: string
+                      id:
+                        type: string
+                      source:
+                        type: string
+                      symbols:
+                        type: object
+                        properties:
+                          symbol:
+                            type: array
+                            items:
+                              type: string
+                      url:
+                        type: string
             elapsedtime:
               type: string
             id:
@@ -482,6 +461,25 @@ components:
                       type: array
                       items:
                         type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    OptionsSearchResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote'
             elapsedtime:
               type: string
             id:
@@ -796,44 +794,46 @@ components:
         yield:
           type: string
           description: Dividend yield
-    NewsSearchResponse:
+    ErrorResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            articles:
+            error:
+              type: string
+              description: Error message
+            elapsedtime:
+              type: string
+            id:
+              type: string
+    MarketClockResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            status:
               type: object
               properties:
-                article:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      date:
-                        type: string
-                      headline:
-                        type: string
-                      id:
-                        type: string
-                      source:
-                        type: string
-                      symbols:
-                        type: object
-                        properties:
-                          symbol:
-                            type: array
-                            items:
-                              type: string
-                      url:
-                        type: string
+                current:
+                  type: string
+                  description: Current market status (open/closed)
+                next:
+                  type: string
+                  description: Next market status change
+                change:
+                  type: string
+                  description: Time until next status change
+            message:
+              type: string
             elapsedtime:
               type: string
             id:
               type: string
             error:
               type: string
-    OptionsSearchResponse:
+    TopListResponse:
       type: object
       properties:
         response:
@@ -872,14 +872,14 @@ components:
             error:
               type: string
   responses:
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    NotFound:
+      description: Requested resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Requested resource not found
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:

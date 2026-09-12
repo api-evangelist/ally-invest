@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Ally Invest Accounts API
   description: The Ally Invest REST API (originally developed from the TradeKing acquisition) provides programmatic access to self-directed brokerage account management, order placement, real-time and delayed market data, watchlist management, and member profile information. Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available in JSON and XML formats.
@@ -175,132 +175,6 @@ paths:
       - OAuth1: []
 components:
   schemas:
-    AccountsBalancesResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            accountbalance:
-              type: array
-              items:
-                $ref: '#/components/schemas/AccountBalance'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    AccountResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            accountsummary:
-              $ref: '#/components/schemas/AccountSummary'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    Holding:
-      type: object
-      properties:
-        accounttype:
-          type: string
-        costbasis:
-          type: string
-        gainloss:
-          type: string
-        gainlosspct:
-          type: string
-        instrument:
-          type: object
-          properties:
-            cusip:
-              type: string
-            desc:
-              type: string
-            factor:
-              type: string
-            matdt:
-              type: string
-            maturityvalue:
-              type: string
-            mult:
-              type: string
-            putcall:
-              type: string
-            sectyp:
-              type: string
-            sesn:
-              type: string
-            strkpx:
-              type: string
-            sym:
-              type: string
-        marketvalue:
-          type: string
-        marketvaluechange:
-          type: string
-        price:
-          type: string
-        purchaseprice:
-          type: string
-        qty:
-          type: string
-        quote:
-          $ref: '#/components/schemas/Quote'
-        underlying:
-          type: string
-    AccountsResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            accounts:
-              type: object
-              properties:
-                accountsummary:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/AccountSummary'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    ErrorResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            error:
-              type: string
-              description: Error message
-            elapsedtime:
-              type: string
-            id:
-              type: string
-    AccountHoldingsResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            accountholdings:
-              $ref: '#/components/schemas/AccountHoldings'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
     AccountBalance:
       type: object
       properties:
@@ -367,14 +241,64 @@ components:
               type: string
             total:
               type: string
-    AccountBalanceResponse:
+    Holding:
+      type: object
+      properties:
+        accounttype:
+          type: string
+        costbasis:
+          type: string
+        gainloss:
+          type: string
+        gainlosspct:
+          type: string
+        instrument:
+          type: object
+          properties:
+            cusip:
+              type: string
+            desc:
+              type: string
+            factor:
+              type: string
+            matdt:
+              type: string
+            maturityvalue:
+              type: string
+            mult:
+              type: string
+            putcall:
+              type: string
+            sectyp:
+              type: string
+            sesn:
+              type: string
+            strkpx:
+              type: string
+            sym:
+              type: string
+        marketvalue:
+          type: string
+        marketvaluechange:
+          type: string
+        price:
+          type: string
+        purchaseprice:
+          type: string
+        qty:
+          type: string
+        quote:
+          $ref: '#/components/schemas/Quote'
+        underlying:
+          type: string
+    AccountHoldingsResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            accountbalance:
-              $ref: '#/components/schemas/AccountBalance'
+            accountholdings:
+              $ref: '#/components/schemas/AccountHoldings'
             elapsedtime:
               type: string
             id:
@@ -444,6 +368,36 @@ components:
                         type: string
                       transactionid:
                         type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    AccountBalanceResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            accountbalance:
+              $ref: '#/components/schemas/AccountBalance'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    AccountsBalancesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            accountbalance:
+              type: array
+              items:
+                $ref: '#/components/schemas/AccountBalance'
             elapsedtime:
               type: string
             id:
@@ -765,6 +719,19 @@ components:
         yield:
           type: string
           description: Dividend yield
+    ErrorResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+            elapsedtime:
+              type: string
+            id:
+              type: string
     AccountSummary:
       type: object
       properties:
@@ -775,15 +742,48 @@ components:
           $ref: '#/components/schemas/AccountBalance'
         accountholdings:
           $ref: '#/components/schemas/AccountHoldings'
+    AccountsResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            accounts:
+              type: object
+              properties:
+                accountsummary:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AccountSummary'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    AccountResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            accountsummary:
+              $ref: '#/components/schemas/AccountSummary'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
   responses:
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    NotFound:
+      description: Requested resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Requested resource not found
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:

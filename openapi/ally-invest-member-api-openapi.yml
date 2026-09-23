@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Ally Invest Accounts Member API
+  title: Ally Invest Member API
   description: The Ally Invest REST API (originally developed from the TradeKing acquisition) provides programmatic access to self-directed brokerage account management, order placement, real-time and delayed market data, watchlist management, and member profile information. Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available in JSON and XML formats.
   version: v1
   contact:
@@ -38,19 +38,6 @@ paths:
       security:
       - OAuth1: []
 components:
-  responses:
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    RateLimited:
-      description: Rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ErrorResponse:
       type: object
@@ -118,6 +105,19 @@ components:
               type: string
             error:
               type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     OAuth1:
       type: apiKey

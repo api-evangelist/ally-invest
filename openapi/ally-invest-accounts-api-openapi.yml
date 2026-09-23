@@ -241,70 +241,6 @@ components:
               type: string
             total:
               type: string
-    Holding:
-      type: object
-      properties:
-        accounttype:
-          type: string
-        costbasis:
-          type: string
-        gainloss:
-          type: string
-        gainlosspct:
-          type: string
-        instrument:
-          type: object
-          properties:
-            cusip:
-              type: string
-            desc:
-              type: string
-            factor:
-              type: string
-            matdt:
-              type: string
-            maturityvalue:
-              type: string
-            mult:
-              type: string
-            putcall:
-              type: string
-            sectyp:
-              type: string
-            sesn:
-              type: string
-            strkpx:
-              type: string
-            sym:
-              type: string
-        marketvalue:
-          type: string
-        marketvaluechange:
-          type: string
-        price:
-          type: string
-        purchaseprice:
-          type: string
-        qty:
-          type: string
-        quote:
-          $ref: '#/components/schemas/Quote'
-        underlying:
-          type: string
-    AccountHoldingsResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            accountholdings:
-              $ref: '#/components/schemas/AccountHoldings'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
     AccountHistoryResponse:
       type: object
       properties:
@@ -374,6 +310,20 @@ components:
               type: string
             error:
               type: string
+    AccountResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            accountsummary:
+              $ref: '#/components/schemas/AccountSummary'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
     AccountBalanceResponse:
       type: object
       properties:
@@ -388,16 +338,46 @@ components:
               type: string
             error:
               type: string
-    AccountsBalancesResponse:
+    AccountsResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            accountbalance:
-              type: array
-              items:
-                $ref: '#/components/schemas/AccountBalance'
+            accounts:
+              type: object
+              properties:
+                accountsummary:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AccountSummary'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    ErrorResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+            elapsedtime:
+              type: string
+            id:
+              type: string
+    AccountHoldingsResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            accountholdings:
+              $ref: '#/components/schemas/AccountHoldings'
             elapsedtime:
               type: string
             id:
@@ -430,6 +410,56 @@ components:
               type: string
             total:
               type: string
+    Holding:
+      type: object
+      properties:
+        accounttype:
+          type: string
+        costbasis:
+          type: string
+        gainloss:
+          type: string
+        gainlosspct:
+          type: string
+        instrument:
+          type: object
+          properties:
+            cusip:
+              type: string
+            desc:
+              type: string
+            factor:
+              type: string
+            matdt:
+              type: string
+            maturityvalue:
+              type: string
+            mult:
+              type: string
+            putcall:
+              type: string
+            sectyp:
+              type: string
+            sesn:
+              type: string
+            strkpx:
+              type: string
+            sym:
+              type: string
+        marketvalue:
+          type: string
+        marketvaluechange:
+          type: string
+        price:
+          type: string
+        purchaseprice:
+          type: string
+        qty:
+          type: string
+        quote:
+          $ref: '#/components/schemas/Quote'
+        underlying:
+          type: string
     Quote:
       type: object
       description: Market quote data for a security
@@ -719,19 +749,6 @@ components:
         yield:
           type: string
           description: Dividend yield
-    ErrorResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            error:
-              type: string
-              description: Error message
-            elapsedtime:
-              type: string
-            id:
-              type: string
     AccountSummary:
       type: object
       properties:
@@ -742,33 +759,16 @@ components:
           $ref: '#/components/schemas/AccountBalance'
         accountholdings:
           $ref: '#/components/schemas/AccountHoldings'
-    AccountsResponse:
+    AccountsBalancesResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            accounts:
-              type: object
-              properties:
-                accountsummary:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/AccountSummary'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    AccountResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            accountsummary:
-              $ref: '#/components/schemas/AccountSummary'
+            accountbalance:
+              type: array
+              items:
+                $ref: '#/components/schemas/AccountBalance'
             elapsedtime:
               type: string
             id:

@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Ally Invest Accounts Market Data API
+  title: Ally Invest Market Data API
   description: The Ally Invest REST API (originally developed from the TradeKing acquisition) provides programmatic access to self-directed brokerage account management, order placement, real-time and delayed market data, watchlist management, and member profile information. Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available in JSON and XML formats.
   version: v1
   contact:
@@ -338,8 +338,46 @@ paths:
       security:
       - OAuth1: []
 components:
+  responses:
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    TimeSalesResponse:
+    OptionExpirationsResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            expirationdates:
+              type: object
+              properties:
+                date:
+                  type: array
+                  items:
+                    type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    OptionsSearchResponse:
       type: object
       properties:
         response:
@@ -351,47 +389,7 @@ components:
                 quote:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      datetime:
-                        type: string
-                      hi:
-                        type: string
-                      incr_vl:
-                        type: string
-                      last:
-                        type: string
-                      lo:
-                        type: string
-                      opn:
-                        type: string
-                      symbol:
-                        type: string
-                      timestamp:
-                        type: string
-                      vl:
-                        type: string
-                      vwap:
-                        type: string
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    OptionStrikesResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            prices:
-              type: object
-              properties:
-                price:
-                  type: array
-                  items:
-                    type: string
+                    $ref: '#/components/schemas/Quote'
             elapsedtime:
               type: string
             id:
@@ -435,57 +433,6 @@ components:
               type: string
             error:
               type: string
-    NewsArticleResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            article:
-              type: object
-              properties:
-                content:
-                  type: string
-                date:
-                  type: string
-                headline:
-                  type: string
-                id:
-                  type: string
-                source:
-                  type: string
-                symbols:
-                  type: object
-                  properties:
-                    symbol:
-                      type: array
-                      items:
-                        type: string
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    OptionsSearchResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            quotes:
-              type: object
-              properties:
-                quote:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Quote'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
     QuotesResponse:
       type: object
       properties:
@@ -499,6 +446,123 @@ components:
                   type: array
                   items:
                     $ref: '#/components/schemas/Quote'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    TimeSalesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      datetime:
+                        type: string
+                      hi:
+                        type: string
+                      incr_vl:
+                        type: string
+                      last:
+                        type: string
+                      lo:
+                        type: string
+                      opn:
+                        type: string
+                      symbol:
+                        type: string
+                      timestamp:
+                        type: string
+                      vl:
+                        type: string
+                      vwap:
+                        type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    ErrorResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+            elapsedtime:
+              type: string
+            id:
+              type: string
+    MarketClockResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            status:
+              type: object
+              properties:
+                current:
+                  type: string
+                  description: Current market status (open/closed)
+                next:
+                  type: string
+                  description: Next market status change
+                change:
+                  type: string
+                  description: Time until next status change
+            message:
+              type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    TopListResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    OptionStrikesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            prices:
+              type: object
+              properties:
+                price:
+                  type: array
+                  items:
+                    type: string
             elapsedtime:
               type: string
             id:
@@ -794,102 +858,38 @@ components:
         yield:
           type: string
           description: Dividend yield
-    ErrorResponse:
+    NewsArticleResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            error:
-              type: string
-              description: Error message
-            elapsedtime:
-              type: string
-            id:
-              type: string
-    MarketClockResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            status:
+            article:
               type: object
               properties:
-                current:
+                content:
                   type: string
-                  description: Current market status (open/closed)
-                next:
-                  type: string
-                  description: Next market status change
-                change:
-                  type: string
-                  description: Time until next status change
-            message:
-              type: string
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    TopListResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            quotes:
-              type: object
-              properties:
-                quote:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Quote'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    OptionExpirationsResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            expirationdates:
-              type: object
-              properties:
                 date:
-                  type: array
-                  items:
-                    type: string
+                  type: string
+                headline:
+                  type: string
+                id:
+                  type: string
+                source:
+                  type: string
+                symbols:
+                  type: object
+                  properties:
+                    symbol:
+                      type: array
+                      items:
+                        type: string
             elapsedtime:
               type: string
             id:
               type: string
             error:
               type: string
-  responses:
-    NotFound:
-      description: Requested resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    RateLimited:
-      description: Rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     OAuth1:
       type: apiKey

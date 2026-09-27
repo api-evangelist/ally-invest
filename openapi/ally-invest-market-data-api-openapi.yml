@@ -338,173 +338,7 @@ paths:
       security:
       - OAuth1: []
 components:
-  responses:
-    NotFound:
-      description: Requested resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    RateLimited:
-      description: Rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    OptionExpirationsResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            expirationdates:
-              type: object
-              properties:
-                date:
-                  type: array
-                  items:
-                    type: string
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    OptionsSearchResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            quotes:
-              type: object
-              properties:
-                quote:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Quote'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    NewsSearchResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            articles:
-              type: object
-              properties:
-                article:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      date:
-                        type: string
-                      headline:
-                        type: string
-                      id:
-                        type: string
-                      source:
-                        type: string
-                      symbols:
-                        type: object
-                        properties:
-                          symbol:
-                            type: array
-                            items:
-                              type: string
-                      url:
-                        type: string
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    QuotesResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            quotes:
-              type: object
-              properties:
-                quote:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Quote'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    TimeSalesResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            quotes:
-              type: object
-              properties:
-                quote:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      datetime:
-                        type: string
-                      hi:
-                        type: string
-                      incr_vl:
-                        type: string
-                      last:
-                        type: string
-                      lo:
-                        type: string
-                      opn:
-                        type: string
-                      symbol:
-                        type: string
-                      timestamp:
-                        type: string
-                      vl:
-                        type: string
-                      vwap:
-                        type: string
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    ErrorResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            error:
-              type: string
-              description: Error message
-            elapsedtime:
-              type: string
-            id:
-              type: string
     MarketClockResponse:
       type: object
       properties:
@@ -858,6 +692,134 @@ components:
         yield:
           type: string
           description: Dividend yield
+    NewsSearchResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            articles:
+              type: object
+              properties:
+                article:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      date:
+                        type: string
+                      headline:
+                        type: string
+                      id:
+                        type: string
+                      source:
+                        type: string
+                      symbols:
+                        type: object
+                        properties:
+                          symbol:
+                            type: array
+                            items:
+                              type: string
+                      url:
+                        type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    OptionExpirationsResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            expirationdates:
+              type: object
+              properties:
+                date:
+                  type: array
+                  items:
+                    type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    ErrorResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+            elapsedtime:
+              type: string
+            id:
+              type: string
+    TimeSalesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      datetime:
+                        type: string
+                      hi:
+                        type: string
+                      incr_vl:
+                        type: string
+                      last:
+                        type: string
+                      lo:
+                        type: string
+                      opn:
+                        type: string
+                      symbol:
+                        type: string
+                      timestamp:
+                        type: string
+                      vl:
+                        type: string
+                      vwap:
+                        type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    OptionsSearchResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
     NewsArticleResponse:
       type: object
       properties:
@@ -890,6 +852,44 @@ components:
               type: string
             error:
               type: string
+    QuotesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+  responses:
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     OAuth1:
       type: apiKey

@@ -67,15 +67,15 @@ paths:
                 $ref: '#/components/schemas/VersionResponse'
 components:
   schemas:
-    VersionResponse:
+    ErrorResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            version:
+            error:
               type: string
-              description: API version string
+              description: Error message
             elapsedtime:
               type: string
             id:
@@ -89,6 +89,19 @@ components:
             status:
               type: string
               description: API status (Active or Inactive)
+            elapsedtime:
+              type: string
+            id:
+              type: string
+    VersionResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            version:
+              type: string
+              description: API version string
             elapsedtime:
               type: string
             id:
@@ -118,19 +131,6 @@ components:
             id:
               type: string
             error:
-              type: string
-    ErrorResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            error:
-              type: string
-              description: Error message
-            elapsedtime:
-              type: string
-            id:
               type: string
   responses:
     RateLimited:

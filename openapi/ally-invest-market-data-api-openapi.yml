@@ -339,31 +339,58 @@ paths:
       - OAuth1: []
 components:
   schemas:
-    MarketClockResponse:
+    TimeSalesResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            status:
+            quotes:
               type: object
               properties:
-                current:
-                  type: string
-                  description: Current market status (open/closed)
-                next:
-                  type: string
-                  description: Next market status change
-                change:
-                  type: string
-                  description: Time until next status change
-            message:
-              type: string
+                quote:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      datetime:
+                        type: string
+                      hi:
+                        type: string
+                      incr_vl:
+                        type: string
+                      last:
+                        type: string
+                      lo:
+                        type: string
+                      opn:
+                        type: string
+                      symbol:
+                        type: string
+                      timestamp:
+                        type: string
+                      vl:
+                        type: string
+                      vwap:
+                        type: string
             elapsedtime:
               type: string
             id:
               type: string
             error:
+              type: string
+    ErrorResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+            elapsedtime:
+              type: string
+            id:
               type: string
     TopListResponse:
       type: object
@@ -692,6 +719,76 @@ components:
         yield:
           type: string
           description: Dividend yield
+    NewsArticleResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            article:
+              type: object
+              properties:
+                content:
+                  type: string
+                date:
+                  type: string
+                headline:
+                  type: string
+                id:
+                  type: string
+                source:
+                  type: string
+                symbols:
+                  type: object
+                  properties:
+                    symbol:
+                      type: array
+                      items:
+                        type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    OptionExpirationsResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            expirationdates:
+              type: object
+              properties:
+                date:
+                  type: array
+                  items:
+                    type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    QuotesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
     NewsSearchResponse:
       type: object
       properties:
@@ -729,72 +826,26 @@ components:
               type: string
             error:
               type: string
-    OptionExpirationsResponse:
+    MarketClockResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            expirationdates:
+            status:
               type: object
               properties:
-                date:
-                  type: array
-                  items:
-                    type: string
-            elapsedtime:
+                current:
+                  type: string
+                  description: Current market status (open/closed)
+                next:
+                  type: string
+                  description: Next market status change
+                change:
+                  type: string
+                  description: Time until next status change
+            message:
               type: string
-            id:
-              type: string
-            error:
-              type: string
-    ErrorResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            error:
-              type: string
-              description: Error message
-            elapsedtime:
-              type: string
-            id:
-              type: string
-    TimeSalesResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            quotes:
-              type: object
-              properties:
-                quote:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      datetime:
-                        type: string
-                      hi:
-                        type: string
-                      incr_vl:
-                        type: string
-                      last:
-                        type: string
-                      lo:
-                        type: string
-                      opn:
-                        type: string
-                      symbol:
-                        type: string
-                      timestamp:
-                        type: string
-                      vl:
-                        type: string
-                      vwap:
-                        type: string
             elapsedtime:
               type: string
             id:
@@ -802,57 +853,6 @@ components:
             error:
               type: string
     OptionsSearchResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            quotes:
-              type: object
-              properties:
-                quote:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Quote'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    NewsArticleResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            article:
-              type: object
-              properties:
-                content:
-                  type: string
-                date:
-                  type: string
-                headline:
-                  type: string
-                id:
-                  type: string
-                source:
-                  type: string
-                symbols:
-                  type: object
-                  properties:
-                    symbol:
-                      type: array
-                      items:
-                        type: string
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    QuotesResponse:
       type: object
       properties:
         response:

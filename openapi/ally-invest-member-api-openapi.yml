@@ -39,6 +39,19 @@ paths:
       - OAuth1: []
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+            elapsedtime:
+              type: string
+            id:
+              type: string
     MemberProfileResponse:
       type: object
       properties:
@@ -91,19 +104,6 @@ components:
             id:
               type: string
             error:
-              type: string
-    ErrorResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            error:
-              type: string
-              description: Error message
-            elapsedtime:
-              type: string
-            id:
               type: string
   responses:
     RateLimited:

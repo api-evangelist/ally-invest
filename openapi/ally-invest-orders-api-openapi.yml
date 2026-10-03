@@ -133,6 +133,20 @@ paths:
       - OAuth1: []
 components:
   schemas:
+    CancelOrderResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            order:
+              $ref: '#/components/schemas/Order'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
     OrdersResponse:
       type: object
       properties:
@@ -152,7 +166,20 @@ components:
               type: string
             error:
               type: string
-    CancelOrderResponse:
+    ErrorResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+            elapsedtime:
+              type: string
+            id:
+              type: string
+    OrderResponse:
       type: object
       properties:
         response:
@@ -166,6 +193,50 @@ components:
               type: string
             error:
               type: string
+    OrderPreviewResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            order:
+              $ref: '#/components/schemas/Order'
+            cost:
+              type: object
+              properties:
+                commission:
+                  type: string
+                estimatedcost:
+                  type: string
+                estimatednetamount:
+                  type: string
+                estimatedprice:
+                  type: string
+                estimatedpriceimpact:
+                  type: string
+                marginrequirement:
+                  type: string
+                tax:
+                  type: string
+            warnings:
+              type: object
+              properties:
+                warning:
+                  type: array
+                  items:
+                    type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    FIXMLOrderRequest:
+      type: object
+      description: FIXML-variant XML order document. The root element is <FIXML> with a child <Order> element containing trade attributes and child elements for <Instrmt> (instrument), <OrdQty> (quantity), and optionally <CommInfo> (commission).
+      xml:
+        name: FIXML
+        namespace: http://www.fixprotocol.org/FIXML-5-0-SP2
     Order:
       type: object
       properties:
@@ -212,85 +283,6 @@ components:
           type: string
         xref:
           type: string
-    OrderResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            order:
-              $ref: '#/components/schemas/Order'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    FIXMLOrderRequest:
-      type: object
-      description: FIXML-variant XML order document. The root element is <FIXML> with a child <Order> element containing trade attributes and child elements for <Instrmt> (instrument), <OrdQty> (quantity), and optionally <CommInfo> (commission).
-      xml:
-        name: FIXML
-        namespace: http://www.fixprotocol.org/FIXML-5-0-SP2
-    ErrorResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            error:
-              type: string
-              description: Error message
-            elapsedtime:
-              type: string
-            id:
-              type: string
-    OrderPreviewResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            order:
-              $ref: '#/components/schemas/Order'
-            cost:
-              type: object
-              properties:
-                commission:
-                  type: string
-                estimatedcost:
-                  type: string
-                estimatednetamount:
-                  type: string
-                estimatedprice:
-                  type: string
-                estimatedpriceimpact:
-                  type: string
-                marginrequirement:
-                  type: string
-                tax:
-                  type: string
-            warnings:
-              type: object
-              properties:
-                warning:
-                  type: array
-                  items:
-                    type: string
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-  parameters:
-    AccountId:
-      name: id
-      in: path
-      required: true
-      description: The account ID (account number)
-      schema:
-        type: string
   responses:
     RateLimited:
       description: Rate limit exceeded
@@ -316,6 +308,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    AccountId:
+      name: id
+      in: path
+      required: true
+      description: The account ID (account number)
+      schema:
+        type: string
   securitySchemes:
     OAuth1:
       type: apiKey

@@ -188,18 +188,25 @@ components:
       schema:
         type: string
   schemas:
-    WatchlistSymbolsRequest:
+    Watchlist:
       type: object
-      required:
-      - symbols
       properties:
+        id:
+          type: string
+          description: Watchlist name/ID
         symbols:
-          type: array
-          items:
-            type: object
-            properties:
-              symbol:
-                type: string
+          type: object
+          properties:
+            symbol:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  symbol:
+                    type: string
+                    description: Ticker symbol
     ErrorResponse:
       type: object
       properties:
@@ -228,6 +235,32 @@ components:
             properties:
               symbol:
                 type: string
+    WatchlistResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            watchlist:
+              $ref: '#/components/schemas/Watchlist'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    WatchlistSymbolsRequest:
+      type: object
+      required:
+      - symbols
+      properties:
+        symbols:
+          type: array
+          items:
+            type: object
+            properties:
+              symbol:
+                type: string
     WatchlistsResponse:
       type: object
       properties:
@@ -247,48 +280,9 @@ components:
               type: string
             error:
               type: string
-    Watchlist:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Watchlist name/ID
-        symbols:
-          type: object
-          properties:
-            symbol:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  symbol:
-                    type: string
-                    description: Ticker symbol
-    WatchlistResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            watchlist:
-              $ref: '#/components/schemas/Watchlist'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
   responses:
     RateLimited:
       description: Rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Requested resource not found
       content:
         application/json:
           schema:
@@ -301,6 +295,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Requested resource not found
       content:
         application/json:
           schema:

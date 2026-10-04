@@ -132,21 +132,32 @@ paths:
       security:
       - OAuth1: []
 components:
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    CancelOrderResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            order:
-              $ref: '#/components/schemas/Order'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
     OrdersResponse:
       type: object
       properties:
@@ -166,6 +177,52 @@ components:
               type: string
             error:
               type: string
+    Order:
+      type: object
+      properties:
+        accountid:
+          type: string
+        createtime:
+          type: string
+        displayqty:
+          type: string
+        duration:
+          type: string
+          description: Order duration (day, gtc, etc.)
+        executedqty:
+          type: string
+        id:
+          type: string
+          description: Order ID
+        img:
+          type: string
+        instrument:
+          type: object
+          properties:
+            exch:
+              type: string
+            sectyp:
+              type: string
+            sym:
+              type: string
+        ordertype:
+          type: string
+          description: Order type (market, limit, stop, stop_limit)
+        origclordid:
+          type: string
+        price:
+          type: string
+        qty:
+          type: string
+        side:
+          type: string
+          description: Order side (buy, sell, sell_short, buy_to_cover)
+        stopprice:
+          type: string
+        statustext:
+          type: string
+        xref:
+          type: string
     ErrorResponse:
       type: object
       properties:
@@ -179,7 +236,7 @@ components:
               type: string
             id:
               type: string
-    OrderResponse:
+    CancelOrderResponse:
       type: object
       properties:
         response:
@@ -231,83 +288,26 @@ components:
               type: string
             error:
               type: string
+    OrderResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            order:
+              $ref: '#/components/schemas/Order'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
     FIXMLOrderRequest:
       type: object
       description: FIXML-variant XML order document. The root element is <FIXML> with a child <Order> element containing trade attributes and child elements for <Instrmt> (instrument), <OrdQty> (quantity), and optionally <CommInfo> (commission).
       xml:
         name: FIXML
         namespace: http://www.fixprotocol.org/FIXML-5-0-SP2
-    Order:
-      type: object
-      properties:
-        accountid:
-          type: string
-        createtime:
-          type: string
-        displayqty:
-          type: string
-        duration:
-          type: string
-          description: Order duration (day, gtc, etc.)
-        executedqty:
-          type: string
-        id:
-          type: string
-          description: Order ID
-        img:
-          type: string
-        instrument:
-          type: object
-          properties:
-            exch:
-              type: string
-            sectyp:
-              type: string
-            sym:
-              type: string
-        ordertype:
-          type: string
-          description: Order type (market, limit, stop, stop_limit)
-        origclordid:
-          type: string
-        price:
-          type: string
-        qty:
-          type: string
-        side:
-          type: string
-          description: Order side (buy, sell, sell_short, buy_to_cover)
-        stopprice:
-          type: string
-        statustext:
-          type: string
-        xref:
-          type: string
-  responses:
-    RateLimited:
-      description: Rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Requested resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     AccountId:
       name: id

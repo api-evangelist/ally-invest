@@ -339,58 +339,24 @@ paths:
       - OAuth1: []
 components:
   schemas:
-    TimeSalesResponse:
+    OptionStrikesResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            quotes:
+            prices:
               type: object
               properties:
-                quote:
+                price:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      datetime:
-                        type: string
-                      hi:
-                        type: string
-                      incr_vl:
-                        type: string
-                      last:
-                        type: string
-                      lo:
-                        type: string
-                      opn:
-                        type: string
-                      symbol:
-                        type: string
-                      timestamp:
-                        type: string
-                      vl:
-                        type: string
-                      vwap:
-                        type: string
+                    type: string
             elapsedtime:
               type: string
             id:
               type: string
             error:
-              type: string
-    ErrorResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            error:
-              type: string
-              description: Error message
-            elapsedtime:
-              type: string
-            id:
               type: string
     TopListResponse:
       type: object
@@ -411,19 +377,64 @@ components:
               type: string
             error:
               type: string
-    OptionStrikesResponse:
+    NewsArticleResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            prices:
+            article:
               type: object
               properties:
-                price:
+                content:
+                  type: string
+                date:
+                  type: string
+                headline:
+                  type: string
+                id:
+                  type: string
+                source:
+                  type: string
+                symbols:
+                  type: object
+                  properties:
+                    symbol:
+                      type: array
+                      items:
+                        type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    ErrorResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+            elapsedtime:
+              type: string
+            id:
+              type: string
+    OptionsSearchResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
                   type: array
                   items:
-                    type: string
+                    $ref: '#/components/schemas/Quote'
             elapsedtime:
               type: string
             id:
@@ -719,31 +730,58 @@ components:
         yield:
           type: string
           description: Dividend yield
-    NewsArticleResponse:
+    QuotesResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            article:
+            quotes:
               type: object
               properties:
-                content:
-                  type: string
-                date:
-                  type: string
-                headline:
-                  type: string
-                id:
-                  type: string
-                source:
-                  type: string
-                symbols:
-                  type: object
-                  properties:
-                    symbol:
-                      type: array
-                      items:
+                quote:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    TimeSalesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      datetime:
+                        type: string
+                      hi:
+                        type: string
+                      incr_vl:
+                        type: string
+                      last:
+                        type: string
+                      lo:
+                        type: string
+                      opn:
+                        type: string
+                      symbol:
+                        type: string
+                      timestamp:
+                        type: string
+                      vl:
+                        type: string
+                      vwap:
                         type: string
             elapsedtime:
               type: string
@@ -770,19 +808,26 @@ components:
               type: string
             error:
               type: string
-    QuotesResponse:
+    MarketClockResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            quotes:
+            status:
               type: object
               properties:
-                quote:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Quote'
+                current:
+                  type: string
+                  description: Current market status (open/closed)
+                next:
+                  type: string
+                  description: Next market status change
+                change:
+                  type: string
+                  description: Time until next status change
+            message:
+              type: string
             elapsedtime:
               type: string
             id:
@@ -826,58 +871,7 @@ components:
               type: string
             error:
               type: string
-    MarketClockResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            status:
-              type: object
-              properties:
-                current:
-                  type: string
-                  description: Current market status (open/closed)
-                next:
-                  type: string
-                  description: Next market status change
-                change:
-                  type: string
-                  description: Time until next status change
-            message:
-              type: string
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    OptionsSearchResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            quotes:
-              type: object
-              properties:
-                quote:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Quote'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
   responses:
-    RateLimited:
-      description: Rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication required or credentials invalid
       content:
@@ -886,6 +880,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimited:
+      description: Rate limit exceeded
       content:
         application/json:
           schema:

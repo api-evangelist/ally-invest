@@ -67,6 +67,19 @@ paths:
                 $ref: '#/components/schemas/VersionResponse'
 components:
   schemas:
+    VersionResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            version:
+              type: string
+              description: API version string
+            elapsedtime:
+              type: string
+            id:
+              type: string
     ErrorResponse:
       type: object
       properties:
@@ -89,19 +102,6 @@ components:
             status:
               type: string
               description: API status (Active or Inactive)
-            elapsedtime:
-              type: string
-            id:
-              type: string
-    VersionResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            version:
-              type: string
-              description: API version string
             elapsedtime:
               type: string
             id:
@@ -133,14 +133,14 @@ components:
             error:
               type: string
   responses:
-    RateLimited:
-      description: Rate limit exceeded
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    RateLimited:
+      description: Rate limit exceeded
       content:
         application/json:
           schema:

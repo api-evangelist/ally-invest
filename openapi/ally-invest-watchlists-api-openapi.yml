@@ -179,15 +179,19 @@ paths:
       security:
       - OAuth1: []
 components:
-  parameters:
-    WatchlistId:
-      name: id
-      in: path
-      required: true
-      description: The watchlist ID (name)
-      schema:
-        type: string
   schemas:
+    WatchlistSymbolsRequest:
+      type: object
+      required:
+      - symbols
+      properties:
+        symbols:
+          type: array
+          items:
+            type: object
+            properties:
+              symbol:
+                type: string
     Watchlist:
       type: object
       properties:
@@ -207,6 +211,39 @@ components:
                   symbol:
                     type: string
                     description: Ticker symbol
+    WatchlistResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            watchlist:
+              $ref: '#/components/schemas/Watchlist'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    WatchlistsResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            watchlists:
+              type: object
+              properties:
+                watchlist:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Watchlist'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
     ErrorResponse:
       type: object
       properties:
@@ -235,64 +272,15 @@ components:
             properties:
               symbol:
                 type: string
-    WatchlistResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            watchlist:
-              $ref: '#/components/schemas/Watchlist'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    WatchlistSymbolsRequest:
-      type: object
-      required:
-      - symbols
-      properties:
-        symbols:
-          type: array
-          items:
-            type: object
-            properties:
-              symbol:
-                type: string
-    WatchlistsResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            watchlists:
-              type: object
-              properties:
-                watchlist:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Watchlist'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
+  parameters:
+    WatchlistId:
+      name: id
+      in: path
+      required: true
+      description: The watchlist ID (name)
+      schema:
+        type: string
   responses:
-    RateLimited:
-      description: Rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication required or credentials invalid
       content:
@@ -301,6 +289,18 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/json:
           schema:

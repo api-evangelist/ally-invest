@@ -46,7 +46,7 @@ description: >-
   querying market quotes and news. Authentication uses OAuth 1.0 with consumer and token credentials.
   Responses are available in JSON and XML formats.
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-10-06'
 openapi: openapi/ally-invest-openapi.yml
 specificationVersion: '0.23'
 apis:
@@ -177,6 +177,8 @@ apis:
   - type: Documentation
     url: https://www.ally.com/api/invest/documentation/getting-started/
 common:
+  - url: https://www.ally.com/stories/
+    type: Blog
   - type: AgenticAccess
     url: agentic-access/ally-invest-agentic-access.yml
   - type: DomainSecurity

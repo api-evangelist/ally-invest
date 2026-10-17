@@ -339,44 +339,6 @@ paths:
       - OAuth1: []
 components:
   schemas:
-    OptionStrikesResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            prices:
-              type: object
-              properties:
-                price:
-                  type: array
-                  items:
-                    type: string
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    TopListResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            quotes:
-              type: object
-              properties:
-                quote:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Quote'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
     NewsArticleResponse:
       type: object
       properties:
@@ -409,18 +371,83 @@ components:
               type: string
             error:
               type: string
-    ErrorResponse:
+    OptionStrikesResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            error:
-              type: string
-              description: Error message
+            prices:
+              type: object
+              properties:
+                price:
+                  type: array
+                  items:
+                    type: string
             elapsedtime:
               type: string
             id:
+              type: string
+            error:
+              type: string
+    QuotesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    TimeSalesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      datetime:
+                        type: string
+                      hi:
+                        type: string
+                      incr_vl:
+                        type: string
+                      last:
+                        type: string
+                      lo:
+                        type: string
+                      opn:
+                        type: string
+                      symbol:
+                        type: string
+                      timestamp:
+                        type: string
+                      vl:
+                        type: string
+                      vwap:
+                        type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
               type: string
     OptionsSearchResponse:
       type: object
@@ -730,78 +757,37 @@ components:
         yield:
           type: string
           description: Dividend yield
-    QuotesResponse:
+    NewsSearchResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            quotes:
+            articles:
               type: object
               properties:
-                quote:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Quote'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    TimeSalesResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            quotes:
-              type: object
-              properties:
-                quote:
+                article:
                   type: array
                   items:
                     type: object
                     properties:
-                      datetime:
+                      date:
                         type: string
-                      hi:
+                      headline:
                         type: string
-                      incr_vl:
+                      id:
                         type: string
-                      last:
+                      source:
                         type: string
-                      lo:
+                      symbols:
+                        type: object
+                        properties:
+                          symbol:
+                            type: array
+                            items:
+                              type: string
+                      url:
                         type: string
-                      opn:
-                        type: string
-                      symbol:
-                        type: string
-                      timestamp:
-                        type: string
-                      vl:
-                        type: string
-                      vwap:
-                        type: string
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    OptionExpirationsResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            expirationdates:
-              type: object
-              properties:
-                date:
-                  type: array
-                  items:
-                    type: string
             elapsedtime:
               type: string
             id:
@@ -834,37 +820,51 @@ components:
               type: string
             error:
               type: string
-    NewsSearchResponse:
+    ErrorResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            articles:
+            error:
+              type: string
+              description: Error message
+            elapsedtime:
+              type: string
+            id:
+              type: string
+    OptionExpirationsResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            expirationdates:
               type: object
               properties:
-                article:
+                date:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      date:
-                        type: string
-                      headline:
-                        type: string
-                      id:
-                        type: string
-                      source:
-                        type: string
-                      symbols:
-                        type: object
-                        properties:
-                          symbol:
-                            type: array
-                            items:
-                              type: string
-                      url:
-                        type: string
+                    type: string
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    TopListResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            quotes:
+              type: object
+              properties:
+                quote:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Quote'
             elapsedtime:
               type: string
             id:

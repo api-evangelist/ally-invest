@@ -175,6 +175,48 @@ paths:
       - OAuth1: []
 components:
   schemas:
+    AccountsBalancesResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            accountbalance:
+              type: array
+              items:
+                $ref: '#/components/schemas/AccountBalance'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    AccountHoldings:
+      type: object
+      properties:
+        holding:
+          type: array
+          items:
+            $ref: '#/components/schemas/Holding'
+        totalholdings:
+          type: object
+          properties:
+            accountvalue:
+              type: string
+            longoptions:
+              type: string
+            longstocks:
+              type: string
+            options:
+              type: string
+            shortoptions:
+              type: string
+            shortstocks:
+              type: string
+            stocks:
+              type: string
+            total:
+              type: string
     Holding:
       type: object
       properties:
@@ -225,55 +267,155 @@ components:
           $ref: '#/components/schemas/Quote'
         underlying:
           type: string
-    AccountHoldingsResponse:
+    AccountHistoryResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            accountholdings:
-              $ref: '#/components/schemas/AccountHoldings'
+            transactions:
+              type: object
+              properties:
+                transaction:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      accounttype:
+                        type: string
+                      activity:
+                        type: string
+                      amount:
+                        type: string
+                      date:
+                        type: string
+                      desc:
+                        type: string
+                      instrument:
+                        type: object
+                        properties:
+                          cusip:
+                            type: string
+                          desc:
+                            type: string
+                          factor:
+                            type: string
+                          matdt:
+                            type: string
+                          maturityvalue:
+                            type: string
+                          mult:
+                            type: string
+                          putcall:
+                            type: string
+                          sectyp:
+                            type: string
+                          sesn:
+                            type: string
+                          strkpx:
+                            type: string
+                          sym:
+                            type: string
+                      price:
+                        type: string
+                      qty:
+                        type: string
+                      settlementdate:
+                        type: string
+                      side:
+                        type: string
+                      source:
+                        type: string
+                      tradetime:
+                        type: string
+                      transactionid:
+                        type: string
             elapsedtime:
               type: string
             id:
               type: string
             error:
               type: string
-    AccountSummary:
+    AccountBalanceResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            accountbalance:
+              $ref: '#/components/schemas/AccountBalance'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    AccountResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            accountsummary:
+              $ref: '#/components/schemas/AccountSummary'
+            elapsedtime:
+              type: string
+            id:
+              type: string
+            error:
+              type: string
+    AccountBalance:
       type: object
       properties:
         account:
           type: string
           description: Account number
-        accountbalance:
-          $ref: '#/components/schemas/AccountBalance'
-        accountholdings:
-          $ref: '#/components/schemas/AccountHoldings'
-    ErrorResponse:
-      type: object
-      properties:
-        response:
+        accountvalue:
+          type: string
+          description: Total account value
+        buyingpower:
           type: object
           properties:
-            error:
+            cashavailableforwithdrawal:
               type: string
-              description: Error message
-            elapsedtime:
+            daytrading:
               type: string
-            id:
+            equitypercentage:
               type: string
-    AccountHoldings:
-      type: object
-      properties:
-        holding:
-          type: array
-          items:
-            $ref: '#/components/schemas/Holding'
-        totalholdings:
+            options:
+              type: string
+            soddaytrading:
+              type: string
+            stock:
+              type: string
+        fedcall:
+          type: string
+        housecall:
+          type: string
+        money:
           type: object
           properties:
-            accountvalue:
+            accruedinterest:
               type: string
+            cash:
+              type: string
+            cashavailable:
+              type: string
+            marginbalance:
+              type: string
+            mmf:
+              type: string
+            total:
+              type: string
+            uncleareddeposits:
+              type: string
+            unsettledfunds:
+              type: string
+            yield:
+              type: string
+        securities:
+          type: object
+          properties:
             longoptions:
               type: string
             longstocks:
@@ -288,14 +430,19 @@ components:
               type: string
             total:
               type: string
-    AccountBalanceResponse:
+    AccountsResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            accountbalance:
-              $ref: '#/components/schemas/AccountBalance'
+            accounts:
+              type: object
+              properties:
+                accountsummary:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AccountSummary'
             elapsedtime:
               type: string
             id:
@@ -591,190 +738,43 @@ components:
         yield:
           type: string
           description: Dividend yield
-    AccountHistoryResponse:
+    AccountHoldingsResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            transactions:
-              type: object
-              properties:
-                transaction:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      accounttype:
-                        type: string
-                      activity:
-                        type: string
-                      amount:
-                        type: string
-                      date:
-                        type: string
-                      desc:
-                        type: string
-                      instrument:
-                        type: object
-                        properties:
-                          cusip:
-                            type: string
-                          desc:
-                            type: string
-                          factor:
-                            type: string
-                          matdt:
-                            type: string
-                          maturityvalue:
-                            type: string
-                          mult:
-                            type: string
-                          putcall:
-                            type: string
-                          sectyp:
-                            type: string
-                          sesn:
-                            type: string
-                          strkpx:
-                            type: string
-                          sym:
-                            type: string
-                      price:
-                        type: string
-                      qty:
-                        type: string
-                      settlementdate:
-                        type: string
-                      side:
-                        type: string
-                      source:
-                        type: string
-                      tradetime:
-                        type: string
-                      transactionid:
-                        type: string
+            accountholdings:
+              $ref: '#/components/schemas/AccountHoldings'
             elapsedtime:
               type: string
             id:
               type: string
             error:
               type: string
-    AccountResponse:
+    ErrorResponse:
       type: object
       properties:
         response:
           type: object
           properties:
-            accountsummary:
-              $ref: '#/components/schemas/AccountSummary'
+            error:
+              type: string
+              description: Error message
             elapsedtime:
               type: string
             id:
               type: string
-            error:
-              type: string
-    AccountsResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            accounts:
-              type: object
-              properties:
-                accountsummary:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/AccountSummary'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    AccountsBalancesResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            accountbalance:
-              type: array
-              items:
-                $ref: '#/components/schemas/AccountBalance'
-            elapsedtime:
-              type: string
-            id:
-              type: string
-            error:
-              type: string
-    AccountBalance:
+    AccountSummary:
       type: object
       properties:
         account:
           type: string
           description: Account number
-        accountvalue:
-          type: string
-          description: Total account value
-        buyingpower:
-          type: object
-          properties:
-            cashavailableforwithdrawal:
-              type: string
-            daytrading:
-              type: string
-            equitypercentage:
-              type: string
-            options:
-              type: string
-            soddaytrading:
-              type: string
-            stock:
-              type: string
-        fedcall:
-          type: string
-        housecall:
-          type: string
-        money:
-          type: object
-          properties:
-            accruedinterest:
-              type: string
-            cash:
-              type: string
-            cashavailable:
-              type: string
-            marginbalance:
-              type: string
-            mmf:
-              type: string
-            total:
-              type: string
-            uncleareddeposits:
-              type: string
-            unsettledfunds:
-              type: string
-            yield:
-              type: string
-        securities:
-          type: object
-          properties:
-            longoptions:
-              type: string
-            longstocks:
-              type: string
-            options:
-              type: string
-            shortoptions:
-              type: string
-            shortstocks:
-              type: string
-            stocks:
-              type: string
-            total:
-              type: string
+        accountbalance:
+          $ref: '#/components/schemas/AccountBalance'
+        accountholdings:
+          $ref: '#/components/schemas/AccountHoldings'
   responses:
     Unauthorized:
       description: Authentication required or credentials invalid

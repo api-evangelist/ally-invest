@@ -67,45 +67,6 @@ paths:
                 $ref: '#/components/schemas/VersionResponse'
 components:
   schemas:
-    VersionResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            version:
-              type: string
-              description: API version string
-            elapsedtime:
-              type: string
-            id:
-              type: string
-    ErrorResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            error:
-              type: string
-              description: Error message
-            elapsedtime:
-              type: string
-            id:
-              type: string
-    StatusResponse:
-      type: object
-      properties:
-        response:
-          type: object
-          properties:
-            status:
-              type: string
-              description: API status (Active or Inactive)
-            elapsedtime:
-              type: string
-            id:
-              type: string
     MarketClockResponse:
       type: object
       properties:
@@ -131,6 +92,45 @@ components:
             id:
               type: string
             error:
+              type: string
+    StatusResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            status:
+              type: string
+              description: API status (Active or Inactive)
+            elapsedtime:
+              type: string
+            id:
+              type: string
+    ErrorResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+            elapsedtime:
+              type: string
+            id:
+              type: string
+    VersionResponse:
+      type: object
+      properties:
+        response:
+          type: object
+          properties:
+            version:
+              type: string
+              description: API version string
+            elapsedtime:
+              type: string
+            id:
               type: string
   responses:
     Unauthorized:

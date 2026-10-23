@@ -177,6 +177,8 @@ apis:
   - type: Documentation
     url: https://www.ally.com/api/invest/documentation/getting-started/
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/ally-invest/overview
   - url: https://www.ally.com/stories/
     type: Blog
   - type: AgenticAccess

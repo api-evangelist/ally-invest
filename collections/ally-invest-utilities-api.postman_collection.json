@@ -1,360 +1,386 @@
 {
+  "info": {
+    "_postman_id": "09af0a18-5ac1-42da-9c3a-ece9f2e28a93",
+    "name": "Ally Invest Utilities API",
+    "description": "The Ally Invest REST API (originally developed from the TradeKing acquisition) provides programmatic access to self-directed brokerage account management, order placement, real-time and delayed market data, watchlist management, and member profile information. Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available in JSON and XML formats.\n\nContact Support:\n Email: InvestAPI@ally.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:13:05.000Z",
+    "updatedAt": "2026-10-21T21:13:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-09af0a18-5ac1-42da-9c3a-ece9f2e28a93"
+  },
   "item": [
     {
-      "id": "cd5d6946-b6cc-4635-bf80-9f98be7b9002",
-      "name": "Utilities",
-      "description": {
-        "content": "API status and version utilities",
-        "type": "text/plain"
-      },
+      "name": "market",
       "item": [
         {
-          "id": "1c198af5-ace4-41dc-8e0b-9df09cf0fdcb",
-          "name": "Get market clock status",
-          "request": {
-            "name": "Get market clock status",
-            "description": {
-              "content": "Returns the current market status (open/closed), current time, and next market event times.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "market",
-                "clock.json"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "Authorization"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "clock.json",
+          "item": [
             {
-              "id": "acdf3124-7b1c-4d8a-b816-3a10bd2c11ba",
-              "name": "Successful response with market clock data",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "market",
-                    "clock.json"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+              "name": "Get market clock status",
+              "id": "c861a683-3b5c-43b5-887c-05230a662255",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
                     },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"response\": {\n    \"status\": {\n      \"current\": \"string\",\n      \"next\": \"string\",\n      \"change\": \"string\"\n    },\n    \"message\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e6d86aaf-008c-48c3-b15b-557cc66d85f9",
-              "name": "Authentication required or credentials invalid",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "market",
-                    "clock.json"
-                  ],
+                  "raw": "{{baseUrl}}/market/clock.json",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a07ed3b3-0fae-4703-868a-27f4e9eaa1ab",
-              "name": "Rate limit exceeded",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "market",
                     "clock.json"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Returns the current market status (open/closed), current time, and next market event times."
               },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "95592cf2-716a-4309-83b9-86b60e092432",
+                  "name": "Successful response with market clock data",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/market/clock.json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "market",
+                        "clock.json"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"response\": {\n    \"status\": {\n      \"current\": \"<string>\",\n      \"next\": \"<string>\",\n      \"change\": \"<string>\"\n    },\n    \"message\": \"<string>\",\n    \"elapsedtime\": \"<string>\",\n    \"id\": \"<string>\",\n    \"error\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-21T21:13:06.000Z",
+                  "updatedAt": "2026-10-21T21:13:06.000Z",
+                  "uid": "35240-95592cf2-716a-4309-83b9-86b60e092432"
+                },
+                {
+                  "id": "79f17c00-571d-4e18-962b-155d26d72409",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/market/clock.json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "market",
+                        "clock.json"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"response\": {\n    \"error\": \"<string>\",\n    \"elapsedtime\": \"<string>\",\n    \"id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-21T21:13:06.000Z",
+                  "updatedAt": "2026-10-21T21:13:06.000Z",
+                  "uid": "35240-79f17c00-571d-4e18-962b-155d26d72409"
+                },
+                {
+                  "id": "8b7c6319-5491-418f-9cd4-adeb870b291b",
+                  "name": "Rate limit exceeded",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/market/clock.json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "market",
+                        "clock.json"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"response\": {\n    \"error\": \"<string>\",\n    \"elapsedtime\": \"<string>\",\n    \"id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-21T21:13:06.000Z",
+                  "updatedAt": "2026-10-21T21:13:06.000Z",
+                  "uid": "35240-8b7c6319-5491-418f-9cd4-adeb870b291b"
                 }
               ],
-              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T21:13:06.000Z",
+              "updatedAt": "2026-10-21T21:13:06.000Z",
+              "uid": "35240-c861a683-3b5c-43b5-887c-05230a662255"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
+          "id": "ffd401b3-5804-4996-ac9c-45d7834bc527",
+          "createdAt": "2026-10-21T21:13:06.000Z",
+          "updatedAt": "2026-10-21T21:13:06.000Z",
+          "uid": "35240-ffd401b3-5804-4996-ac9c-45d7834bc527"
+        }
+      ],
+      "id": "94cfc7da-de6e-41f1-9560-b51974b4d9b5",
+      "createdAt": "2026-10-21T21:13:06.000Z",
+      "updatedAt": "2026-10-21T21:13:06.000Z",
+      "uid": "35240-94cfc7da-de6e-41f1-9560-b51974b4d9b5"
+    },
+    {
+      "name": "utility",
+      "item": [
         {
-          "id": "1c2a993e-0390-4b48-8822-b32e38c8423f",
-          "name": "Get API status",
-          "request": {
-            "name": "Get API status",
-            "description": {
-              "content": "Returns the current operational status of the Ally Invest API.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "utility",
-                "status.json"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "status.json",
+          "item": [
             {
-              "id": "54d3c24b-155d-4369-bf60-8bd013b0fa07",
-              "name": "Successful response with API status",
-              "originalRequest": {
+              "name": "Get API status",
+              "id": "88562a63-4bab-4ab5-9d82-23722a5dcae4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/utility/status.json",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "utility",
                     "status.json"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
+                "description": "Returns the current operational status of the Ally Invest API."
+              },
+              "response": [
+                {
+                  "id": "24db165b-d123-421b-8f60-94fd9b83a06e",
+                  "name": "Successful response with API status",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/utility/status.json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utility",
+                        "status.json"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"response\": {\n    \"status\": \"<string>\",\n    \"elapsedtime\": \"<string>\",\n    \"id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-21T21:13:06.000Z",
+                  "updatedAt": "2026-10-21T21:13:06.000Z",
+                  "uid": "35240-24db165b-d123-421b-8f60-94fd9b83a06e"
+                }
+              ],
+              "createdAt": "2026-10-21T21:13:06.000Z",
+              "updatedAt": "2026-10-21T21:13:06.000Z",
+              "uid": "35240-88562a63-4bab-4ab5-9d82-23722a5dcae4"
+            }
+          ],
+          "id": "41086190-c581-45f6-8f6f-7aff2f2f990b",
+          "createdAt": "2026-10-21T21:13:06.000Z",
+          "updatedAt": "2026-10-21T21:13:06.000Z",
+          "uid": "35240-41086190-c581-45f6-8f6f-7aff2f2f990b"
+        },
+        {
+          "name": "version.json",
+          "item": [
+            {
+              "name": "Get API version",
+              "id": "836d8bdc-f9f5-4c72-b82e-b652b066a5a8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"response\": {\n    \"status\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "51233272-0425-4d74-ba5d-24eb706f3e60",
-          "name": "Get API version",
-          "request": {
-            "name": "Get API version",
-            "description": {
-              "content": "Returns the current version of the Ally Invest API.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "utility",
-                "version.json"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "a3aec24c-dc63-4067-b764-f3a26d252e31",
-              "name": "Successful response with API version",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/utility/version.json",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "utility",
                     "version.json"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Returns the current version of the Ally Invest API."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "093d9104-0916-416f-9a83-ed5733a31434",
+                  "name": "Successful response with API version",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/utility/version.json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utility",
+                        "version.json"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"response\": {\n    \"version\": \"<string>\",\n    \"elapsedtime\": \"<string>\",\n    \"id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-21T21:13:06.000Z",
+                  "updatedAt": "2026-10-21T21:13:06.000Z",
+                  "uid": "35240-093d9104-0916-416f-9a83-ed5733a31434"
                 }
               ],
-              "body": "{\n  \"response\": {\n    \"version\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T21:13:06.000Z",
+              "updatedAt": "2026-10-21T21:13:06.000Z",
+              "uid": "35240-836d8bdc-f9f5-4c72-b82e-b652b066a5a8"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "66f66d2a-4fb5-4864-a9dc-a4cde091969e",
+          "createdAt": "2026-10-21T21:13:06.000Z",
+          "updatedAt": "2026-10-21T21:13:06.000Z",
+          "uid": "35240-66f66d2a-4fb5-4864-a9dc-a4cde091969e"
         }
       ],
-      "event": []
+      "id": "82937239-3f8e-4662-901c-43a499cc5282",
+      "createdAt": "2026-10-21T21:13:06.000Z",
+      "updatedAt": "2026-10-21T21:13:06.000Z",
+      "uid": "35240-82937239-3f8e-4662-901c-43a499cc5282"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.ally.com/v1",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.ally.com/v1"
     }
-  ],
-  "info": {
-    "_postman_id": "9e721aad-6b42-4ad5-ae1b-c3432bf8a303",
-    "name": "Ally Invest Accounts Utilities API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Ally Invest REST API (originally developed from the TradeKing acquisition) provides programmatic access to self-directed brokerage account management, order placement, real-time and delayed market data, watchlist management, and member profile information. Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available in JSON and XML formats.\n\nContact Support:\n Email: InvestAPI@ally.com",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

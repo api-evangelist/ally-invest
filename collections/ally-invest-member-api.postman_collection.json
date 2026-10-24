@@ -1,216 +1,219 @@
 {
+  "info": {
+    "_postman_id": "4951df9a-6a6c-4ff4-bd79-25e758f9ffb6",
+    "name": "Ally Invest Member API",
+    "description": "The Ally Invest REST API (originally developed from the TradeKing acquisition) provides programmatic access to self-directed brokerage account management, order placement, real-time and delayed market data, watchlist management, and member profile information. Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available in JSON and XML formats.\n\nContact Support:\n Email: InvestAPI@ally.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:12:52.000Z",
+    "updatedAt": "2026-10-21T21:12:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4951df9a-6a6c-4ff4-bd79-25e758f9ffb6"
+  },
   "item": [
     {
-      "id": "92bff74a-565d-482d-b9da-485359fe4004",
-      "name": "Member",
-      "description": {
-        "content": "Member profile and identity",
-        "type": "text/plain"
-      },
+      "name": "member",
       "item": [
         {
-          "id": "e3ded652-c01b-44a1-9cd1-12cc8e3ca7e1",
-          "name": "Get member profile",
-          "request": {
-            "name": "Get member profile",
-            "description": {
-              "content": "Returns the authenticated member's profile information including account identifiers and user details.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "member",
-                "profile.json"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "Authorization"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "profile.json",
+          "item": [
             {
-              "id": "0a65cd77-412a-4614-b060-9e3a5d88d430",
-              "name": "Successful response with member profile",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "member",
-                    "profile.json"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+              "name": "Get member profile",
+              "id": "c696ad92-01f1-4592-ad5b-766f9d5551dd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
                     },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"response\": {\n    \"userdata\": {\n      \"account\": {\n        \"account\": \"string\",\n        \"accountdesc\": \"string\",\n        \"tradingtype\": \"string\",\n        \"value\": \"string\",\n        \"assettypes\": {\n          \"assettype\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      },\n      \"userprofile\": {\n        \"account\": \"string\",\n        \"disabled\": \"string\",\n        \"disabledcode\": \"string\",\n        \"email\": \"string\",\n        \"experiencelvl\": \"string\",\n        \"id\": \"string\",\n        \"login\": \"string\",\n        \"membersince\": \"string\"\n      }\n    },\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\",\n    \"error\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5cc189fa-9daa-4fb0-ae6c-ab00a161599e",
-              "name": "Authentication required or credentials invalid",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "member",
-                    "profile.json"
-                  ],
+                  "raw": "{{baseUrl}}/member/profile.json",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3d2a036e-38f9-451a-8be9-77a893bf242d",
-              "name": "Rate limit exceeded",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "member",
                     "profile.json"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Returns the authenticated member's profile information including account identifiers and user details."
               },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "f5cafe4d-886b-49e8-bec4-b6800fb22608",
+                  "name": "Successful response with member profile",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/member/profile.json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "member",
+                        "profile.json"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"response\": {\n    \"userdata\": {\n      \"account\": {\n        \"account\": \"<string>\",\n        \"accountdesc\": \"<string>\",\n        \"tradingtype\": \"<string>\",\n        \"value\": \"<string>\",\n        \"assettypes\": {\n          \"assettype\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"userprofile\": {\n        \"account\": \"<string>\",\n        \"disabled\": \"<string>\",\n        \"disabledcode\": \"<string>\",\n        \"email\": \"<string>\",\n        \"experiencelvl\": \"<string>\",\n        \"id\": \"<string>\",\n        \"login\": \"<string>\",\n        \"membersince\": \"<string>\"\n      }\n    },\n    \"elapsedtime\": \"<string>\",\n    \"id\": \"<string>\",\n    \"error\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-21T21:12:53.000Z",
+                  "updatedAt": "2026-10-21T21:12:53.000Z",
+                  "uid": "35240-f5cafe4d-886b-49e8-bec4-b6800fb22608"
+                },
+                {
+                  "id": "53593f4e-abea-4e6f-91ab-018104626ed2",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/member/profile.json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "member",
+                        "profile.json"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"response\": {\n    \"error\": \"<string>\",\n    \"elapsedtime\": \"<string>\",\n    \"id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-21T21:12:53.000Z",
+                  "updatedAt": "2026-10-21T21:12:53.000Z",
+                  "uid": "35240-53593f4e-abea-4e6f-91ab-018104626ed2"
+                },
+                {
+                  "id": "5ca401d3-e4a0-4685-a4d8-cf163eeb7a60",
+                  "name": "Rate limit exceeded",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/member/profile.json",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "member",
+                        "profile.json"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"response\": {\n    \"error\": \"<string>\",\n    \"elapsedtime\": \"<string>\",\n    \"id\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-21T21:12:53.000Z",
+                  "updatedAt": "2026-10-21T21:12:53.000Z",
+                  "uid": "35240-5ca401d3-e4a0-4685-a4d8-cf163eeb7a60"
                 }
               ],
-              "body": "{\n  \"response\": {\n    \"error\": \"string\",\n    \"elapsedtime\": \"string\",\n    \"id\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T21:12:53.000Z",
+              "updatedAt": "2026-10-21T21:12:53.000Z",
+              "uid": "35240-c696ad92-01f1-4592-ad5b-766f9d5551dd"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "c910a04a-eda8-4aca-81c9-fb36144de518",
+          "createdAt": "2026-10-21T21:12:53.000Z",
+          "updatedAt": "2026-10-21T21:12:53.000Z",
+          "uid": "35240-c910a04a-eda8-4aca-81c9-fb36144de518"
         }
       ],
-      "event": []
+      "id": "a0182699-b69b-4ea4-b798-ff21510c1a0b",
+      "createdAt": "2026-10-21T21:12:53.000Z",
+      "updatedAt": "2026-10-21T21:12:53.000Z",
+      "uid": "35240-a0182699-b69b-4ea4-b798-ff21510c1a0b"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.ally.com/v1",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.ally.com/v1"
     }
-  ],
-  "info": {
-    "_postman_id": "ee58451c-a41b-420b-af9d-c78f56cc055e",
-    "name": "Ally Invest Accounts Member API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Ally Invest REST API (originally developed from the TradeKing acquisition) provides programmatic access to self-directed brokerage account management, order placement, real-time and delayed market data, watchlist management, and member profile information. Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available in JSON and XML formats.\n\nContact Support:\n Email: InvestAPI@ally.com",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

@@ -64,37 +64,162 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Ally Invest is an online brokerage platform offering commission-free self-directed trading of US stocks, ETFs, and options with no account minimums. The platform provides REST APIs for managing self-directed investment accounts, placing trades, accessing streaming real-time market data, retrieving account balances and holdings, managing watchlists, and querying market quotes and news.
+Ally Invest is an online brokerage platform offering commission-free self-directed trading of US stocks, ETFs, and options with no account minimums. The platform provides REST APIs (originally developed from the TradeKing acquisition) for managing self-directed investment accounts, placing trades, accessing streaming real-time market data, retrieving account balances and holdings, managing watchlists, and querying market quotes and news. Authentication uses OAuth 1.0 with consumer and token credentials. Responses are available in JSON and XML formats.
 
-## APIs
+**Areas:** Brokerage · Investing · Trading · Finance · Stocks · Options · Market Data · Self-Directed · Financial Services
 
-- **Accounts API** - Account balances, holdings, and transaction history
-- **Orders API** - Place, preview, and manage equity and options orders (FIXML format)
-- **Market Data API** - Quotes, option chains, news search, time-and-sales, top lists
-- **Streaming API** - Real-time quote streaming via persistent HTTP connections
-- **Watchlists API** - Create and manage symbol watchlists
-- **Member API** - Authenticated member profile information
+## Ally Invest on APIs.io
 
-## Authentication
+Everything profiled for Ally Invest is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ally-invest/](https://apis.io/providers/ally-invest/)** — or go straight to one of the APIs or properties below.
 
-OAuth 1.0 with four credentials: Consumer Key, Consumer Secret, OAuth Token, and OAuth Token Secret. Credentials are obtained through the Ally Invest developer registration process for existing brokerage account holders.
+### APIs (7)
 
-## Pricing
+- [Ally Invest Streaming Market Data API](https://apis.io/apis/ally-invest/ally-invest-streaming-api/) — The Ally Invest Streaming API delivers real-time market quotes via a persistent HTTP streaming connection. Clients subscribe to one or more ticker symbols…
+- [Ally Invest Accounts API](https://apis.io/apis/ally-invest/ally-invest-accounts-api/) — Account balances, holdings, history, and portfolio data
+- [Ally Invest Market Data API](https://apis.io/apis/ally-invest/ally-invest-market-data-api/) — The Ally Invest Market Data API provides access to real-time and delayed market data including equity and options quotes, option chains, option strikes and…
+- [Ally Invest Member API](https://apis.io/apis/ally-invest/ally-invest-member-api/) — The Ally Invest Member API provides access to the authenticated member's profile information including account identifiers and user details associated with…
+- [Ally Invest Orders API](https://apis.io/apis/ally-invest/ally-invest-orders-api/) — The Ally Invest Orders API enables programmatic placement and management of equity and options orders for self-directed brokerage accounts. Orders are…
+- [Ally Invest Utilities API](https://apis.io/apis/ally-invest/ally-invest-utilities-api/) — API status and version utilities
+- [Ally Invest Watchlists API](https://apis.io/apis/ally-invest/ally-invest-watchlists-api/) — The Ally Invest Watchlists API allows programmatic creation and management of symbol watchlists associated with a member account. Supports listing all…
 
-API access is free for registered Ally Invest account holders. Brokerage transaction fees apply when orders are executed:
+### Published properties
 
-- US Stocks and ETFs: $0 commission
-- Options: $0.50 per contract
-- No account minimum for self-directed cash accounts
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Resources
+#### Agentic access (1)
 
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Ally Invest Agentic Access](https://apis.io/agentic-access/ally-invest/ally-invest-agentic-access/)
+
+#### JSON Schema (3)
+
+The data models the API reads and writes.
+
+- [AllyInvestAccountBalance](https://apis.io/schemas/ally-invest/ally-invest-account-balance/)
+- [AllyInvestOrder](https://apis.io/schemas/ally-invest/ally-invest-order/)
+- [AllyInvestQuote](https://apis.io/schemas/ally-invest/ally-invest-quote/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Ally Invest Context](https://apis.io/jsonld/ally-invest/ally-invest-context/)
+
+#### Examples (4)
+
+Example requests and responses.
+
+- [Get Accounts Example](https://apis.io/examples/ally-invest/get-accounts-example/)
+- [Get Market Clock Example](https://apis.io/examples/ally-invest/get-market-clock-example/)
+- [Get Quotes Example](https://apis.io/examples/ally-invest/get-quotes-example/)
+- [Get Watchlists Example](https://apis.io/examples/ally-invest/get-watchlists-example/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Ally Invest Accounts API](https://apis.io/collections/ally-invest/open-ally-invest-accounts-api/)
+- [Ally Invest Accounts Market Data API](https://apis.io/collections/ally-invest/open-ally-invest-market-data-api/)
+- [Ally Invest Accounts Member API](https://apis.io/collections/ally-invest/open-ally-invest-member-api/)
+- [Ally Invest Accounts Orders API](https://apis.io/collections/ally-invest/open-ally-invest-orders-api/)
+- [Ally Invest Accounts Utilities API](https://apis.io/collections/ally-invest/open-ally-invest-utilities-api/)
+- [Ally Invest Accounts Watchlists API](https://apis.io/collections/ally-invest/open-ally-invest-watchlists-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Ally Invest — jsonschema rules](https://apis.io/rules/ally-invest/ally-invest-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Ally Invest Authentication](https://apis.io/security/ally-invest/ally-invest-authentication/)
+- [Ally Invest Domain Security](https://apis.io/security/ally-invest/ally-invest-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Ally Invest Plans Pricing](https://apis.io/plans/ally-invest/ally-invest-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Ally Invest Rate Limits](https://apis.io/rate-limits/ally-invest/ally-invest-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Ally Invest Finops](https://apis.io/finops/ally-invest/ally-invest-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.ally.com/invest/)
 - [Documentation](https://www.ally.com/api/invest/documentation/getting-started/)
-- [Commissions and Fees](https://www.ally.com/invest/commissions-and-fees/)
-- [Rate Limiting](https://www.ally.com/api/invest/documentation/rate-limiting/)
-- [Attribution Guidelines](https://www.ally.com/api/invest/documentation/attribution-guidelines/)
-- [API Agreement](https://www.ally.com/content/dam/pdf/invest/api-agreement.pdf)
+- [Getting started](https://www.ally.com/api/invest/documentation/getting-started/)
+- [Pricing](https://www.ally.com/invest/commissions-and-fees/)
+- [Blog](https://www.ally.com/stories/)
+- [Terms of service](https://www.ally.com/content/dam/pdf/invest/api-agreement.pdf)
+- [GitHub](https://github.com/anthonymorast/AllyInvest.py)
 
-## Maintainer
+## API Evangelist rating
 
-Kin Lane (kin@apievangelist.com)
+**Kin Score 40.8** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 58.9 |
+| Contract governance | 9.8 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 58.3 |
+| Access clarity | 26.3 |
+
+**Agent readiness 23.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 25.0** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ally-invest/](https://apis.io/providers/ally-invest/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Ally Invest: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ally-invest/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
